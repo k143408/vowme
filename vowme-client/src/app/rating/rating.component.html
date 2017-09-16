@@ -1,0 +1,11 @@
+<span (mouseleave)="reset()" (keydown)="onKeydown($event)" tabindex="0" role="slider" aria-valuemin="0" [attr.aria-valuemax]="range.length"
+  [attr.aria-valuenow]="value">
+      <span *ngFor="let r of range;" >
+        <span class="sr-only">({{ r.index < value ? '*' : ' ' }})</span>
+<i (mouseenter)="enter(r.index + 1)" 
+(click)="rate(r.index + 1)" 
+class="glyphicon" 
+
+[ngClass]="r.index <= value ? (value <= r.index-0.5 ? r.stateHalfOn : r.stateOn) : (value >= r.index-0.5 ? r.stateHalfOn : r.stateOff)"></i>
+</span>
+</span>

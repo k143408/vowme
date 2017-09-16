@@ -1,0 +1,5 @@
+<div *ngIf="latLong">
+    <ngui-map zoom="9" center="Karachi, Pakistan" (mapReady$)="onMapReady($event)" (mapClick)="onMapClick($event)" (idle)="onIdle($event)">
+        <marker *ngFor="let pos of positions" [position]="pos" (initialized$)="onMarkerInit($event)"></marker>
+    </ngui-map>
+</div>

@@ -1,0 +1,223 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-lg-4 col-md-5">
+      <div class="card card-user">
+        <div class="content">
+          <div>
+            <p class="description text-center">{{currentCause.description}}</p>
+            <div *ngIf="currentCause.latlong">
+              <maps-cmp [latLong]="currentCause?.latlong"></maps-cmp>
+            </div>
+          </div>
+        </div>
+        <div class="text-center">
+          <div class="row">
+            <div class="col-md-3 col-md-offset-1">
+              <h5>{{currentCause.participates.length}}<br /><small>Participates</small></h5>
+            </div>
+            <div class="col-md-4">
+              <h5>{{currentCause.backouts.length}}<br /><small>Backouts</small></h5>
+            </div>
+            <div class="col-md-3">
+              <h5>{{currentCause.boardcasts.length}}+<br /><small>Boardcasts</small></h5>
+            </div>
+          </div>
+        </div>
+        <div class="text-center">
+          <div class="row">
+            <div class="col-md-3 col-md-offset-3">
+                 <h5><button class="btn btn-info" (click) ="approval()"> Make Look Alike Cause.</button></h5>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="header">
+          <h4 class="title">Co-organizer Member(s)</h4>
+          <p>Total Teams : {{currentCause.teams.length}}</p>
+        </div>
+        <div class="content">
+          <ul class="list-unstyled team-members">
+            <li *ngFor='let team of currentCause.teams; let row = index;'>
+              <div class="row">
+                <div class="col-xs-3">
+                  <div class="avatar">
+                    <img src="assets/img/faces/face-{{row}}.jpg" alt="Circle Image" class="img-circle img-no-padding img-responsive">
+                  </div>
+                </div>
+                <div class="col-xs-6">
+                  {{team.user.firstname}} {{team.user.lastname}}
+                  <div class="clearfix"></div>
+                  <span class="text-muted"><small></small></span>
+                </div>
+                <div class="col-xs-3 text-right">
+                  <button class="btn btn-sm btn-success btn-icon"><a href="mailto:{{team.user.email}}?Subject=From%20{{currentCause.user.firstname}}"><i class="fa fa-envelope"></i></a></button>
+                </div>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-8 col-md-7">
+      <div class="card">
+        <div class="header">
+          <h4 class="title">Details</h4>
+        </div>
+        <div class="content">
+          <div class="row">
+            <div class="col-md-12">
+              <div class="form-group">
+                <label>Address</label>
+                <span>{{currentCause.address}}</span>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-3">
+              <div class="form-group">
+                <label>City</label>
+                <span>{{currentCause.city}}</span>
+              </div>
+            </div>
+            <div class="col-md-3">
+              <div class="form-group">
+                <label for="exampleInputEmail1">Location</label>
+                <span>{{currentCause.location}}</span>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group">
+                <label>Registration Date</label>
+                <span>{{currentCause.registrationdate}}</span>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-3">
+              <div class="form-group">
+                <label>Max Attendees</label>
+                <span>{{currentCause.maxattendees}}</span>
+              </div>
+            </div>
+            <div class="col-md-3">
+              <div class="form-group">
+                <label>Phone</label>
+                <span>{{currentCause.phone}}</span>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label>Registration End Date</label>
+                <span class="text-danger">{{currentCause.registrationdeadline}}</span>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label>Website</label>
+                <span>{{currentCause.wwwaddress}}</span>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <div class="form-group">
+                <label>Info</label>
+                <div class="clearfix"></div>
+                <span>{{currentCause.info}}</span>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <div class="form-group">
+                <label>Required Skills</label>
+                <div class="clearfix"></div>
+                <ul>
+                  <li *ngFor="let skill of currentCause.causeSkills">
+                    {{skill.skill.name}}
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div class="text-center">
+            <!-- <button type="submit" class="btn btn-info btn-fill btn-wd">Update Profile</button> -->
+          </div>
+          <div class="clearfix"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-lg-4 col-md-5">
+      <div class="card">
+        <div class="header">
+          <h4 class="title">Approval Pending Details</h4>
+          <p></p>
+        </div>
+        <div class="content">
+          <div class="row">
+            <ul>
+              <div *ngFor="let approval of currentCause.approvals; let count = index;">
+                <li *ngIf="count<2">
+                  <p *ngIf="approval.isApproved == 1"><a [routerLink]="['/volunteer-detail',approval.user.id]"> {{approval.user.firstname}} {{approval.user.lastname}}</a></p>
+                </li>
+              </div>
+            </ul>
+            <span *ngIf="currentCause?.approvals?.length > 2">
+              <p>See More</p>
+            </span>
+          </div>
+        </div>
+        <div class="clearfix"></div>
+      </div>
+    </div>
+    <div class="col-lg-4 col-md-5">
+      <div class="card">
+        <div class="header">
+          <h4 class="title">Participates Details</h4>
+          <p></p>
+        </div>
+        <div class="content">
+          <div class="row">
+            <ul>
+              <div *ngFor="let participates of currentCause.participates; let count = index;">
+                <li *ngIf="count<2">
+                  <p><a [routerLink]="['/volunteer-detail',participates.user.id]"> {{participates.user.firstname}} {{participates.user.lastname}}</a></p>
+                </li>
+              </div>
+            </ul>
+            <div *ngIf="currentCause?.participates?.length > 2">
+              <p>See More</p>
+            </div>
+          </div>
+        </div>
+        <div class="clearfix"></div>
+      </div>
+    </div>
+    <div class="col-lg-4 col-md-6">
+      <div class="card">
+        <div class="header">
+          <h4 class="title">Boardcasts Details</h4>
+          <p></p>
+        </div>
+        <div class="content">
+          <div class="row">
+            <div *ngFor="let boardcast of currentCause.boardcasts; let count = index;">
+              <blockquote>
+                <p class="text-info"> {{boardcast.email.title}}</p>
+                <small> {{boardcast.email.recipientEmail}} </small>
+              </blockquote>
+            </div>
+            <div *ngIf="currentCause?.participates?.length > 2">
+              <small class="text-info">See More</small>
+            </div>
+            <div class="clearfix"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
