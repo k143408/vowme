@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@android:color/white">
+
+    <include
+        android:id="@+id/include"
+        layout="@layout/toolbar_no_tabs"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true" />
+
+    <ScrollView
+        android:id="@+id/scroll_body"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_below="@+id/include"
+        android:layout_gravity="bottom|center"
+        android:orientation="horizontal">
+
+        <include layout="@layout/content_filtering" />
+    </ScrollView>
+
+    <TextView
+        android:id="@+id/button_do_filter"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_gravity="center_horizontal"
+        android:background="@android:color/white"
+        android:onClick="doneCliked"
+        android:padding="8.0dip"
+        android:singleLine="true"
+        android:text="DONE"
+        android:textAllCaps="true"
+        android:textColor="@drawable/selector_text_button"
+        android:textSize="@dimen/basic_text" />
+</RelativeLayout>

@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@drawable/background_profile">
+
+    <ImageView
+        android:id="@+id/profile_image"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/central_lyt"
+        android:layout_centerHorizontal="true"
+        android:src="@mipmap/ic_push_notification" />
+
+    <LinearLayout
+        android:id="@+id/central_lyt"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/welcome_Title"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/profile_image"
+            android:layout_gravity="center"
+            android:lineSpacingExtra="@dimen/line_spacing"
+            android:lines="1"
+            android:linksClickable="false"
+            android:longClickable="false"
+            android:paddingLeft="24.0dip"
+            android:paddingRight="36.0dip"
+            android:paddingTop="48.0dip"
+            android:singleLine="false"
+            android:text="Welcome!"
+            android:textColor="@color/text_dark"
+            android:textSize="@dimen/basic_text"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/welcome_text"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/welcome_Title"
+            android:layout_gravity="center"
+            android:lineSpacingExtra="@dimen/line_spacing"
+            android:lines="4"
+            android:linksClickable="false"
+            android:longClickable="false"
+            android:paddingBottom="24.0dip"
+            android:paddingLeft="24.0dip"
+            android:paddingRight="36.0dip"
+            android:paddingTop="24.0dip"
+            android:singleLine="false"
+            android:text="Now you can access your recommendations, express interest and keep your volunteer profile updated right on your phone."
+            android:textColor="@color/text_dark"
+            android:textSize="@dimen/basic_text" />
+    </LinearLayout>
+</RelativeLayout>

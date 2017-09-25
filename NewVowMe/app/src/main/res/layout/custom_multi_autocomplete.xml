@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.vowme.app.utilities.customWidgets.CustomMultiAutoCompleteTextView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/search_edit_frame_location"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:background="@android:color/white"
+    android:digits="0123456789\n "
+    android:drawableLeft="@drawable/ic_location_on_grey_24dp"
+    android:inputType="phone|textMultiLine"
+    android:lineSpacingExtra="@dimen/line_spacing"
+    android:paddingBottom="8.0dip"
+    android:paddingLeft="8.0dip"
+    android:paddingRight="8.0dip"
+    android:paddingTop="12.0dip">
+
+</com.vowme.app.utilities.customWidgets.CustomMultiAutoCompleteTextView>

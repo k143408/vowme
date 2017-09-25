@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="basic_text" type="dimen">16.0sp</item>
+    <item name="subtitle" type="dimen">14.0sp</item>
+    <dimen name="cardview_margin_bottom">16.0dip</dimen>
+    <dimen name="line_spacing">8.0dip</dimen>
+    <dimen name="icon_font_large">24.0dip</dimen>
+    <dimen name="icon_font_small">20.0sp</dimen>
+    <dimen name="title">20.0sp</dimen>
+    <dimen name="tab_icon">24.0dip</dimen>
+    <dimen name="tab_icon_large">36.0dip</dimen>
+</resources>

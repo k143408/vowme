@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/item_bookmark_lyt"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#101030"
+    android:clickable="true">
+
+    <FrameLayout
+        android:id="@+id/leave_behinds_delete"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/dividers_light"
+        android:clickable="false"
+        android:paddingRight="16dp"
+        android:visibility="visible">
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="left|right|center_horizontal|fill_horizontal|center|fill|start|end"
+            android:background="@color/dividers_light"
+            android:src="@drawable/ic_delete_24dp" />
+    </FrameLayout>
+
+    <FrameLayout
+        android:id="@+id/removeable_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#106000"
+        android:orientation="horizontal"
+        android:paddingRight="16dp">
+
+        <TextView
+            android:id="@+id/bookmark_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left|right|center_horizontal|fill_horizontal|center|fill|start|end"
+            android:paddingBottom="8dp"
+            android:paddingLeft="16dp"
+            android:paddingTop="8dp"
+            android:text="bookmark"
+            android:textColor="@color/text_light"
+            android:textSize="@dimen/basic_text" />
+
+        <ImageView
+            android:id="@+id/reorder_ic"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="left|right|center_horizontal|fill_horizontal|center|fill|start|end"
+            android:src="@drawable/ic_reorder_24dp" />
+    </FrameLayout>
+</FrameLayout>

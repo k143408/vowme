@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@android:color/white">
+
+    <include
+        android:id="@+id/include_header"
+        layout="@layout/toolbar_no_tabs"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" />
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/first_lyt"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_below="@+id/include_header"
+        android:divider="?android:listDivider"
+        android:orientation="vertical"
+        android:paddingTop="16.0dip"
+        android:showDividers="middle">
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingLeft="16.0dip"
+            android:paddingRight="16.0dip">
+
+            <TextView
+                android:id="@+id/act_account_details"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:background="?android:selectableItemBackground"
+                android:clickable="true"
+                android:onClick="onClick"
+                android:paddingBottom="16.0dip"
+                android:text="Account details"
+                android:textColor="@color/text_light"
+                android:textSize="@dimen/basic_text" />
+
+            <TextView
+                android:id="@+id/act_change_password"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:background="?android:selectableItemBackground"
+                android:clickable="true"
+                android:onClick="onClick"
+                android:paddingBottom="16.0dip"
+                android:text="Change password"
+                android:textColor="@color/text_light"
+                android:textSize="@dimen/basic_text" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingLeft="16.0dip"
+            android:paddingRight="16.0dip">
+
+            <TextView
+                android:id="@+id/ext_login"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:paddingBottom="16.0dip"
+                android:paddingTop="16.0dip"
+                android:text="Social connections"
+                android:textColor="@color/sec_icon_light"
+                android:textSize="@dimen/subtitle" />
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/act_facebook"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="14.0dip"
+                    android:text="Facebook"
+                    android:textColor="@color/text_light"
+                    android:textSize="@dimen/basic_text" />
+
+                <TextView
+                    android:id="@+id/facebook_txt"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:background="?android:selectableItemBackground"
+                    android:clickable="true"
+                    android:onClick="onClick"
+                    android:paddingBottom="16.0dip"
+                    android:text="Not Connected"
+                    android:textColor="@color/sec_icon_light"
+                    android:textSize="@dimen/subtitle" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/act_linkedin"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="4.0dip"
+                    android:text="Linkedin"
+                    android:textColor="@color/text_light"
+                    android:textSize="@dimen/basic_text" />
+
+                <TextView
+                    android:id="@+id/linkedin_txt"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:background="?android:selectableItemBackground"
+                    android:clickable="true"
+                    android:onClick="onClick"
+                    android:paddingBottom="16.0dip"
+                    android:text="Not Connected"
+                    android:textColor="@color/sec_icon_light"
+                    android:textSize="@dimen/subtitle" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/act_twitter"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="4.0dip"
+                    android:text="Twitter"
+                    android:textColor="@color/text_light"
+                    android:textSize="@dimen/basic_text" />
+
+                <TextView
+                    android:id="@+id/twitter_txt"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:background="?android:selectableItemBackground"
+                    android:clickable="true"
+                    android:onClick="onClick"
+                    android:paddingBottom="16.0dip"
+                    android:text="Not Connected"
+                    android:textColor="@color/sec_icon_light"
+                    android:textSize="@dimen/subtitle" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/act_google"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="4.0dip"
+                    android:text="Google"
+                    android:textColor="@color/text_light"
+                    android:textSize="@dimen/basic_text" />
+
+                <TextView
+                    android:id="@+id/google_txt"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:background="?android:selectableItemBackground"
+                    android:clickable="true"
+                    android:onClick="onClick"
+                    android:paddingBottom="16.0dip"
+                    android:text="Not Connected"
+                    android:textColor="@color/sec_icon_light"
+                    android:textSize="@dimen/subtitle" />
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+</RelativeLayout>

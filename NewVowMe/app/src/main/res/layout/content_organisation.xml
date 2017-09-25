@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:layout_alignParentBottom="true"
+    android:layout_gravity="bottom|center"
+    android:descendantFocusability="beforeDescendants"
+    android:focusableInTouchMode="true"
+    android:orientation="horizontal">
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content">
+
+        <android.support.v7.widget.CardView
+            android:id="@+id/orga_header"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="top">
+
+            <FrameLayout
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent">
+
+                <ImageView
+                    android:id="@+id/orga_bg"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:layout_gravity="fill_vertical|center"
+                    android:adjustViewBounds="true"
+                    android:src="@mipmap/organisation_bg" />
+
+                <RelativeLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom">
+
+                    <LinearLayout
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentBottom="true"
+                        android:background="#70212121"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:id="@+id/orga_lyt"
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal"
+                                android:paddingLeft="16.0dip"
+                                android:paddingRight="16.0dip"
+                                android:paddingTop="16.0dip">
+
+                                <ImageView
+                                    android:id="@+id/orga_logo"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    app:srcCompat="@drawable/circle_default_orga" />
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="fill_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical"
+                                android:paddingTop="24.0dip">
+
+                                <TextView
+                                    android:id="@+id/orga_name"
+                                    style="@style/LightTitle"
+                                    android:text="New Text" />
+
+                                <TextView
+                                    android:id="@+id/orga_website"
+                                    android:layout_width="fill_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="New Text"
+                                    android:textColor="@color/text_dark" />
+                            </LinearLayout>
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/icons_lyt"
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:padding="16.0dip">
+
+                            <TextView
+                                android:id="@+id/orga_ic_loc"
+                                style="@style/SmallFontIcon"
+                                android:text="@string/ic_location_on"
+                                android:textColor="@color/text_dark" />
+
+                            <TextView
+                                android:id="@+id/orga_location"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:paddingBottom="4.0dip"
+                                android:paddingRight="32.0dip"
+                                android:text="Locale, State"
+                                android:textColor="@color/text_dark"
+                                android:textSize="@dimen/subtitle" />
+
+                            <TextView
+                                android:id="@+id/orga_ic_cause"
+                                style="@style/SmallFontIcon"
+                                android:text="@string/ic_local_offer"
+                                android:textColor="@color/text_dark" />
+
+                            <TextView
+                                android:id="@+id/orga_cause"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:paddingBottom="4.0dip"
+                                android:text="Cause"
+                                android:textColor="@color/text_dark"
+                                android:textSize="@dimen/subtitle" />
+                        </LinearLayout>
+                    </LinearLayout>
+                </RelativeLayout>
+            </FrameLayout>
+        </android.support.v7.widget.CardView>
+
+        <android.support.v7.widget.CardView
+            android:id="@+id/orga_about"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/orga_header"
+            android:layout_marginBottom="@dimen/cardview_margin_bottom"
+            android:layout_marginTop="16.0dip">
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:divider="@drawable/mydivider"
+                android:orientation="vertical"
+                android:paddingBottom="16.0dip"
+                android:paddingTop="16.0dip"
+                android:showDividers="beginning">
+
+                <TextView
+                    android:id="@+id/about_lbl"
+                    style="@style/OpportunityTitle"
+                    android:text="About this organisation" />
+
+                <TextView
+                    android:id="@+id/orga_desc"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:lineSpacingExtra="@dimen/line_spacing"
+                    android:linksClickable="true"
+                    android:paddingLeft="16.0dip"
+                    android:paddingRight="16.0dip"
+                    android:text="Incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrurd exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
+                    android:textColor="@color/text_light"
+                    android:textSize="@dimen/subtitle" />
+            </LinearLayout>
+        </android.support.v7.widget.CardView>
+
+        <android.support.v7.widget.CardView
+            android:id="@+id/orga_contact"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/orga_about"
+            android:layout_marginBottom="@dimen/cardview_margin_bottom">
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:divider="@drawable/mydivider"
+                android:orientation="vertical"
+                android:paddingBottom="16.0dip"
+                android:showDividers="beginning">
+
+                <TextView
+                    android:id="@+id/contact_lbl"
+                    style="@style/OpportunityTitle"
+                    android:text="Contact organisation" />
+
+                <TextView
+                    android:id="@+id/orga_street"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:lineSpacingExtra="@dimen/line_spacing"
+                    android:linksClickable="true"
+                    android:paddingLeft="16.0dip"
+                    android:paddingRight="16.0dip"
+                    android:text="street"
+                    android:textColor="@color/text_light"
+                    android:textSize="@dimen/subtitle" />
+
+                <TextView
+                    android:id="@+id/orga_sub_postcode"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:lineSpacingExtra="@dimen/line_spacing"
+                    android:linksClickable="true"
+                    android:paddingLeft="16.0dip"
+                    android:paddingRight="16.0dip"
+                    android:text="street"
+                    android:textColor="@color/text_light"
+                    android:textSize="@dimen/subtitle" />
+
+                <TextView
+                    android:id="@+id/orga_state"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:lineSpacingExtra="@dimen/line_spacing"
+                    android:linksClickable="true"
+                    android:paddingLeft="16.0dip"
+                    android:paddingRight="16.0dip"
+                    android:text="street"
+                    android:textColor="@color/text_light"
+                    android:textSize="@dimen/subtitle" />
+            </LinearLayout>
+        </android.support.v7.widget.CardView>
+    </RelativeLayout>
+</ScrollView>

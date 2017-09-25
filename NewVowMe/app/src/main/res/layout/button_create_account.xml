@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
+
+    <Button
+        android:id="@+id/button_create_account"
+        style="@style/DarkButtonSmall"
+        android:layout_centerHorizontal="true"
+        android:onClick="goToCreateAnAccount"
+        android:text="CREATE AN ACCOUNT" />
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/button_create_account"
+        android:layout_centerHorizontal="true"
+        android:linksClickable="true"
+        android:onClick="goToLogin"
+        android:padding="16.0dip">
+
+        <TextView
+            android:id="@+id/sign_in_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/sign_in_text"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/basic_text" />
+
+        <TextView
+            android:id="@+id/have_account_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignWithParentIfMissing="false"
+            android:paddingRight="4.0dip"
+            android:text="@string/have_account_text"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/basic_text" />
+    </RelativeLayout>
+</RelativeLayout>

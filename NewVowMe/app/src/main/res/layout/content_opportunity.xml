@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:descendantFocusability="beforeDescendants"
+    android:focusableInTouchMode="true">
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/head_title"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/cardview_margin_bottom">
+
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/opp_id"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentTop="true"
+                android:padding="8.0dip"
+                android:text="New Text"
+                android:textColor="@color/sec_icon_light"
+                android:textSize="@dimen/subtitle" />
+
+            <include
+                android:id="@+id/include_header"
+                layout="@layout/item_opportunity_title"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/opp_id" />
+
+            <LinearLayout
+                android:id="@+id/icons_lyt"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/include_header"
+                android:layout_marginBottom="2.0dip"
+                android:layout_marginTop="2.0dip"
+                android:orientation="horizontal"
+                android:paddingLeft="12.0dip">
+
+                <TextView
+                    android:id="@+id/opp_ic_loc"
+                    style="@style/SmallFontIcon"
+                    android:text="@string/ic_location_on" />
+
+                <TextView
+                    android:id="@+id/opp_location"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="4.0dip"
+                    android:paddingRight="16.0dip"
+                    android:text="Locale, State"
+                    android:textColor="@color/sec_icon_light"
+                    android:textSize="@dimen/subtitle" />
+
+                <TextView
+                    android:id="@+id/opp_ic_time"
+                    style="@style/SmallFontIcon"
+                    android:text="@string/ic_access_time" />
+
+                <TextView
+                    android:id="@+id/opp_duration"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="4.0dip"
+                    android:text="Duration"
+                    android:textColor="@color/sec_icon_light"
+                    android:textSize="@dimen/subtitle" />
+            </LinearLayout>
+        </RelativeLayout>
+    </android.support.v7.widget.CardView>
+
+    <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/body_lyl"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_below="@+id/head_title">
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:divider="@drawable/mydivider"
+            android:orientation="vertical"
+            android:showDividers="beginning">
+
+            <TextView
+                android:id="@+id/about_lbl"
+                style="@style/OpportunityTitle"
+                android:paddingBottom="16.0dip"
+                android:paddingTop="16.0dip"
+                android:text="About this opportunity" />
+
+            <TextView
+                android:id="@+id/opp_desc"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:lineSpacingExtra="@dimen/line_spacing"
+                android:linksClickable="true"
+                android:paddingLeft="16.0dip"
+                android:paddingRight="16.0dip"
+                android:text="Incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrurd exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
+                android:textColor="@color/text_light"
+                android:textSize="@dimen/subtitle" />
+
+            <TextView
+                android:id="@+id/time_lbl"
+                style="@style/OpportunitySubtitle"
+                android:text="Time required" />
+
+            <TextView
+                android:id="@+id/opp_time"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:lineSpacingExtra="@dimen/line_spacing"
+                android:linksClickable="true"
+                android:paddingLeft="16.0dip"
+                android:paddingRight="16.0dip"
+                android:textColor="@color/text_light"
+                android:textSize="@dimen/subtitle" />
+
+            <TextView
+                android:id="@+id/interest_lbl"
+                style="@style/OpportunitySubtitle"
+                android:text="Interest in" />
+
+            <ListView
+                android:id="@+id/list_interest"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:divider="@null"
+                android:dividerHeight="0.0dip"
+                android:paddingLeft="16.0dip"
+                android:paddingRight="16.0dip" />
+
+            <TextView
+                android:id="@+id/training_lbl"
+                style="@style/OpportunitySubtitle"
+                android:text="Training" />
+
+            <TextView
+                android:id="@+id/opp_training"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:lineSpacingExtra="@dimen/line_spacing"
+                android:linksClickable="true"
+                android:paddingLeft="16.0dip"
+                android:paddingRight="16.0dip"
+                android:textColor="@color/text_light"
+                android:textSize="@dimen/subtitle" />
+
+            <TextView
+                android:id="@+id/reimbursement_lbl"
+                style="@style/OpportunitySubtitle"
+                android:text="Reimbursement" />
+
+            <TextView
+                android:id="@+id/opp_reimbursement"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:lineSpacingExtra="@dimen/line_spacing"
+                android:linksClickable="true"
+                android:paddingBottom="32.0dip"
+                android:paddingLeft="16.0dip"
+                android:paddingRight="16.0dip"
+                android:textColor="@color/text_light"
+                android:textSize="@dimen/subtitle" />
+
+            <TextView
+                android:id="@+id/about_orga_lbl"
+                style="@style/OpportunityTitle"
+                android:paddingBottom="8.0dip"
+                android:paddingTop="32.0dip"
+                android:text="About this organisation" />
+
+            <TextView
+                android:id="@+id/opp_orga_desc"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:lineSpacingExtra="@dimen/line_spacing"
+                android:linksClickable="true"
+                android:paddingLeft="16.0dip"
+                android:paddingRight="16.0dip"
+                android:text="Incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam"
+                android:textColor="@color/text_light"
+                android:textSize="@dimen/subtitle" />
+
+            <TextView
+                android:id="@+id/orga_link"
+                style="@style/link"
+                android:onClick="goToOrga"
+                android:paddingBottom="75.0dip"
+                android:paddingLeft="16.0dip"
+                android:paddingRight="16.0dip"
+                android:paddingTop="16.0dip"
+                android:text="Full profile" />
+        </LinearLayout>
+    </android.support.v7.widget.CardView>
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/body_lyl"
+        android:orientation="vertical">
+
+        <Button
+            android:id="@+id/expressed_btn"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:background="@android:color/transparent"
+            android:clickable="false"
+            android:minHeight="34.0dip"
+            android:paddingBottom="16.0dip"
+            android:paddingLeft="8.0dip"
+            android:paddingRight="8.0dip"
+            android:paddingTop="16.0dip"
+            android:singleLine="false"
+            android:text="✔ EXPRESSED INTEREST"
+            android:textAllCaps="true"
+            android:textColor="@color/dis_hint_light"
+            android:textSize="@dimen/basic_text"
+            android:textStyle="normal" />
+    </LinearLayout>
+</RelativeLayout>

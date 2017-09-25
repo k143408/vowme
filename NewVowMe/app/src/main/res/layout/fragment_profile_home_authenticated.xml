@@ -1,0 +1,406 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:layout_alignParentBottom="true"
+    android:layout_gravity="bottom|center"
+    android:descendantFocusability="beforeDescendants"
+    android:focusableInTouchMode="true"
+    android:orientation="horizontal">
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content">
+
+        <android.support.v7.widget.CardView
+            android:id="@+id/header"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="top">
+
+            <FrameLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:id="@+id/orga_bg"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="fill_vertical|center"
+                    android:adjustViewBounds="true"
+                    android:src="@mipmap/userprofile_bg" />
+
+                <RelativeLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom">
+
+                    <LinearLayout
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentBottom="true"
+                        android:background="#70212121"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:id="@+id/vol_lyt"
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal"
+                                android:paddingLeft="16.0dip"
+                                android:paddingRight="16.0dip"
+                                android:paddingTop="16.0dip">
+
+                                <ImageView
+                                    android:id="@+id/vol_avatar"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    app:srcCompat="@drawable/circle_default_volunteer" />
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="fill_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical"
+                                android:paddingTop="24.0dip">
+
+                                <TextView
+                                    android:id="@+id/vol_full_name"
+                                    style="@style/LightTitle"
+                                    android:text="New Text" />
+
+                                <TextView
+                                    android:id="@+id/every_title"
+                                    android:layout_width="fill_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="New Text"
+                                    android:textColor="@color/text_dark" />
+                            </LinearLayout>
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:id="@+id/act_edit_profile"
+                                style="@style/ButtonTextLink"
+                                android:onClick="onEditProfileClick"
+                                android:text="EDIT PROFILE" />
+
+                            <TextView
+                                android:id="@+id/act_download_profile"
+                                style="@style/ButtonTextLink"
+                                android:onClick="onDownloadProfileClick"
+                                android:text="DOWNLOAD" />
+                        </LinearLayout>
+                    </LinearLayout>
+                </RelativeLayout>
+            </FrameLayout>
+        </android.support.v7.widget.CardView>
+
+        <android.support.v7.widget.CardView
+            android:id="@+id/available"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/header"
+            android:layout_marginBottom="@dimen/cardview_margin_bottom"
+            android:layout_marginTop="16.0dip">
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingBottom="16.0dip"
+                android:paddingTop="16.0dip">
+
+                <TextView
+                    style="@style/HomeProfileTitle"
+                    android:paddingLeft="16.0dip"
+                    android:text="Available for" />
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/available_list"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="8.0dip" />
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/sentence_list"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="16.0dip"
+                    android:paddingRight="16.0dip" />
+            </LinearLayout>
+        </android.support.v7.widget.CardView>
+
+        <android.support.v7.widget.CardView
+            android:id="@+id/located"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/available"
+            android:layout_marginBottom="@dimen/cardview_margin_bottom">
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16.0dip">
+
+                <TextView
+                    style="@style/HomeProfileTitle"
+                    android:text="Opportunities located in" />
+
+                <TextView
+                    android:id="@+id/located_txt"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:lineSpacingExtra="@dimen/line_spacing"
+                    android:textColor="@color/text_light"
+                    android:textSize="@dimen/subtitle" />
+            </LinearLayout>
+        </android.support.v7.widget.CardView>
+
+        <android.support.v7.widget.CardView
+            android:id="@+id/cause"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/located"
+            android:layout_marginBottom="@dimen/cardview_margin_bottom">
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingBottom="16.0dip"
+                android:paddingTop="16.0dip">
+
+                <TextView
+                    style="@style/HomeProfileTitle"
+                    android:paddingLeft="16.0dip"
+                    android:text="Causes supporting" />
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/cause_list"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+        </android.support.v7.widget.CardView>
+
+        <android.support.v7.widget.CardView
+            android:id="@+id/interest"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/cause"
+            android:layout_marginBottom="@dimen/cardview_margin_bottom">
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16.0dip">
+
+                <TextView
+                    style="@style/HomeProfileTitle"
+                    android:text="Interested in" />
+
+                <TextView
+                    android:id="@+id/interest_txt"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/text_light"
+                    android:textSize="@dimen/subtitle" />
+            </LinearLayout>
+        </android.support.v7.widget.CardView>
+
+        <android.support.v7.widget.CardView
+            android:id="@+id/skill"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/interest"
+            android:layout_marginBottom="@dimen/cardview_margin_bottom">
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16.0dip">
+
+                <TextView
+                    style="@style/HomeProfileTitle"
+                    android:text="Skills &amp; Qualifications" />
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/skill_list"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    app:layoutManager="GridLayoutManager" />
+            </LinearLayout>
+        </android.support.v7.widget.CardView>
+
+        <android.support.v7.widget.CardView
+            android:id="@+id/hobbies"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/skill"
+            android:layout_marginBottom="@dimen/cardview_margin_bottom">
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16.0dip">
+
+                <TextView
+                    style="@style/HomeProfileTitle"
+                    android:text="Hobbies" />
+
+                <TextView
+                    android:id="@+id/hobbies_txt"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/text_light"
+                    android:textSize="@dimen/subtitle" />
+            </LinearLayout>
+        </android.support.v7.widget.CardView>
+
+        <android.support.v7.widget.CardView
+            android:id="@+id/pro_skill"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/hobbies"
+            android:layout_marginBottom="@dimen/cardview_margin_bottom">
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16.0dip">
+
+                <TextView
+                    style="@style/HomeProfileTitle"
+                    android:text="Professional skills" />
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/pro_skill_list"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    app:layoutManager="GridLayoutManager" />
+            </LinearLayout>
+        </android.support.v7.widget.CardView>
+
+        <android.support.v7.widget.CardView
+            android:id="@+id/job"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/pro_skill"
+            android:layout_marginBottom="@dimen/cardview_margin_bottom">
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16.0dip">
+
+                <TextView
+                    style="@style/HomeProfileTitle"
+                    android:text="Current Job" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/job_txt"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/text_light"
+                        android:textSize="@dimen/subtitle" />
+
+                    <TextView
+                        android:id="@+id/at_txt"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:text=" at "
+                        android:textColor="@color/colorAccent"
+                        android:textSize="@dimen/subtitle"
+                        android:textStyle="italic" />
+
+                    <TextView
+                        android:id="@+id/company_txt"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/sec_icon_light"
+                        android:textSize="@dimen/subtitle" />
+                </LinearLayout>
+            </LinearLayout>
+        </android.support.v7.widget.CardView>
+
+        <android.support.v7.widget.CardView
+            android:id="@+id/experience"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/job"
+            android:layout_marginBottom="@dimen/cardview_margin_bottom">
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16.0dip">
+
+                <TextView
+                    style="@style/HomeProfileTitle"
+                    android:text="Previous work" />
+
+                <TextView
+                    android:id="@+id/experience_txt"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/text_light"
+                    android:textSize="@dimen/subtitle" />
+
+                <TextView
+                    android:id="@+id/linkedin_txt"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="8.0dip"
+                    android:textColor="@color/colorAccent"
+                    android:textSize="@dimen/subtitle" />
+            </LinearLayout>
+        </android.support.v7.widget.CardView>
+
+        <android.support.v7.widget.CardView
+            android:id="@+id/experiences"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/experience"
+            android:layout_marginBottom="@dimen/cardview_margin_bottom">
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16.0dip">
+
+                <TextView
+                    style="@style/HomeProfileTitle"
+                    android:text="Volunteer experience" />
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/experiences_list"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    app:layoutManager="GridLayoutManager" />
+            </LinearLayout>
+        </android.support.v7.widget.CardView>
+    </RelativeLayout>
+</ScrollView>

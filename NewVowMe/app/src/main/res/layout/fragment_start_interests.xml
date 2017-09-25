@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
+
+    <TextView
+        android:id="@+id/title"
+        style="@style/OpportunityTitle"
+        android:paddingTop="16.0dip"
+        android:text="Which skills would you like to use?" />
+
+    <TextView
+        android:id="@+id/text"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/title"
+        android:lineSpacingExtra="@dimen/line_spacing"
+        android:paddingBottom="16.0dip"
+        android:paddingLeft="16.0dip"
+        android:paddingRight="16.0dip"
+        android:text="Choose options that reflect your skills, or areas in which you'd like some more experience."
+        android:textColor="@color/text_light"
+        android:textSize="@dimen/subtitle" />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/interests_list"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/text" />
+</RelativeLayout>

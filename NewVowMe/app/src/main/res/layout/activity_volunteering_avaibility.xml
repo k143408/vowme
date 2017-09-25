@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
+
+    <include
+        android:id="@+id/tabs_include"
+        layout="@layout/toolbar_no_tabs"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" />
+
+    <LinearLayout
+        android:id="@+id/all_times"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tabs_include"
+        android:layout_marginBottom="@dimen/cardview_margin_bottom"
+        android:background="@android:color/white"
+        android:orientation="horizontal"
+        android:paddingLeft="16.0dip"
+        android:paddingRight="8.0dip">
+
+        <TextView
+            android:id="@+id/all_times_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingBottom="8.0dip"
+            android:paddingTop="4.0dip"
+            android:text="Any day and time"
+            android:textColor="@color/text_light"
+            android:textSize="@dimen/basic_text" />
+
+        <Switch
+            android:id="@+id/switch_all_times"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="8.0dip"
+            android:paddingTop="4.0dip"
+            android:text="" />
+    </LinearLayout>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/day_avaibility_data_list"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_below="@+id/all_times" />
+</RelativeLayout>

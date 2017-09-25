@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@android:color/white">
+
+    <include
+        android:id="@+id/include"
+        layout="@layout/toolbar_no_tabs"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true" />
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_below="@+id/include"
+        android:orientation="vertical"
+        android:paddingLeft="16.0dip"
+        android:paddingRight="16.0dip"
+        android:weightSum="1.0">
+
+        <TextView xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/ic_tab_icon"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_marginBottom="30.0dip"
+            android:layout_marginTop="60.0dip"
+            android:text="@string/ic_eoi_act"
+            android:textColor="@color/sec_icon_dark"
+            android:textSize="80.0dip" />
+
+        <TextView
+            android:id="@+id/no_opp_txt"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/ic_tab_icon"
+            android:layout_centerHorizontal="true"
+            android:text="Expression of interest sent!"
+            android:textColor="@color/sec_icon_light"
+            android:textSize="@dimen/basic_text"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/no_opp_txt"
+            android:layout_centerHorizontal="true"
+            android:layout_gravity="center_horizontal"
+            android:paddingBottom="16.0dip"
+            android:paddingTop="16.0dip"
+            android:text="A confirmation email is on its way to you."
+            android:textColor="@color/sec_icon_light"
+            android:textSize="@dimen/subtitle" />
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/textView2"
+            android:layout_centerHorizontal="true"
+            android:layout_gravity="center_horizontal"
+            android:paddingBottom="16.0dip"
+            android:text="Your details have been sent to the organisation and you'll hear back directly from them."
+            android:textColor="@color/sec_icon_light"
+            android:textSize="@dimen/subtitle" />
+
+        <TextView
+            android:id="@+id/textView4"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/textView3"
+            android:layout_centerHorizontal="true"
+            android:layout_gravity="center_horizontal"
+            android:paddingBottom="16.0dip"
+            android:text="If you haven't heard back within a week, please contact the organisation directly (you can find their details in their organisation profile) to follow up."
+            android:textColor="@color/sec_icon_light"
+            android:textSize="12.0sp" />
+    </LinearLayout>
+</RelativeLayout>

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:background="@android:color/white">
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="false"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:padding="8.0dip"
+        android:text="Shortlist more than 5 opportunities"
+        android:textColor="@color/sec_icon_light"
+        android:textStyle="bold" />
+
+    <RelativeLayout
+        android:id="@+id/create_account_lyt"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView">
+
+        <Button
+            android:id="@+id/button_create_account"
+            style="@style/LightButtonSmall"
+            android:layout_width="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:onClick="goToCreateAnAccount"
+            android:text="CREATE AN ACCOUNT" />
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/button_create_account"
+            android:layout_centerHorizontal="true"
+            android:linksClickable="true"
+            android:onClick="goToLogin"
+            android:padding="16.0dip">
+
+            <TextView
+                android:id="@+id/have_account_text"
+                style="@style/PrimaryBasicText"
+                android:paddingRight="4.0dip"
+                android:text="@string/have_account_text" />
+
+            <TextView
+                android:id="@+id/sign_in_text"
+                style="@style/PrimaryBasicText"
+                android:text="@string/sign_in_text" />
+        </RelativeLayout>
+    </RelativeLayout>
+</RelativeLayout>

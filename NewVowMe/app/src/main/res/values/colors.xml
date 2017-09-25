@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+    <color name="text_70op_dark">#b3cad0</color>
+    <color name="text_light">#757575</color>
+    <color name="text_dark">#212121</color>
+    <color name="sec_icon_light">#757575</color>
+    <color name="sec_icon_dark">#bcbcbc</color>
+    <color name="textLinkButtonColor">@color/sky_blue</color>
+    <color name="sky_blue">#5ecbe1</color>
+    <color name="slight_grey_bg">#fafafa</color>
+    <color name="dis_hint_dark">#646464</color>
+    <color name="dis_hint_light">#9e9e9e</color>
+    <color name="dividers_dark">#3c3c3c</color>
+    <color name="dividers_light">#e0e0e0</color>
+    <color name="lime">#b2db1d</color>
+    <color name="lime_shade">#96b922</color>
+    <color name="lime_tint">#c1e24a</color>
+    <color name="backgroundBottomBarColor">@color/text_dark</color>
+    <color name="tabIndicatorColor">@color/lime_tint</color>
+    <color name="textColorPrimary">@color/text_dark</color>
+    <color name="starShortListColor">@color/egg_yolk</color>
+    <color name="egg_yolk">#ffb81c</color>
+    <color name="error_red">#d32f2f</color>
+    <color name="inactiveBottomBarColor">#ffadadad</color>
+    <color name="dark_turquoise">#ff004e61</color>
+    <color name="activeBottomBarColor">@color/dark_turquoise</color>
+    <color name="textColorPrimaryInactive">@color/text_70op_dark</color>
+
+</resources>

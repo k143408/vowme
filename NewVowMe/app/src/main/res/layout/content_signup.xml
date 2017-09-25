@@ -1,0 +1,315 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:descendantFocusability="beforeDescendants"
+    android:focusableInTouchMode="true">
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/head_form"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/cardview_margin_bottom">
+
+        <LinearLayout
+            android:id="@+id/form_lyt"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingRight="16.0dip"
+            android:paddingTop="8.0dip">
+
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/input_layout_firstname"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:paddingBottom="6.0dip"
+                android:paddingLeft="16.0dip"
+                android:paddingTop="16.0dip">
+
+                <EditText
+                    android:id="@+id/firstname_txt"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:hint="First name*"
+                    android:inputType="text"
+                    android:textColor="@color/text_light"
+                    android:textColorHint="@color/dis_hint_light"
+                    android:textSize="@dimen/basic_text" />
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/input_layout_lastname"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:paddingBottom="6.0dip"
+                android:paddingLeft="16.0dip">
+
+                <EditText
+                    android:id="@+id/lastname_txt"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:hint="Last name*"
+                    android:inputType="text"
+                    android:textColor="@color/text_light"
+                    android:textColorHint="@color/dis_hint_light"
+                    android:textSize="@dimen/basic_text" />
+            </android.support.design.widget.TextInputLayout>
+
+            <TableLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:columnCount="2"
+                android:orientation="horizontal"
+                android:paddingLeft="16.0dip"
+                android:paddingRight="8.0dip"
+                android:rowCount="1">
+
+                <TableRow
+                    android:id="@+id/tableRow1"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content">
+
+                    <android.support.design.widget.TextInputLayout
+                        android:id="@+id/input_layout_birth"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1.0">
+
+                        <EditText
+                            android:id="@+id/birth_txt"
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_centerHorizontal="true"
+                            android:hint="Year of birth*"
+                            android:imeOptions="actionNext"
+                            android:inputType="number"
+                            android:nextFocusForward="@+id/postcode_txt"
+                            android:textColor="@color/text_light"
+                            android:textColorHint="@color/dis_hint_light"
+                            android:textSize="@dimen/basic_text" />
+                    </android.support.design.widget.TextInputLayout>
+
+                    <android.support.design.widget.TextInputLayout
+                        android:id="@+id/input_layout_postcode"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1.0">
+
+                        <EditText
+                            android:id="@+id/postcode_txt"
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_centerHorizontal="true"
+                            android:hint="Postcode*"
+                            android:inputType="number"
+                            android:textColor="@color/text_light"
+                            android:textColorHint="@color/dis_hint_light"
+                            android:textSize="@dimen/basic_text" />
+                    </android.support.design.widget.TextInputLayout>
+                </TableRow>
+            </TableLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/input_layout_username"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:paddingBottom="6.0dip"
+                android:paddingLeft="16.0dip">
+
+                <EditText
+                    android:id="@+id/username_txt"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:hint="User name*"
+                    android:inputType="text"
+                    android:textColor="@color/text_light"
+                    android:textColorHint="@color/dis_hint_light"
+                    android:textSize="@dimen/basic_text" />
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/input_layout_email"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:paddingBottom="6.0dip"
+                android:paddingLeft="16.0dip">
+
+                <EditText
+                    android:id="@+id/email_txt"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:hint="Email address*"
+                    android:imeOptions="actionNext"
+                    android:inputType="textWebEmailAddress"
+                    android:nextFocusForward="@+id/password_txt"
+                    android:textColor="@color/text_light"
+                    android:textColorHint="@color/dis_hint_light"
+                    android:textSize="@dimen/basic_text" />
+            </android.support.design.widget.TextInputLayout>
+
+            <TableLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:columnCount="2"
+                android:orientation="horizontal"
+                android:paddingLeft="16.0dip"
+                android:paddingRight="8.0dip"
+                android:rowCount="1">
+
+                <TableRow
+                    android:id="@+id/tableRow2"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content">
+
+                    <android.support.design.widget.TextInputLayout
+                        android:id="@+id/input_layout_password"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1.0">
+
+                        <EditText
+                            android:id="@+id/password_txt"
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_centerHorizontal="true"
+                            android:hint="Password*"
+                            android:imeOptions="actionNext"
+                            android:inputType="textPassword"
+                            android:textColor="@color/text_light"
+                            android:textColorHint="@color/dis_hint_light"
+                            android:textSize="@dimen/basic_text" />
+                    </android.support.design.widget.TextInputLayout>
+
+                    <android.support.design.widget.TextInputLayout
+                        android:id="@+id/input_layout_repassword"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1.0">
+
+                        <EditText
+                            android:id="@+id/repassword_txt"
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_centerHorizontal="true"
+                            android:hint="Re type Password"
+                            android:imeOptions="actionDone"
+                            android:inputType="textPassword"
+                            android:textColor="@color/text_light"
+                            android:textColorHint="@color/dis_hint_light"
+                            android:textSize="@dimen/basic_text" />
+                    </android.support.design.widget.TextInputLayout>
+                </TableRow>
+            </TableLayout>
+
+            <LinearLayout
+                android:id="@+id/button_lyt"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16.0dip"
+                android:orientation="vertical"
+                android:paddingLeft="16.0dip">
+
+                <TextView
+                    android:id="@+id/button_create_account"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:clickable="true"
+                    android:onClick="CreateAccount"
+                    android:paddingBottom="8.0dip"
+                    android:paddingTop="16.0dip"
+                    android:singleLine="true"
+                    android:text="CREATE ACCOUNT"
+                    android:textAllCaps="true"
+                    android:textColor="@drawable/selector_text_button"
+                    android:textSize="@dimen/basic_text" />
+
+                <TextView
+                    android:id="@+id/term_privacy"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:clickable="true"
+                    android:paddingBottom="16.0dip"
+                    android:singleLine="false"
+                    android:text="text"
+                    android:textColor="@color/sec_icon_light"
+                    android:textIsSelectable="false"
+                    android:textSize="10.0sp" />
+            </LinearLayout>
+        </LinearLayout>
+    </android.support.v7.widget.CardView>
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/extern_loggin"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/head_form"
+        android:layout_marginBottom="@dimen/cardview_margin_bottom">
+
+        <LinearLayout
+            android:id="@+id/extern_lyt"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingBottom="8.0dip"
+            android:paddingRight="8.0dip"
+            android:paddingTop="8.0dip">
+
+            <TextView
+                android:id="@+id/connect_lbl"
+                style="@style/OpportunityTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Or connect with" />
+
+            <ImageView
+                android:id="@+id/imageView2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginRight="8.0dip"
+                android:background="@drawable/circle_facebook"
+                android:baselineAlignBottom="true"
+                android:clickable="true"
+                android:onClick="facebookLogin" />
+
+            <ImageView
+                android:id="@+id/ic_google"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginRight="8.0dip"
+                android:background="@drawable/circle_google"
+                android:baselineAlignBottom="true"
+                android:clickable="true"
+                android:onClick="googleLogin" />
+
+            <ImageView
+                android:id="@+id/ic_linkedin"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginRight="8.0dip"
+                android:background="@drawable/circle_linkedin"
+                android:baselineAlignBottom="true"
+                android:clickable="true"
+                android:onClick="linkedinLogin" />
+
+            <ImageView
+                android:id="@+id/ic_twitter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginRight="8.0dip"
+                android:background="@drawable/circle_twitter"
+                android:baselineAlignBottom="true"
+                android:clickable="true"
+                android:onClick="twitterLogin" />
+        </LinearLayout>
+    </android.support.v7.widget.CardView>
+</RelativeLayout>

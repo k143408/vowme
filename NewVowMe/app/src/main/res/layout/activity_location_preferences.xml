@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@android:color/white">
+
+    <include
+        android:id="@+id/tabs_include"
+        layout="@layout/toolbar_no_tabs"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" />
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/linearLayout"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_below="@+id/tabs_include"
+        android:layout_gravity="center_horizontal"
+        android:descendantFocusability="beforeDescendants"
+        android:divider="@drawable/mydivider"
+        android:focusableInTouchMode="true"
+        android:orientation="vertical"
+        android:showDividers="end|middle">
+
+        <include
+            layout="@layout/custom_multi_autocomplete"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="8.0dip" />
+
+        <LinearLayout
+            android:id="@+id/surrounding_lyt"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingLeft="16.0dip"
+            android:paddingRight="8.0dip">
+
+            <TextView
+                android:id="@+id/surrounding"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingBottom="8.0dip"
+                android:paddingTop="4.0dip"
+                android:text="Surrounding areas"
+                android:textColor="@color/text_light"
+                android:textSize="@dimen/basic_text" />
+
+            <Switch
+                android:id="@+id/switchWidenLocation"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:paddingBottom="8.0dip"
+                android:paddingTop="4.0dip"
+                android:text="" />
+        </LinearLayout>
+    </LinearLayout>
+</RelativeLayout>

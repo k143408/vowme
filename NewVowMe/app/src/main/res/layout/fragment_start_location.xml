@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
+
+    <include
+        layout="@layout/custom_multi_autocomplete"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="8.0dip" />
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:orientation="vertical">
+
+        <TextView
+            style="@style/OpportunityTitle"
+            android:layout_gravity="center_vertical"
+            android:paddingBottom="24.0dip"
+            android:text="Where would you like to volunteer?" />
+
+        <TextView
+            style="@style/PrimaryBasicText"
+            android:layout_gravity="center_vertical"
+            android:paddingLeft="32.0dip"
+            android:paddingRight="32.0dip"
+            android:text="Tell us where by typing in suburbs or postcodes. You can enter only one location." />
+    </LinearLayout>
+</FrameLayout>

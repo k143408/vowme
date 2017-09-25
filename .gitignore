@@ -21,9 +21,11 @@
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
 
-vowme-client/node_modules
+vowme-client/node_modules/
 vowme-server/target/
 vowme-server/.mvn/wrapper/maven-wrapper.jar
+vowme-server/.settings/
+vowme-client/.vscode/
 
 ### STS ###
 vowme-server/.apt_generated
@@ -46,3 +48,13 @@ nbbuild/
 dist/
 nbdist/
 .nb-gradle/
+
+NewVowMe/*.iml
+NewVowMe/.gradle
+/NewVowMe/local.properties
+/NewVowMe/.idea/workspace.xml
+/NewVowMe/.idea/libraries
+NewVowMe/.DS_Store
+NewVowMe/build
+NewVowMe/captures
+NewVowMe/.externalNativeBuild

@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "905664458555",
+    "firebase_url": "https://vowme-ca313.firebaseio.com",
+    "project_id": "vowme-ca313",
+    "storage_bucket": "vowme-ca313.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:905664458555:android:37ca43f60e27d6ae",
+        "android_client_info": {
+          "package_name": "com.vowme.app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "905664458555-mvd5em5t6jjl828236aqhqq88tn6jjak.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.vowme.app",
+            "certificate_hash": "d07a8a6e5ed571f92ca3e7c4cf31b46f1a0004d5"
+          }
+        },
+        {
+          "client_id": "905664458555-4j1f69554e3joiipc0bqir7h6fk5ndtb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDv0LdEQdrWP0z5n6UDeS2xmhFQcRY4pjE"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "905664458555-4j1f69554e3joiipc0bqir7h6fk5ndtb.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

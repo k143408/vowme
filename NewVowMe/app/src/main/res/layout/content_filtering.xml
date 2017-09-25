@@ -1,0 +1,283 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/linearLayout"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:layout_below="@+id/include"
+    android:layout_gravity="center_horizontal"
+    android:background="@android:color/white"
+    android:descendantFocusability="beforeDescendants"
+    android:divider="@drawable/mydivider"
+    android:focusableInTouchMode="true"
+    android:orientation="vertical"
+    android:showDividers="end|middle">
+
+    <LinearLayout
+        android:id="@+id/location_aera_lyt"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:orientation="vertical">
+
+        <include
+            layout="@layout/custom_multi_autocomplete"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="8.0dip" />
+
+        <LinearLayout
+            android:id="@+id/surrounding_lyt"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingLeft="16.0dip"
+            android:paddingRight="8.0dip">
+
+            <TextView
+                android:id="@+id/surrounding"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingBottom="8.0dip"
+                android:paddingTop="4.0dip"
+                android:text="Surrounding areas"
+                android:textColor="@color/text_light"
+                android:textSize="@dimen/basic_text" />
+
+            <Switch
+                android:id="@+id/switchWidenLocation"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:paddingBottom="8.0dip"
+                android:paddingTop="4.0dip"
+                android:text="" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/locations_lyt"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="?android:selectableItemBackground"
+        android:linksClickable="true"
+        android:onClick="showData"
+        android:orientation="horizontal"
+        android:paddingLeft="16.0dip"
+        android:paddingRight="16.0dip"
+        android:tag="Locations">
+
+        <TextView
+            android:id="@+id/title_locations"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:paddingBottom="8.0dip"
+            android:paddingTop="8.0dip"
+            android:text="Locations"
+            android:textColor="@color/text_light"
+            android:textSize="@dimen/basic_text" />
+
+        <TextView
+            android:id="@+id/list_locations"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:paddingBottom="8.0dip"
+            android:paddingTop="8.0dip"
+            android:text="Any"
+            android:textColor="@color/text_light"
+            android:textSize="@dimen/basic_text" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/causes_lyt"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="?android:selectableItemBackground"
+        android:linksClickable="true"
+        android:onClick="showData"
+        android:orientation="horizontal"
+        android:paddingLeft="16.0dip"
+        android:paddingRight="16.0dip"
+        android:tag="Causes">
+
+        <TextView
+            android:id="@+id/title_causes"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:paddingBottom="8.0dip"
+            android:paddingTop="8.0dip"
+            android:text="Causes"
+            android:textColor="@color/text_light"
+            android:textSize="@dimen/basic_text" />
+
+        <TextView
+            android:id="@+id/list_causes"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:paddingBottom="8.0dip"
+            android:paddingTop="8.0dip"
+            android:text="Any"
+            android:textColor="@color/text_light"
+            android:textSize="@dimen/basic_text" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/interests_lyt"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="?android:selectableItemBackground"
+        android:linksClickable="true"
+        android:onClick="showData"
+        android:orientation="horizontal"
+        android:paddingLeft="16.0dip"
+        android:paddingRight="16.0dip"
+        android:tag="Interests">
+
+        <TextView
+            android:id="@+id/title_interests"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:paddingBottom="8.0dip"
+            android:paddingTop="8.0dip"
+            android:text="Interests"
+            android:textColor="@color/text_light"
+            android:textSize="@dimen/basic_text" />
+
+        <TextView
+            android:id="@+id/list_interests"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:paddingBottom="8.0dip"
+            android:paddingTop="8.0dip"
+            android:text="Any"
+            android:textColor="@color/text_light"
+            android:textSize="@dimen/basic_text" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/durations_lyt"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="?android:selectableItemBackground"
+        android:linksClickable="true"
+        android:onClick="showData"
+        android:orientation="horizontal"
+        android:paddingLeft="16.0dip"
+        android:paddingRight="16.0dip"
+        android:tag="Durations">
+
+        <TextView
+            android:id="@+id/title_commitments"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:paddingBottom="8.0dip"
+            android:paddingTop="8.0dip"
+            android:text="Commitment"
+            android:textColor="@color/text_light"
+            android:textSize="@dimen/basic_text" />
+
+        <TextView
+            android:id="@+id/list_commitments"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:paddingBottom="8.0dip"
+            android:paddingTop="8.0dip"
+            android:text="Any"
+            android:textColor="@color/text_light"
+            android:textSize="@dimen/basic_text" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/avaibilities_lyt"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="?android:selectableItemBackground"
+        android:linksClickable="true"
+        android:onClick="showData"
+        android:orientation="horizontal"
+        android:paddingLeft="16.0dip"
+        android:paddingRight="16.0dip"
+        android:tag="Avaibility">
+
+        <TextView
+            android:id="@+id/title_avaibilities"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:paddingBottom="8.0dip"
+            android:paddingTop="8.0dip"
+            android:text="Avaibility"
+            android:textColor="@color/text_light"
+            android:textSize="@dimen/basic_text" />
+
+        <TextView
+            android:id="@+id/list_avaibilities"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:paddingBottom="8.0dip"
+            android:paddingTop="8.0dip"
+            android:text="Any time"
+            android:textColor="@color/text_light"
+            android:textSize="@dimen/basic_text" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/programs_lyt"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="?android:selectableItemBackground"
+        android:linksClickable="true"
+        android:onClick="showData"
+        android:orientation="horizontal"
+        android:paddingLeft="16.0dip"
+        android:paddingRight="16.0dip"
+        android:tag="Programs">
+
+        <TextView
+            android:id="@+id/title_programs"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:paddingBottom="8.0dip"
+            android:paddingTop="8.0dip"
+            android:text="Suitability"
+            android:textColor="@color/text_light"
+            android:textSize="@dimen/basic_text" />
+
+        <TextView
+            android:id="@+id/list_programs"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:paddingBottom="8.0dip"
+            android:paddingTop="8.0dip"
+            android:text="Anyone"
+            android:textColor="@color/text_light"
+            android:textSize="@dimen/basic_text" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/wheelchair_lyt"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="?android:selectableItemBackground"
+        android:linksClickable="true"
+        android:onClick="showData"
+        android:orientation="horizontal"
+        android:paddingLeft="16.0dip"
+        android:paddingRight="8.0dip"
+        android:tag="Programs">
+
+        <TextView
+            android:id="@+id/title_wheelchair"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingBottom="8.0dip"
+            android:paddingTop="4.0dip"
+            android:text="Wheelchair access only"
+            android:textColor="@color/text_light"
+            android:textSize="@dimen/basic_text" />
+
+        <Switch
+            android:id="@+id/switchWheelchair"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="8.0dip"
+            android:paddingTop="4.0dip"
+            android:text="" />
+    </LinearLayout>
+</LinearLayout>

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/item_removeable_lyt"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:background="?android:selectableItemBackground"
+    android:clickable="true">
+
+    <FrameLayout
+        android:id="@+id/leave_behinds_delete"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:background="@color/dividers_light"
+        android:clickable="false"
+        android:paddingRight="16.0dip"
+        android:visibility="visible">
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:layout_gravity="right"
+            android:background="@color/dividers_light"
+            android:src="@drawable/ic_delete_24dp" />
+    </FrameLayout>
+
+    <FrameLayout
+        android:id="@+id/removeable_layout"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/white"
+        android:orientation="horizontal"
+        android:paddingRight="16.0dip">
+
+        <TextView
+            android:id="@+id/removeable_name"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left"
+            android:paddingBottom="8.0dip"
+            android:paddingLeft="16.0dip"
+            android:paddingTop="8.0dip"
+            android:text=""
+            android:textColor="@color/text_light"
+            android:textSize="@dimen/basic_text" />
+    </FrameLayout>
+</FrameLayout>

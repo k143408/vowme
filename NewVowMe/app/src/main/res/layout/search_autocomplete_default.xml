@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/search_autocomplete_iconlayout"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:background="@android:color/white">
+
+    <TextView xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/search_autocomplete_title"
+        android:layout_width="155.0dip"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="false"
+        android:layout_gravity="center|right|top"
+        android:layout_toRightOf="@+id/search_autocomplete_icon"
+        android:layout_weight="0.06"
+        android:gravity="center|right|top"
+        android:longClickable="false"
+        android:orientation="vertical"
+        android:paddingBottom="8.0dip"
+        android:paddingLeft="24.0dip"
+        android:paddingTop="8.0dip"
+        android:text="New Text"
+        android:textColor="@color/text_light"
+        android:textSize="@dimen/basic_text" />
+
+    <TextView
+        android:id="@+id/search_autocomplete_icon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:paddingBottom="8.0dip"
+        android:paddingLeft="8.0dip"
+        android:paddingTop="8.0dip"
+        android:text="@string/ic_close"
+        android:textColor="@color/text_light"
+        android:textSize="@dimen/icon_font_large" />
+</RelativeLayout>

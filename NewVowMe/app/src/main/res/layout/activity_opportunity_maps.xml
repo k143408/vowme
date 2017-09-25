@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<fragment xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/map"
+    android:name="com.google.android.gms.maps.SupportMapFragment"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
+
+    <ImageButton
+        android:layout_width="40.0dip"
+        android:layout_height="40.0dip"
+        android:layout_gravity="center|left|top"
+        android:background="@android:color/transparent"
+        android:onClick="goBackToOpp"
+        android:src="@drawable/ic_cancel_24dp" />
+
+    <ImageButton
+        android:layout_width="40.0dip"
+        android:layout_height="40.0dip"
+        android:layout_gravity="center|right|top"
+        android:background="@android:color/transparent"
+        android:onClick="goToGoogleMap"
+        android:src="@drawable/ic_directions_24dp" />
+</fragment>

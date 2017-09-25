@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@android:color/white">
+
+    <include
+        android:id="@+id/tabs_include"
+        layout="@layout/toolbar_no_tabs"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/pro_skill_list"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tabs_include" />
+
+    <TextView
+        android:id="@+id/button_add_skill"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/pro_skill_list"
+        android:clickable="true"
+        android:onClick="addSkill"
+        android:padding="16.0dip"
+        android:singleLine="true"
+        android:text="ADD SKILL..."
+        android:textAllCaps="true"
+        android:textColor="@drawable/selector_text_button"
+        android:textSize="@dimen/basic_text" />
+</RelativeLayout>

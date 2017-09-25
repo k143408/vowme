@@ -1,0 +1,237 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+    <style name="MyBaseTheme" parent="@style/Theme.AppCompat.Light.NoActionBar">
+        <item name="android:textViewStyle">@style/RobotoTextViewStyle</item>
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="alertDialogTheme">@style/MyBaseTheme.AlertDialogCustom</item>
+        <item name="buttonStyle">@style/RobotoButtonStyle</item>
+    </style>
+
+
+    <style name="MyBaseTheme.AlertDialogCustom" parent="@style/Theme.AppCompat.Light.Dialog.Alert">
+        <item name="colorAccent">@color/lime</item>
+    </style>
+
+    <style name="MyBaseTheme.AppBarOverlay" parent="@style/ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="RobotoTextViewStyle" parent="@android:style/Widget.TextView">
+        <item name="android:fontFamily">sans-serif</item>
+    </style>
+
+    <style name="RobotoButtonStyle" parent="@android:style/Widget.Holo.Button">
+        <item name="android:fontFamily">sans-serif</item>
+    </style>
+
+
+    <style name="MyBaseTheme.PopupOverlay" parent="@style/ThemeOverlay.AppCompat.Light" />
+
+    <style name="SplashTheme" parent="@style/Theme.AppCompat.NoActionBar">
+        <item name="android:windowBackground">@drawable/background_splash</item>
+    </style>
+
+    <style name="link" parent="@android:style/TextAppearance">
+        <item name="android:textSize">@dimen/subtitle</item>
+        <item name="android:textColor">@color/textLinkButtonColor</item>
+        <item name="android:background">?android:attr/selectableItemBackground</item>
+        <item name="android:clickable">true</item>
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <style name="OpportunityTitle">
+        <item name="android:textSize">@dimen/basic_text</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/colorPrimary</item>
+        <item name="android:paddingLeft">16.0dip</item>
+        <item name="android:paddingTop">8.0dip</item>
+        <item name="android:paddingRight">16.0dip</item>
+        <item name="android:paddingBottom">8.0dip</item>
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <style name="status" parent="@android:style/TextAppearance">
+        <item name="android:textSize">@dimen/subtitle</item>
+        <item name="android:textColor">@color/textLinkButtonColor</item>
+        <item name="android:paddingLeft">16.0dip</item>
+        <item name="android:paddingTop">12.0dip</item>
+        <item name="android:paddingRight">16.0dip</item>
+        <item name="android:paddingBottom">4.0dip</item>
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <style name="SmallFontIcon" parent="@android:style/TextAppearance">
+        <item name="android:textSize">@dimen/icon_font_small</item>
+        <item name="android:textColor">@color/sec_icon_light</item>
+        <item name="android:paddingLeft">4.0dip</item>
+        <item name="android:paddingRight">4.0dip</item>
+        <item name="android:paddingBottom">4.0dip</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">4.0dip</item>
+    </style>
+
+    <style name="GetStartedTheme" parent="@style/Theme.AppCompat.NoActionBar">
+        <item name="android:windowBackground">@drawable/background_splash</item>
+    </style>
+
+    <style name="HomeProfileTitle" parent="@android:style/TextAppearance">
+        <item name="android:textSize">@dimen/title</item>
+        <item name="android:textColor">@color/colorPrimary</item>
+        <item name="android:paddingBottom">8.0dip</item>
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <style name="LightButtonLarge" parent="@android:style/TextAppearance">
+        <item name="android:textSize">@dimen/basic_text</item>
+        <item name="android:textColor">@color/colorPrimaryDark</item>
+        <item name="android:background">@color/colorAccent</item>
+        <item name="android:paddingLeft">8.0dip</item>
+        <item name="android:paddingTop">16.0dip</item>
+        <item name="android:paddingRight">8.0dip</item>
+        <item name="android:paddingBottom">16.0dip</item>
+        <item name="android:clickable">true</item>
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:minHeight">34.0dip</item>
+        <item name="android:layout_centerHorizontal">true</item>
+        <item name="android:textAllCaps">true</item>
+    </style>
+
+    <style name="LightButtonSmall" parent="@android:style/TextAppearance">
+        <item name="android:textSize">@dimen/basic_text</item>
+        <item name="android:textColor">@color/colorPrimaryDark</item>
+        <item name="android:layout_gravity">bottom|center</item>
+        <item name="android:background">@color/lime_shade</item>
+        <item name="android:paddingLeft">8.0dip</item>
+        <item name="android:paddingRight">8.0dip</item>
+        <item name="android:clickable">true</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:minHeight">34.0dip</item>
+        <item name="android:textAllCaps">true</item>
+    </style>
+
+    <style name="LightTitle" parent="@android:style/TextAppearance">
+        <item name="android:textSize">@dimen/title</item>
+        <item name="android:textColor">@color/text_dark</item>
+        <item name="android:paddingBottom">4.0dip</item>
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <style name="PrimaryBasicText" parent="@android:style/TextAppearance">
+        <item name="android:textSize">@dimen/basic_text</item>
+        <item name="android:textColor">@color/colorPrimary</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:lineSpacingExtra">@dimen/line_spacing</item>
+    </style>
+
+    <style name="BottomTabBar" parent="@android:style/TextAppearance">
+        <item name="android:background">@color/backgroundBottomBarColor</item>
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:minHeight">?actionBarSize</item>
+    </style>
+
+    <style name="ButtonTextLink" parent="@android:style/TextAppearance">
+        <item name="android:textSize">@dimen/subtitle</item>
+        <item name="android:textColor">@color/textLinkButtonColor</item>
+        <item name="android:background">?android:selectableItemBackground</item>
+        <item name="android:padding">16.0dip</item>
+        <item name="android:clickable">true</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textAllCaps">true</item>
+    </style>
+
+    <style name="DarkButtonSmall" parent="@android:style/TextAppearance">
+        <item name="android:textSize">@dimen/basic_text</item>
+        <item name="android:textColor">@color/text_dark</item>
+        <item name="android:layout_gravity">bottom|center</item>
+        <item name="android:background">@color/colorPrimaryDark</item>
+        <item name="android:paddingLeft">8.0dip</item>
+        <item name="android:paddingRight">8.0dip</item>
+        <item name="android:clickable">true</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:minHeight">34.0dip</item>
+        <item name="android:textAllCaps">true</item>
+    </style>
+
+    <style name="Toolbar.TitleText" parent="@style/TextAppearance.Widget.AppCompat.Toolbar.Title">
+        <item name="android:textSize">@dimen/title</item>
+    </style>
+
+    <style name="OpportunitySubtitle" parent="@android:style/TextAppearance">
+        <item name="android:textSize">@dimen/subtitle</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/colorPrimary</item>
+        <item name="android:paddingLeft">16.0dip</item>
+        <item name="android:paddingTop">16.0dip</item>
+        <item name="android:paddingRight">16.0dip</item>
+        <item name="android:paddingBottom">8.0dip</item>
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <style name="DarkTitle" parent="@android:style/TextAppearance">
+        <item name="android:textSize">@dimen/title</item>
+        <item name="android:textColor">@color/text_light</item>
+        <item name="android:paddingTop">8.0dip</item>
+        <item name="android:paddingBottom">8.0dip</item>
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <style name="CustomBottomTabLarge" parent="@android:style/TextAppearance">
+        <item name="android:textSize">@dimen/tab_icon_large</item>
+        <item name="android:textColor">@drawable/bottom_tab_text_selector</item>
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_height">fill_parent</item>
+    </style>
+
+    <style name="CustomBottomTabSmall" parent="@android:style/TextAppearance">
+        <item name="android:textSize">@dimen/tab_icon</item>
+        <item name="android:textColor">@drawable/bottom_tab_text_selector</item>
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_height">fill_parent</item>
+    </style>
+
+    <style name="CustomBottomTabSmallLabel" parent="@android:style/TextAppearance">
+        <item name="android:textSize">11.0sp</item>
+        <item name="android:textColor">@drawable/bottom_tab_text_selector</item>
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:singleLine">true</item>
+    </style>
+
+    <style name="CustomTab" parent="@android:style/TextAppearance">
+        <item name="android:textSize">@dimen/tab_icon</item>
+        <item name="android:textColor">@drawable/selector_tab_text</item>
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_height">fill_parent</item>
+    </style>
+
+    <style name="CustomTabLarge" parent="@android:style/TextAppearance">
+        <item name="android:textSize">@dimen/tab_icon_large</item>
+        <item name="android:textColor">@drawable/selector_tab_text</item>
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_height">fill_parent</item>
+    </style>
+</resources>

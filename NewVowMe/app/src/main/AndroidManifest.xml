@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.vowme.vol.app">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+
+    <application
+        android:name=".VowMeApplication"
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/MyBaseTheme">
+
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="@string/google_maps_key" />
+
+        <meta-data
+            android:name="io.fabric.ApiKey"
+            android:value="c8efa42e8c651b59d3560130eae7394bb6cc9270" />
+
+        <meta-data
+            android:name="com.facebook.sdk.ApplicationId"
+            android:value="@string/facebook_app_id" />
+
+        <receiver
+            android:name="com.google.android.gms.gcm.GcmReceiver"
+            android:exported="true"
+            android:permission="com.google.android.c2dm.permission.SEND">
+            <intent-filter>
+                <action android:name="com.google.android.c2dm.intent.RECEIVE" />
+                <action android:name="com.google.android.c2dm.intent.REGISTRATION" />
+
+                <category android:name="com.vowme.app.utilities.gcm" />
+            </intent-filter>
+        </receiver>
+
+        <receiver android:name="com.vowme.app.utilities.gcm.MyBroadcastReceiver">
+            <intent-filter>
+                <action android:name="SHORTLIST_ACTION" />
+            </intent-filter>
+        </receiver>
+
+        <service
+            android:name="com.vowme.app.utilities.gcm.MyGcmListenerService"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="com.google.android.c2dm.intent.RECEIVE" />
+            </intent-filter>
+        </service>
+
+        <service
+            android:name="com.vowme.app.utilities.gcm.MyInstanceIDListenerService"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="com.google.android.gms.iid.InstanceID" />
+            </intent-filter>
+        </service>
+
+        <activity
+            android:name=".activities.SplashActivity"
+            android:theme="@style/SplashTheme">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <activity android:name=".activities.start.GetStarted" />
+
+        <activity
+            android:name=".activities.opportunity.OpportunityActivity"
+            android:label="@string/title_activity_opportunity"
+            android:parentActivityName=".activities.MainActivity" />
+        <activity
+            android:name=".activities.MainActivity"
+            android:label="@string/title_activity_main" />
+        <activity
+            android:name=".activities.recommended.AdjustmentActivity"
+            android:label="@string/title_activity_adjustments" />
+        <activity
+            android:name=".activities.settings.SettingsHomeActivity"
+            android:label="@string/title_activity_settings" />
+        <activity
+            android:name=".activities.profile.ProfileEditActivity"
+            android:label="@string/title_activity_profile_edit" />
+        <activity
+            android:name=".activities.profile.BasicInfoActivity"
+            android:label="@string/title_activity_basic_info" />
+        <activity
+            android:name=".activities.profile.PersonalInfoActivity"
+            android:label="@string/title_activity_personal_info" />
+        <activity
+            android:name=".activities.profile.CommitmentTypesActivity"
+            android:label="@string/title_activity_commitment_types" />
+        <activity
+            android:name=".activities.profile.VolunteeringAvaibilityActivity"
+            android:label="@string/title_activity_volunteering_avaibility" />
+        <activity
+            android:name=".activities.profile.LocationPreferencesActivity"
+            android:label="@string/title_activity_location_preferences" />
+        <activity
+            android:name=".activities.profile.VolunteeringSuitabilityActivity"
+            android:label="@string/title_activity_volunteering_suitability" />
+        <activity
+            android:name=".activities.profile.CausesActivity"
+            android:label="@string/title_activity_causes" />
+        <activity
+            android:name=".activities.profile.InterestsActivity"
+            android:label="@string/title_activity_interests" />
+        <activity
+            android:name=".activities.profile.SkillsHobbiesActivity"
+            android:label="@string/title_activity_skills_hobbies" />
+        <activity
+            android:name=".activities.profile.LicensesCertificatesActivity"
+            android:label="@string/title_activity_licences_certificates" />
+        <activity
+            android:name=".activities.profile.ProfessionalSkillsActivity"
+            android:label="@string/title_activity_professional_skills" />
+        <activity
+            android:name=".activities.profile.ExperienceActivity"
+            android:label="@string/title_activity_experience" />
+        <activity
+            android:name=".activities.settings.NotificationsActivity"
+            android:label="@string/title_activity_notifications" />
+        <activity
+            android:name=".activities.settings.ProfilePrivacyActivity"
+            android:label="@string/title_activity_profile_privacy" />
+        <activity
+            android:name="com.vowme.app.utilities.activities.WebViewActivity"
+            android:label="" />
+        <activity
+            android:name=".activities.settings.AccountActivity"
+            android:label="@string/title_activity_account" />
+        <activity
+            android:name=".activities.login.LoginActivity"
+            android:label="@string/title_activity_login" />
+        <activity
+            android:name=".activities.search.SearchFilteringActivity"
+            android:label="@string/title_activity_search_filtering" />
+        <activity
+            android:name=".activities.search.SearchResultActivity"
+            android:label="@string/title_activity_search_result" />
+        <activity
+            android:name=".activities.organisation.OrganisationActivity"
+            android:label="@string/title_activity_organisation" />
+        <activity
+            android:name=".activities.expressOfInterest.ExpressInterestActivity"
+            android:label="" />
+        <activity
+            android:name=".activities.opportunity.OpportunityMapsActivity"
+            android:label="@string/title_activity_opportunity_maps" />
+        <activity
+            android:name=".activities.search.SavingSearchActivity"
+            android:label="@string/title_activity_saving_search" />
+        <activity
+            android:name=".activities.search.SavedSearchActivity"
+            android:label="@string/title_activity_saved_search" />
+        <activity
+            android:name=".activities.signup.SignupActivity"
+            android:label="@string/title_activity_sign_up" />
+        <activity
+            android:name=".activities.expressOfInterest.ExpressInterestSendedActivity"
+            android:label="@string/title_activity_expressed_interest" />
+        <activity
+            android:name=".activities.profile.ProfessionalSkillsEditActivity"
+            android:label="" />
+        <activity
+            android:name=".activities.start.StartStepsActivity"
+            android:label="" />
+        <activity
+            android:name=".activities.start.WelcomeStepsActivity"
+            android:label="" />
+        <activity
+            android:name=".activities.settings.DetailsAccountActivity"
+            android:label="@string/title_activity_account_details" />
+        <activity
+            android:name=".activities.settings.ChangePasswordActivity"
+            android:label="@string/title_activity_change_password" />
+        <activity
+            android:name=".activities.timesheet.LogHoursActivity"
+            android:label="@string/title_activity_log_hours" />
+        <activity
+            android:name=".activities.settings.PushNotificationActivity"
+            android:label="@string/title_activity_push_notifications" />
+
+        <activity
+            android:name="com.facebook.FacebookActivity"
+            android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
+            android:label="@string/app_name" />
+
+        <activity
+            android:name="com.facebook.CustomTabActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data android:scheme="@string/fb_login_protocol_scheme" />
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>

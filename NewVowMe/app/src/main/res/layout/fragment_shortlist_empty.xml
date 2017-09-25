@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@android:color/white"
+    android:orientation="vertical"
+    android:weightSum="1.0">
+
+    <TextView xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/ic_tab_icon"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_centerVertical="true"
+        android:layout_marginBottom="30.0dip"
+        android:layout_marginTop="60.0dip"
+        android:text="@string/ic_not_shortlist"
+        android:textColor="@color/sec_icon_dark"
+        android:textSize="80.0dip" />
+
+    <TextView
+        android:id="@+id/no_opp_txt"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/ic_tab_icon"
+        android:layout_centerHorizontal="true"
+        android:text="No shortlisted opportunities"
+        android:textColor="@color/sec_icon_light"
+        android:textSize="@dimen/basic_text"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/no_opp_txt"
+        android:layout_centerHorizontal="true"
+        android:layout_gravity="center_horizontal"
+        android:text="Shortlist opportunities you're interested in."
+        android:textColor="@color/sec_icon_light"
+        android:textSize="@dimen/subtitle" />
+
+    <Button
+        android:id="@+id/button"
+        style="@style/LightButtonSmall"
+        android:layout_marginTop="120.0dip"
+        android:onClick="goToRecommendedTab"
+        android:text="BROWSE RECOMMENDATIONS" />
+</LinearLayout>

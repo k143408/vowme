@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <integer name="COUNT_PER_PAGE">5</integer>
+    <integer name="OPPORTUNITY_NOTIFICATION_ID">1</integer>
+    <integer name="SMALL_SIZE">60</integer>
+    <integer name="LARGE_SIZE">190</integer>
+</resources>
