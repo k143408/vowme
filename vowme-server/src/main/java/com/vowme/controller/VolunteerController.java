@@ -9,26 +9,28 @@ import org.springframework.data.web.PageableDefault;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.vowme.model.Approval;
 import com.vowme.model.User;
 import com.vowme.service.CauseService;
 import com.vowme.service.UserService;
 import com.vowme.util.helper.FeedbackCustom;
 import com.vowme.util.helper.KeyValue;
-
+import com.vowme.util.helper.MutliModel;
 
 /**
  * The Class VolunteerController.
  */
 @RestController
 @RequestMapping("api/volunteer/")
-public class VolunteerController {
+public class VolunteerController extends BaseController {
 
 	/** The user serivce. */
 	@Autowired
 	private UserService userService;
-	
+
 	/** The cause service. */
 	@Autowired
 	private CauseService causeService;
@@ -53,8 +55,10 @@ public class VolunteerController {
 	/**
 	 * Gets the by user id.
 	 *
-	 * @param userId the user id
-	 * @param pageable the pageable
+	 * @param userId
+	 *            the user id
+	 * @param pageable
+	 *            the pageable
 	 * @return the by user id
 	 */
 	@GetMapping("{userId}")
@@ -66,20 +70,35 @@ public class VolunteerController {
 			}
 		};
 	}
-	
+
+	@GetMapping("pending/{userId}")
+	public Callable<Page<MutliModel>> getByUserIdAndCauseId(@PathVariable Long userId,
+			@PageableDefault(size = 100) Pageable pageable) {
+		return new Callable<Page<MutliModel>>() {
+			@Override
+			public Page<MutliModel> call() throws Exception {
+				return userService.getPendingVolunteers(userId, pageable);
+
+			}
+		};
+	}
+
 	/**
 	 * Gets the cause name by user id.
 	 *
-	 * @param userId the user id
-	 * @param pageable the pageable
+	 * @param userId
+	 *            the user id
+	 * @param pageable
+	 *            the pageable
 	 * @return the cause name by user id
 	 */
 	@GetMapping("cause/name/{userId}")
-	public Callable<Page<KeyValue>> getCauseNameByUserId(@PathVariable Long userId,@PageableDefault(size = 10) Pageable pageable) {
+	public Callable<Page<KeyValue>> getCauseNameByUserId(@PathVariable Long userId,
+			@PageableDefault(size = 10) Pageable pageable) {
 		return new Callable<Page<KeyValue>>() {
 			@Override
 			public Page<KeyValue> call() throws Exception {
-				return causeService.getCauseListOnlyName(userId,pageable);
+				return causeService.getCauseListOnlyName(userId, pageable);
 			}
 		};
 	}
@@ -87,7 +106,8 @@ public class VolunteerController {
 	/**
 	 * Gets the cause by user id.
 	 *
-	 * @param userId the user id
+	 * @param userId
+	 *            the user id
 	 * @return the cause by user id
 	 */
 	@GetMapping("cause/{userId}")
@@ -99,13 +119,12 @@ public class VolunteerController {
 			}
 		};
 	}
-	
-	
 
 	/**
 	 * Gets the backout cause by user id.
 	 *
-	 * @param userId the user id
+	 * @param userId
+	 *            the user id
 	 * @return the backout cause by user id
 	 */
 	@GetMapping("cause/backout/{userId}")
@@ -117,11 +136,12 @@ public class VolunteerController {
 			}
 		};
 	}
-	
+
 	/**
 	 * Gets the participates cause by user id.
 	 *
-	 * @param userId the user id
+	 * @param userId
+	 *            the user id
 	 * @return the participates cause by user id
 	 */
 	@GetMapping("cause/doing/{userId}")
@@ -137,8 +157,10 @@ public class VolunteerController {
 	/**
 	 * Gets the details.
 	 *
-	 * @param userId the user id
-	 * @param pageable the pageable
+	 * @param userId
+	 *            the user id
+	 * @param pageable
+	 *            the pageable
 	 * @return the details
 	 */
 	@GetMapping("detail/{userId}")
@@ -150,16 +172,19 @@ public class VolunteerController {
 			}
 		};
 	}
-	
+
 	/**
 	 * Gets the feedback.
 	 *
-	 * @param userId the user id
-	 * @param pageable the pageable
+	 * @param userId
+	 *            the user id
+	 * @param pageable
+	 *            the pageable
 	 * @return the feedback
 	 */
 	@GetMapping("feedback/{userId}")
-	public Callable<Page<FeedbackCustom>> getFeedback(@PathVariable Long userId, @PageableDefault(size = 10) Pageable pageable) {
+	public Callable<Page<FeedbackCustom>> getFeedback(@PathVariable Long userId,
+			@PageableDefault(size = 10) Pageable pageable) {
 		return new Callable<Page<FeedbackCustom>>() {
 			@Override
 			public Page<FeedbackCustom> call() throws Exception {
@@ -167,6 +192,24 @@ public class VolunteerController {
 			}
 		};
 	}
-	
+
+	@GetMapping("override/{volId}")
+	public Callable<Boolean> overrideApproval(@RequestParam Long userId, @PathVariable Long volId,
+			@RequestParam Long causeId) {
+		return new Callable<Boolean>() {
+			@Override
+			public Boolean call() throws Exception {
+				return userService.overrideApproval(userId, volId, causeId);
+			}
+		};
+	}
+
+	@GetMapping("approval/{volId}")
+	public Callable<Approval> approvalForCause(@RequestParam Long userId, @PathVariable Long volId,
+			@RequestParam Long causeId, @RequestParam(required = false, defaultValue = "") String comment) {
+		return () -> {
+			return userService.approvalForCause(userId, volId, causeId, comment);
+		};
+	}
 
 }

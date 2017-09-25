@@ -1,6 +1,7 @@
 package com.vowme.model;
 
 import java.io.Serializable;
+import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.Column;
@@ -13,6 +14,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.vowme.util.DateUtils;
 
 
 
@@ -38,7 +40,7 @@ public class Email extends BaseModel implements Serializable {
 
 	/** The created at. */
 	@Column(name="created_at")
-	private int createdAt;
+	private Long createdAt;
 
 	/** The message. */
 	@Column
@@ -58,7 +60,7 @@ public class Email extends BaseModel implements Serializable {
 
 	/** The updated at. */
 	@Column(name="updated_at")
-	private int updatedAt;
+	private Long updatedAt;
 
 	/** The boardcasts. */
 	//bi-directional many-to-one association to Boardcast
@@ -69,6 +71,15 @@ public class Email extends BaseModel implements Serializable {
 	 * Instantiates a new email.
 	 */
 	public Email() {
+	}
+	
+	public Email(String message, String recipientEmail, Byte success, String title) {
+		super();
+		this.createdAt = DateUtils.getCurrentTime();
+		this.message = message;
+		this.recipientEmail = recipientEmail;
+		this.success = success;
+		this.title = title;
 	}
 
 	/**
@@ -94,7 +105,7 @@ public class Email extends BaseModel implements Serializable {
 	 *
 	 * @return the created at
 	 */
-	public int getCreatedAt() {
+	public Long getCreatedAt() {
 		return this.createdAt;
 	}
 
@@ -103,7 +114,7 @@ public class Email extends BaseModel implements Serializable {
 	 *
 	 * @param createdAt the new created at
 	 */
-	public void setCreatedAt(int createdAt) {
+	public void setCreatedAt(Long createdAt) {
 		this.createdAt = createdAt;
 	}
 
@@ -184,7 +195,7 @@ public class Email extends BaseModel implements Serializable {
 	 *
 	 * @return the updated at
 	 */
-	public int getUpdatedAt() {
+	public Long getUpdatedAt() {
 		return this.updatedAt;
 	}
 
@@ -193,7 +204,7 @@ public class Email extends BaseModel implements Serializable {
 	 *
 	 * @param updatedAt the new updated at
 	 */
-	public void setUpdatedAt(int updatedAt) {
+	public void setUpdatedAt(Long updatedAt) {
 		this.updatedAt = updatedAt;
 	}
 
@@ -203,7 +214,7 @@ public class Email extends BaseModel implements Serializable {
 	 * @return the boardcasts
 	 */
 	public Set<Boardcast> getBoardcasts() {
-		return this.boardcasts;
+		return this.boardcasts == null ? new HashSet<>(): this.boardcasts;
 	}
 
 	/**

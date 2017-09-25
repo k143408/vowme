@@ -37,13 +37,13 @@ public class Approval extends BaseModel implements Serializable {
 	private Long id;
 
 	/** The actionby. */
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne()
 	@JoinColumn(name = "actionby")
 	private User actionby;
 
 	/** The cause. */
 	// bi-directional many-to-one association to User
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne()
 	@JoinColumn(name = "causeid")
 	private Cause cause;
 
@@ -58,6 +58,9 @@ public class Approval extends BaseModel implements Serializable {
 	/** The is approved. */
 	@Column(name = "is_approved")
 	private Byte isApproved;
+	
+	@Column(name = "override")
+	private Byte override;
 
 	/** The updated at. */
 	@Column(name = "updated_at")
@@ -65,7 +68,7 @@ public class Approval extends BaseModel implements Serializable {
 
 	/** The user. */
 	// bi-directional many-to-one association to User
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne()
 	@JoinColumn(name = "userid")
 	private User user;
 
@@ -134,7 +137,7 @@ public class Approval extends BaseModel implements Serializable {
 	 *
 	 * @return the checks if is approved
 	 */
-	public Object getIsApproved() {
+	public Byte getIsApproved() {
 		return this.isApproved;
 	}
 
@@ -217,6 +220,14 @@ public class Approval extends BaseModel implements Serializable {
 	 */
 	public void setCause(Cause cause) {
 		this.cause = cause;
+	}
+
+	public Byte getOverride() {
+		return override;
+	}
+
+	public void setOverride(Byte override) {
+		this.override = override;
 	}
 
 }

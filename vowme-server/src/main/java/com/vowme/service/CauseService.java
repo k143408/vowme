@@ -1,9 +1,12 @@
 package com.vowme.service;
 
+import java.util.List;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
 import com.vowme.model.Cause;
+import com.vowme.util.helper.CauseShortDetail;
 import com.vowme.util.helper.KeyValue;
 
 
@@ -63,5 +66,15 @@ public interface CauseService {
 	 * @return the causes by id
 	 */
 	Cause getCausesById(Long causeId);
+
+	
+	Page<CauseShortDetail> getCausesShortDescription(Long userId, Pageable pageable);
+
+	Cause addCauseWithTeam(Cause cause);
+	
+	Cause saveCause(Cause cause);
+
+	
+	List<Cause> getAllCause();
 
 }

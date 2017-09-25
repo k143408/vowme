@@ -1,6 +1,7 @@
 package com.vowme.model;
 
 import java.io.Serializable;
+import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.Column;
@@ -695,7 +696,7 @@ public class Cause extends BaseModel implements Serializable {
 	 * @return the participates
 	 */
 	public Set<Participate> getParticipates() {
-		return this.participates;
+		return this.participates == null ? new HashSet<>() : this.participates;
 	}
 
 	/**
@@ -839,6 +840,17 @@ public class Cause extends BaseModel implements Serializable {
 	 */
 	public void setTeams(Set<Team> teams) {
 		this.teams = teams;
+	}
+	
+	public Team addTeams(Team team) {
+		getTeams().add(team);
+		team.setCause(this);
+		return team;
+	}
+	
+	public void addTeams(Set<Team> teams) {
+		getTeams().addAll(teams);
+		teams.stream().forEach(team -> {team.setCause(this); team.setId(null);});
 	}
 
 	/**

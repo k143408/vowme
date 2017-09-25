@@ -27,11 +27,12 @@
           <div class="row">
             <div class="col-md-3 col-md-offset-3">
                  <h5><button class="btn btn-info" (click) ="approval()"> Make Look Alike Cause.</button></h5>
+                  <h5><button class="btn sm-info" *ngIf="currentUser.id == currentCause.user.id && currentCause.teams.length != 0 " (click) ="addTeamMember()"> Invite Team Members.</button></h5>
             </div>
           </div>
         </div>
       </div>
-      <div class="card">
+      <div class="card" *ngIf="currentCause.teams.length > 0">
         <div class="header">
           <h4 class="title">Co-organizer Member(s)</h4>
           <p>Total Teams : {{currentCause.teams.length}}</p>
@@ -89,7 +90,7 @@
             <div class="col-md-4">
               <div class="form-group">
                 <label>Registration Date</label>
-                <span>{{currentCause.registrationdate}}</span>
+                <span>{{currentCause.registrationdate * 1000 | date: 'dd/MM/yyyy'}}</span>
               </div>
             </div>
           </div>
@@ -109,7 +110,7 @@
             <div class="col-md-6">
               <div class="form-group">
                 <label>Registration End Date</label>
-                <span class="text-danger">{{currentCause.registrationdeadline}}</span>
+                <span class="text-danger">{{currentCause.registrationdeadline * 1000 | date: 'dd/MM/yyyy'}}</span>
               </div>
             </div>
           </div>
@@ -130,7 +131,7 @@
               </div>
             </div>
           </div>
-          <div class="row">
+          <div class="row" *ngIf="currentCause.causeSkills.length > 0">
             <div class="col-md-12">
               <div class="form-group">
                 <label>Required Skills</label>
@@ -152,7 +153,7 @@
       </div>
     </div>
 
-    <div class="col-lg-4 col-md-5">
+    <div class="col-lg-4 col-md-5" *ngIf="currentCause.approvals.length > 0">
       <div class="card">
         <div class="header">
           <h4 class="title">Approval Pending Details</h4>
@@ -175,7 +176,7 @@
         <div class="clearfix"></div>
       </div>
     </div>
-    <div class="col-lg-4 col-md-5">
+    <div class="col-lg-4 col-md-5" *ngIf="currentCause.participates.length > 0">
       <div class="card">
         <div class="header">
           <h4 class="title">Participates Details</h4>
@@ -198,7 +199,7 @@
         <div class="clearfix"></div>
       </div>
     </div>
-    <div class="col-lg-4 col-md-6">
+    <div class="col-lg-4 col-md-6" *ngIf="currentCause.boardcasts.length > 0">
       <div class="card">
         <div class="header">
           <h4 class="title">Boardcasts Details</h4>

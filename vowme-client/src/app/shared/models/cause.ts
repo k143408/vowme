@@ -10,7 +10,7 @@ import { Participate } from './participate';
 import { User } from './user';
 
 export class Cause {
-  constructor(){}
+  constructor() { }
   id: number;
   address: string;
   city: string;
@@ -47,5 +47,9 @@ export class Cause {
   teams: Team[];
   feedbacks: Feedback[];
   causeSkills: Skills[];
+
+  setName(name) {
+    this.name = name;
+  }
 }
 

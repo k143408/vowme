@@ -1,5 +1,6 @@
 package com.vowme.util;
 
+import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -61,6 +62,14 @@ public class DateUtils {
 			logger.error("Error :"+pe);
 		}
 		return convertMillisIntoSeconds(date.getTime());
+	}
+	
+	public static String convertLongIntoString(Long dateParam) {
+		return (dateParam != null && dateParam.longValue() != 0 )? formatFromDate(new Date(dateParam*1000)) : ""; 
+	}
+
+	private static String formatFromDate(Date date) {
+		return DateFormat.getDateTimeInstance(DateFormat.MEDIUM, DateFormat.SHORT).format(date);
 	}
 
 }

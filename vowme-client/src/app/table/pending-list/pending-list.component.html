@@ -1,1 +1,8 @@
-<app-volunteer [pendingTag] = "flag"></app-volunteer>
+<div class="container-fluid">
+  <div class="card card-map">
+    <div class="header">
+      <h4 class="title">Pending Volunteer List</h4>
+    </div>
+    <ng2-smart-table [settings]="settings" (filter) ="onFilter(event)" [source]="source" (userRowSelect)="onSelect($event.data)"></ng2-smart-table>
+  </div>
+</div>

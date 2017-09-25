@@ -13,6 +13,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.vowme.util.DateUtils;
 
 
 
@@ -53,6 +54,15 @@ public class Boardcast extends BaseModel implements Serializable {
 	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="emailid")
 	private Email email;
+
+	
+	
+	public Boardcast(Cause cause, Email email) {
+		super();
+		this.cause = cause;
+		this.createdAt = DateUtils.getCurrentTime();
+		this.email = email;
+	}
 
 	/**
 	 * Instantiates a new boardcast.

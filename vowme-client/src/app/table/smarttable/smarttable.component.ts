@@ -1,3 +1,6 @@
+import { UserService } from './../../service/user.service';
+import { CauseService } from './../../service/cause.service';
+import { BaseComponent } from 'app/shared/base.component';
 import { Router } from '@angular/router';
 import { User } from './../../shared/models/user';
 import { VolunteerService } from './../../service/volunteer.service';
@@ -12,7 +15,7 @@ import swal from 'sweetalert2';
   styleUrls: ['./smarttable.component.scss'],
   providers: [VolunteerService]
 })
-export class SmarttableComponent {
+export class SmarttableComponent extends BaseComponent {
   private isEnabled = false;
   settings = {
     actions: {
@@ -50,38 +53,39 @@ export class SmarttableComponent {
 
   source: LocalDataSource = new LocalDataSource();
 
-  constructor(protected service: VolunteerService, private router: Router) {
-    this.service.getVolunteerByUserId(1).subscribe(data => {
+  constructor(protected service: VolunteerService, protected causeService: CauseService, protected userSerivce: UserService, private router: Router) {
+    super(causeService, userSerivce);
+    this.service.getVolunteerByUserId(this.userID).subscribe(data => {
       this.source.load(data.content);
     });
   }
 
-  onFilter($event: any){
+  onFilter($event: any) {
     this.isEnabled = false;
   }
   onSelect(event: User) {
-//    if (this.isEnabled) {
-      let comp = this;
-      swal({
-        title: 'Are you sure?',
-        text: "Do you want to visit " + event.firstname + "'s Profile?",
-        type: 'info',
-        showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-        confirmButtonText: 'Yes!',
-        cancelButtonText: 'No!',
-        confirmButtonClass: 'btn btn-success',
-        cancelButtonClass: 'btn btn-danger',
-        buttonsStyling: false
-      }).then(function () {
-          comp.router.navigate(['/volunteer-detail', event.id]);
-      }, function (dismiss) {
-        if (dismiss === 'cancel') {
-          
-        }
-      });
+    //    if (this.isEnabled) {
+    let comp = this;
+    swal({
+      title: 'Are you sure?',
+      text: "Do you want to visit " + event.firstname + "'s Profile?",
+      type: 'info',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes!',
+      cancelButtonText: 'No!',
+      confirmButtonClass: 'btn btn-success',
+      cancelButtonClass: 'btn btn-danger',
+      buttonsStyling: false
+    }).then(function () {
+      comp.router.navigate(['/volunteer-detail', event.id]);
+    }, function (dismiss) {
+      if (dismiss === 'cancel') {
+
+      }
+    });
     //}
-//    this.isEnabled = true;
+    //    this.isEnabled = true;
   }
 }

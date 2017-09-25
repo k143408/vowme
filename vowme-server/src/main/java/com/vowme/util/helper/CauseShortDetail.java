@@ -2,6 +2,8 @@ package com.vowme.util.helper;
 
 import java.io.Serializable;
 
+import com.vowme.util.DateUtils;
+
 
 /**
  * The Class CauseShortDetail.
@@ -16,7 +18,19 @@ public class CauseShortDetail implements Serializable {
 	
 	/** The cause name. */
 	private String causeName;
-
+	
+	/** The description. */
+	private String description;
+	
+	/** The registration date. */
+	private String registrationdate;
+	
+	/** The registration deadline. */
+	private String registrationdeadline;
+	
+	/** The info. */
+	private String info; 
+		
 	/**
 	 * Gets the id.
 	 *
@@ -65,4 +79,86 @@ public class CauseShortDetail implements Serializable {
 		this.causeName = causeName;
 	}
 
+	/**
+	 * Gets the registrationdate.
+	 *
+	 * @return the registrationdate
+	 */
+	public String getRegistrationdate() {
+		return registrationdate;
+	}
+
+	/**
+	 * Sets the registrationdate.
+	 *
+	 * @param registrationdate the new registrationdate
+	 */
+	public void setRegistrationdate(String registrationdate) {
+		this.registrationdate = registrationdate;
+	}
+
+	/**
+	 * Gets the registrationdeadline.
+	 *
+	 * @return the registrationdeadline
+	 */
+	public String getRegistrationdeadline() {
+		return registrationdeadline;
+	}
+
+	/**
+	 * Sets the registrationdeadline.
+	 *
+	 * @param registrationdeadline the new registrationdeadline
+	 */
+	public void setRegistrationdeadline(String registrationdeadline) {
+		this.registrationdeadline = registrationdeadline;
+	}
+
+	/**
+	 * Gets the info.
+	 *
+	 * @return the info
+	 */
+	public String getInfo() {
+		return info;
+	}
+
+	/**
+	 * Sets the info.
+	 *
+	 * @param info the new info
+	 */
+	public void setInfo(String info) {
+		this.info = info;
+	}
+
+	/**
+	 * Gets the description.
+	 *
+	 * @return the description
+	 */
+	public String getDescription() {
+		return description;
+	}
+
+	/**
+	 * Sets the description.
+	 *
+	 * @param description the new description
+	 */
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public CauseShortDetail(Long id, String causeName, String description, Long registrationdate,
+			Long registrationdeadline, String info) {
+		super();
+		this.id = id;
+		this.causeName = causeName;
+		this.description = description;
+		this.registrationdate = DateUtils.convertLongIntoString(registrationdate);
+		this.registrationdeadline = DateUtils.convertLongIntoString(registrationdeadline);
+		this.info = info;
+	}
 }

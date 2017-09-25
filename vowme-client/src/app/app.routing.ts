@@ -1,3 +1,4 @@
+import { VolunteerPendingComponent } from './volunteer-pending/volunteer-pending.component';
 import { PendingListComponent } from './table/pending-list/pending-list.component';
 import { CauselistComponent } from './table/causelist/causelist.component';
 import { CauseDetailComponent } from './cause-detail/cause-detail.component';
@@ -33,8 +34,8 @@ export const AppRoutes: Routes = [
         component: VolunteerComponent
     },
     {
-        path: 'volunteer-pending/:id',
-        component: PendingListComponent
+        path: 'volunteer-pending/:causeId/:id',
+        component: VolunteerPendingComponent
     },
     {
         path: 'cause-detail/:id',

@@ -1,3 +1,4 @@
+import { KeyValue } from './keyvalue';
 import { Skills } from './skills';
 import { Skill } from './skill';
 import { UserInfo } from './userinfo';
@@ -17,6 +18,7 @@ export class User {
   public username: string;
   public userInfo: UserInfo;
   userSkills: Skills[];
+  info : KeyValue;
   
   isVerfied(): boolean{
     return  (this.emailVerified == 1 && this.cnicVerified == 1);

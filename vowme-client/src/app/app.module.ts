@@ -1,3 +1,4 @@
+import { VolunteerService } from './service/volunteer.service';
 import { Rating } from './rating/rating.component';
 import { CauseService } from './service/cause.service';
 import { UserService } from './service/user.service';
@@ -28,6 +29,7 @@ import { VolunteerComponent } from './volunteer/volunteer.component';
 import { CauseDetailComponent } from './cause-detail/cause-detail.component';
 import { CauselistComponent } from './table/causelist/causelist.component';
 import { PendingListComponent } from './table/pending-list/pending-list.component';
+import { VolunteerPendingComponent } from './volunteer-pending/volunteer-pending.component';
 
 @NgModule({
   declarations: [
@@ -44,7 +46,8 @@ import { PendingListComponent } from './table/pending-list/pending-list.componen
     CauseDetailComponent,
     Rating,
     CauselistComponent,
-    PendingListComponent],
+    PendingListComponent,
+    VolunteerPendingComponent],
   imports: [
     BrowserModule,
     RouterModule.forRoot(AppRoutes),
@@ -59,7 +62,7 @@ import { PendingListComponent } from './table/pending-list/pending-list.componen
     ReactiveFormsModule
 
   ],
-  providers: [UserService, CauseService],
+  providers: [UserService, CauseService, VolunteerService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

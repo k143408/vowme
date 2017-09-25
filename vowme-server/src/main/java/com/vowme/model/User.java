@@ -6,6 +6,7 @@ import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -24,7 +25,7 @@ import com.vowme.util.AESEncryptionUtils;
  */
 @Entity
 @Table(name="user")
-@JsonIgnoreProperties({"feedbacks1","feedbacks2","teams","backouts","cause","approvals","actionby", "participates","hibernateLazyInitializer", "handler"})
+@JsonIgnoreProperties({"password","feedbacks1","feedbacks2","teams","backouts","cause","approvals","actionby", "participates","hibernateLazyInitializer", "handler"})
 public class User extends BaseModel implements Serializable {
 
 	/** The Constant serialVersionUID. */
@@ -86,48 +87,48 @@ public class User extends BaseModel implements Serializable {
 
 	/** The approvals. */
 	//bi-directional many-to-one association to Approval
-	@OneToMany(mappedBy="user")
+	@OneToMany(mappedBy="user", fetch=FetchType.LAZY)
 	private Set<Approval> approvals;
 	
 	/** The actionby. */
-	@OneToMany(mappedBy="actionby")
+	@OneToMany(mappedBy="actionby",fetch=FetchType.LAZY)
 	private Set<Approval> actionby;
 
 	/** The cause. */
-	@OneToMany(mappedBy="user")
+	@OneToMany(mappedBy="user",fetch=FetchType.LAZY)
 	private List<Cause> cause;
 	
 	/** The backouts. */
 	//bi-directional many-to-one association to Backout
-	@OneToMany(mappedBy="user")
+	@OneToMany(mappedBy="user",fetch=FetchType.LAZY)
 	private Set<Backout> backouts;
 
 	/** The participates. */
 	//bi-directional many-to-one association to Participate
-	@OneToMany(mappedBy="user")
+	@OneToMany(mappedBy="user",fetch=FetchType.LAZY)
 	private Set<Participate> participates;
 
 	/** The teams. */
-	@OneToMany(mappedBy="user")
+	@OneToMany(mappedBy="user",fetch=FetchType.LAZY)
 	private List<Team> teams;
 	
 	/** The user info. */
-	@OneToOne(mappedBy="user")
+	@OneToOne(mappedBy="user",fetch=FetchType.LAZY)
 	private UserInfo userInfo;
 
 	/** The feedbacks 1. */
 	//bi-directional many-to-one association to Feedback
-	@OneToMany(mappedBy="receiver")
+	@OneToMany(mappedBy="receiver",fetch=FetchType.LAZY)
 	private List<Feedback> feedbacks1;
 
 	/** The feedbacks 2. */
 	//bi-directional many-to-one association to Feedback
-	@OneToMany(mappedBy="commenter")
+	@OneToMany(mappedBy="commenter",fetch=FetchType.LAZY)
 	private List<Feedback> feedbacks2;
 
 	/** The user skills. */
 	//bi-directional many-to-one association to UserSkill
-	@OneToMany(mappedBy="user")
+	@OneToMany(mappedBy="user",fetch=FetchType.LAZY)
 	private List<UserSkill> userSkills;
 
 	/**
@@ -306,6 +307,10 @@ public class User extends BaseModel implements Serializable {
 	 */
 	public String getFirstname() {
 		return this.firstname;
+	}
+	
+	public String getFullName() {
+		return String.format("%s %s", this.firstname, this.lastname);
 	}
 
 	/**
@@ -659,6 +664,10 @@ public class User extends BaseModel implements Serializable {
 	 */
 	public void setRank(Float rank) {
 		this.rank = rank;
+	}
+	
+	public boolean isVerified() {
+		return this.cnicVerified.equals(new Byte("0")) && this.emailVerified.equals(new Byte("0")); 
 	}
 
 }

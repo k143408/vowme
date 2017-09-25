@@ -21,7 +21,7 @@ import { BaseComponent } from './../shared/base.component';
   providers: [VolunteerService]
 })
 export class VolunteerComponent extends BaseComponent implements OnInit {
-  @Input() private pendingTag = false;
+  @Input() private pendingTag: boolean = false;
   constructor(private router: ActivatedRoute, private volunteerService: VolunteerService, protected causeService: CauseService, protected userSerivce: UserService) { super(causeService, userSerivce) }
   viewUser: User = new User();
   totalCauseDoing: number = 0;
@@ -34,6 +34,7 @@ export class VolunteerComponent extends BaseComponent implements OnInit {
   causeNameList: KeyValue[];
   causeNameCount: number = 0;
   userSkill: Skills[];
+  private causeId4Approval: number = 0;
   ngOnInit() {
     this.router.params.subscribe(params => {
       this.userSerivce.getUserDetails(params['id']).subscribe(user => {
@@ -62,6 +63,11 @@ export class VolunteerComponent extends BaseComponent implements OnInit {
       this.userSerivce.getRanking(params['id']).subscribe(rank => {
         this.currentRate = rank;
       });
+      if (this.pendingTag) {
+        this.causeId4Approval = params['causeId'];
+        this.volunteerService.overrideApproval(this.userID, params['id'], params['causeId']).subscribe(data => {
+        });
+      }
     });
   }
 
@@ -73,10 +79,10 @@ export class VolunteerComponent extends BaseComponent implements OnInit {
       showCancelButton: true,
       confirmButtonText: 'Send',
       showLoaderOnConfirm: true,
-      preConfirm: function (email) {
+      preConfirm: function (reason) {
         return new Promise(function (resolve, reject) {
           setTimeout(function () {
-            if (email === '') {
+            if (reason === '') {
               reject('Please mention the reason for rejecting.')
             } else {
               resolve()
@@ -85,18 +91,20 @@ export class VolunteerComponent extends BaseComponent implements OnInit {
         })
       },
       allowOutsideClick: false
-    }).then(function (email) {
-      swal({
-        type: 'success',
-        title: 'Reason has been saved!',
-        html: 'Submitted email: ' + com.viewUser.email
+    }).then(function (reason) {
+      com.volunteerService.giveApproval(com.userID, com.viewUser.id, com.causeId4Approval, reason).subscribe(data => {
+        swal({
+          type: 'success',
+          title: 'Reason has been saved!',
+          html: 'Submitted email: ' + com.viewUser.email
+        });
       });
       com.pendingTag = false;
     })
   }
   approval() {
     let com = this;
-    
+
     swal({
       title: 'Are you sure?',
       text: "Do you want to approve " + this.viewUser.firstname + "'s Profile?",
@@ -110,11 +118,13 @@ export class VolunteerComponent extends BaseComponent implements OnInit {
       cancelButtonClass: 'btn btn-danger',
       buttonsStyling: false
     }).then(function () {
+      com.volunteerService.giveApproval(com.userID, com.viewUser.id, com.causeId4Approval).subscribe(data => {
         swal({
-        type: 'success',
-        title: 'Approved!',
-        html: 'Submitted email: ' + com.viewUser.email
-      });
+          type: 'success',
+          title: 'Approved!',
+          html: 'Submitted email: ' + com.viewUser.email
+        });
+      })
       com.pendingTag = false;
     }, function (dismiss) {
       if (dismiss === 'cancel') {

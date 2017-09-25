@@ -25,9 +25,17 @@ export abstract class BaseComponent {
     protected overStar: number;
     protected ratingPercent: number;
 
+    protected dateRegex = '';
+    protected alphaNumberRegex = '/^[a-zA-Z]*$/';
+
     constructor(protected causeService: CauseService, protected userSerivce: UserService) { this.currentUser = new User(); }
 
 
+    protected getCurrentUser() {
+        this.userSerivce.getUserDetails(this.userID).subscribe(user => {
+            this.currentUser = user;
+        });
+    }
     protected saveUser(data: string, isCurrentUser: boolean = false, userForm: FormGroup = null) {
         this.userSerivce.saveUser(data).subscribe(user => {
             if (isCurrentUser) {

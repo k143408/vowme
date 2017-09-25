@@ -24,7 +24,6 @@ public class FeedbackServiceImpl implements FeedbackService {
 	
 	@Override
 	public Page<FeedbackCustom> getUserFeedback(Long userId, Pageable pageable) {
-		
 		return feedbackRespository.getFeedback(userId,pageable);
 	}
 

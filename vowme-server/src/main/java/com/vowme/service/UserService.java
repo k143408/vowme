@@ -1,13 +1,17 @@
 package com.vowme.service;
 
 import java.util.List;
+import java.util.concurrent.Callable;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
 import com.vowme.dto.UserDTO;
+import com.vowme.model.Approval;
+import com.vowme.model.Boardcast;
 import com.vowme.model.User;
 import com.vowme.util.helper.FeedbackCustom;
+import com.vowme.util.helper.MutliModel;
 
 
 /**
@@ -104,7 +108,21 @@ public interface UserService {
 	 * @return the rank by id
 	 */
 	public Float getRankById(Long userId);
+
 	
+	public Callable<Boardcast> joinCause(Long causeId, Long userId, String email);
+
+	
+	public Page<MutliModel> getPendingVolunteers(Long userId, Pageable pageable);
+
+	
+	public Boolean overrideApproval(Long userId, Long volId,Long causeId);
+
+	
+	public Approval approvalForCause(Long userId, Long volId, Long causeId, String comment);
+
+	
+	public List<User> getAllOrganizor();
 	
 
 }

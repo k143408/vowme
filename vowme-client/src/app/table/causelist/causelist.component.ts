@@ -1,6 +1,9 @@
+import { UserService } from './../../service/user.service';
+import { BaseComponent } from 'app/shared/base.component';
+import { CauseService } from './../../service/cause.service';
 import { LocalDataSource } from 'ng2-smart-table';
 import { Router } from '@angular/router';
-import swal  from 'sweetalert2';
+import swal from 'sweetalert2';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -8,9 +11,9 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './causelist.component.html',
   styleUrls: ['./causelist.component.scss']
 })
-export class CauselistComponent implements OnInit {
+export class CauselistComponent extends BaseComponent implements OnInit {
 
-    settings = {
+  settings = {
     actions: {
       add: false,
       edit: false,
@@ -21,7 +24,7 @@ export class CauselistComponent implements OnInit {
         title: 'ID',
         type: 'number'
       },
-      name: {
+      causeName: {
         title: 'Name',
         type: 'string'
       },
@@ -36,17 +39,18 @@ export class CauselistComponent implements OnInit {
       registrationdeadline: {
         title: 'Registration Deadline',
         type: 'string'
-      },
-      email: {
-        title: 'email',
-        type: 'string'
       }
     }
   };
 
   source: LocalDataSource = new LocalDataSource();
 
-  constructor(private router: Router) { }
+  constructor(protected causeService: CauseService, protected userSerivce: UserService, private router: Router) {
+    super(causeService, userSerivce);
+    this.causeService.getShortCause(this.userID).subscribe(data => {
+      this.source.load(data.content);
+    });
+  }
 
   ngOnInit() {
   }
@@ -56,7 +60,7 @@ export class CauselistComponent implements OnInit {
     let comp = this;
     swal({
       title: 'Are you sure?',
-      text: "Do you want to visit " + event.firstname + " cause?",
+      text: "Do you want to visit <strong>" + event.causeName + "</strong>?",
       type: 'info',
       showCancelButton: true,
       confirmButtonColor: '#3085d6',
@@ -67,7 +71,7 @@ export class CauselistComponent implements OnInit {
       cancelButtonClass: 'btn btn-danger',
       buttonsStyling: false
     }).then(function () {
-      comp.router.navigate(['/volunteer-detail', event.id]);
+      comp.router.navigate(['/cause-detail', event.id]);
     }, function (dismiss) {
       if (dismiss === 'cancel') {
 

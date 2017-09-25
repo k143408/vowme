@@ -2,6 +2,8 @@ import { Observable } from 'rxjs/Observable';
 import { HttpService } from './../shared/http.service';
 import { Injectable } from '@angular/core';
 
+
+
 @Injectable()
 export class UserService {
 
@@ -19,9 +21,13 @@ export class UserService {
       .map((response: Response) => response.json());
   }
 
-
   getUserDetails(userId: number = 0): Observable<any> {
     return this._http.get(this._url + userId)
+      .map((response: Response) => response.json());
+  }
+
+  addTeam(userId: any, causeId: any, email: any): Observable<any> {
+    return this._http.get(this._url + 'team/' + causeId + '/' + userId + '/?email=' + email)
       .map((response: Response) => response.json());
   }
 
@@ -29,6 +35,4 @@ export class UserService {
     return this._http.post(this._url, data)
       .map((response: Response) => response.json());
   }
-
-
 }

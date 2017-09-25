@@ -46,7 +46,7 @@ public class UserInfo {
 
 	/** The is organizer. */
 	@Column(name="is_organizer")
-	private String isOrganizer;
+	private Boolean isOrganizer;
 
 	/** The updated at. */
 	@Column(name="updated_at")
@@ -202,7 +202,7 @@ public class UserInfo {
 	 *
 	 * @return the checks if is organizer
 	 */
-	public String getIsOrganizer() {
+	public Boolean getIsOrganizer() {
 		return isOrganizer;
 	}
 
@@ -211,7 +211,7 @@ public class UserInfo {
 	 *
 	 * @param isOrganizer the new checks if is organizer
 	 */
-	public void setIsOrganizer(String isOrganizer) {
+	public void setIsOrganizer(Boolean isOrganizer) {
 		this.isOrganizer = isOrganizer;
 	}
 

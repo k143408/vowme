@@ -13,6 +13,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.vowme.util.DateUtils;
 
 
 
@@ -150,5 +151,12 @@ public class Participate extends BaseModel implements Serializable {
 	public void setCause(Cause cause) {
 		this.cause = cause;
 	}
+
+	public Participate(User user, Cause cause) {
+		this.user = user;
+		this.cause = cause;
+		this.createdAt = DateUtils.getCurrentTime();
+	}
+
 
 }
