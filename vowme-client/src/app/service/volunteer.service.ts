@@ -27,7 +27,7 @@ export class VolunteerService {
   }
 
   giveApproval(userId: any, volId: any, causeId: any,comment: string =''): Observable<any> {
-    return this._http.get(this._url + 'approval/' + volId + '?userId=' + userId + '&causeId=' + causeId+'&comment='+comment)
+    return this._http.get(this._url + 'approval/' + volId + '?userId=' + userId + '&causeId=' + causeId+'&comment='+comment )
       .map((response: Response) => response.json());
   }
 

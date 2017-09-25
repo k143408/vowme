@@ -113,5 +113,18 @@ public class Team extends BaseModel implements Serializable {
 	public void setIsDisabled(Byte isDisabled) {
 		this.isDisabled = isDisabled;
 	}
+
+	public Team(Cause cause, User user) {
+		super();
+		this.cause = cause;
+		this.user = user;
+		
+		this.cause.addTeams(this);
+		this.user.addTeams(this);
+	}
+	
+	public Team() {
+		// TODO Auto-generated constructor stub
+	}
 	
 }

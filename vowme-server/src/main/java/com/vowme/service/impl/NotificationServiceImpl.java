@@ -13,8 +13,10 @@ import org.springframework.stereotype.Service;
 import com.vowme.model.Boardcast;
 import com.vowme.model.Cause;
 import com.vowme.model.Email;
+import com.vowme.model.TeamNotification;
 import com.vowme.repository.BoardcastRepository;
 import com.vowme.repository.EmailRespository;
+import com.vowme.repository.TeamNotificationRepository;
 import com.vowme.service.NotificationService;
 
 @Service("notificationService")
@@ -28,6 +30,10 @@ public class NotificationServiceImpl implements NotificationService {
 
 	@Autowired
 	private EmailRespository emailRepository;
+	
+	@Autowired
+	private TeamNotificationRepository teamNotificationRepository ;
+
 
 
 	@Override
@@ -55,6 +61,10 @@ public class NotificationServiceImpl implements NotificationService {
 			email.addBoardcast(boardcast);
 
 			boardcastRepository.save(boardcast);
+			
+			TeamNotification notify = new TeamNotification(to, text, 1, cause.getId());
+			
+			teamNotificationRepository.save(notify);
 
 			return boardcast;
 		};

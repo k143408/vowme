@@ -1,3 +1,4 @@
+import { NotificationService } from './service/notification.service';
 import { VolunteerService } from './service/volunteer.service';
 import { Rating } from './rating/rating.component';
 import { CauseService } from './service/cause.service';
@@ -62,7 +63,7 @@ import { VolunteerPendingComponent } from './volunteer-pending/volunteer-pending
     ReactiveFormsModule
 
   ],
-  providers: [UserService, CauseService, VolunteerService],
+  providers: [UserService, CauseService, VolunteerService, NotificationService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

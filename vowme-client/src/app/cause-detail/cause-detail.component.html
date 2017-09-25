@@ -27,7 +27,7 @@
           <div class="row">
             <div class="col-md-3 col-md-offset-3">
                  <h5><button class="btn btn-info" (click) ="approval()"> Make Look Alike Cause.</button></h5>
-                  <h5><button class="btn sm-info" *ngIf="currentUser.id == currentCause.user.id && currentCause.teams.length != 0 " (click) ="addTeamMember()"> Invite Team Members.</button></h5>
+                  <h5><button class="btn sm-info" *ngIf="currentUser.id == currentCause.user.id" (click) ="addTeamMember()"> Invite Team Members.</button></h5>
             </div>
           </div>
         </div>
@@ -163,8 +163,8 @@
           <div class="row">
             <ul>
               <div *ngFor="let approval of currentCause.approvals; let count = index;">
-                <li *ngIf="count<2">
-                  <p *ngIf="approval.isApproved == 1"><a [routerLink]="['/volunteer-detail',approval.user.id]"> {{approval.user.firstname}} {{approval.user.lastname}}</a></p>
+                <li *ngIf="approval.isApproved == 2 && count <= 2">
+                  <p><a [routerLink]="['/volunteer-detail',approval.user.id]"> {{approval.user.firstname}} {{approval.user.lastname}}</a></p>
                 </li>
               </div>
             </ul>
@@ -208,13 +208,13 @@
         <div class="content">
           <div class="row">
             <div *ngFor="let boardcast of currentCause.boardcasts; let count = index;">
-              <blockquote>
+              <blockquote *ngIf="count < 2">
                 <p class="text-info"> {{boardcast.email.title}}</p>
                 <small> {{boardcast.email.recipientEmail}} </small>
               </blockquote>
             </div>
-            <div *ngIf="currentCause?.participates?.length > 2">
-              <small class="text-info">See More</small>
+            <div class="col-md-4" *ngIf="currentCause?.boardcasts?.length > 2">
+              <small class="text-info"><b>See More</b></small>
             </div>
             <div class="clearfix"></div>
           </div>

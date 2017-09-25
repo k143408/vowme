@@ -1,6 +1,7 @@
 package com.vowme.model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
@@ -636,7 +637,7 @@ public class User extends BaseModel implements Serializable {
 	 * @return the teams
 	 */
 	public List<Team> getTeams() {
-		return teams;
+		return teams == null ? new ArrayList<Team>() : teams;
 	}
 
 	/**
@@ -664,6 +665,12 @@ public class User extends BaseModel implements Serializable {
 	 */
 	public void setRank(Float rank) {
 		this.rank = rank;
+	}
+	
+	public Team addTeams(Team team) {
+		getTeams().add(team);
+		team.setUser(this);
+		return team;
 	}
 	
 	public boolean isVerified() {

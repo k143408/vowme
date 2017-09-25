@@ -15,8 +15,7 @@
           <p class="description text-center">
             {{viewUser.userInfo.aboutMe}}
             <br/>
-            <rating [(ngModel)]="currentRate" [max]="maxRateValue" [readonly]="isRatingReadonly" (on)="overStarDoSomething($event)"
-              (onLeave)="resetRatingStar($event)"></rating>
+            <rating [(ngModel)]="currentRate" [max]="maxRateValue" [readonly]="isRatingReadonly" (on)="overStarDoSomething($event)" (onLeave)="resetRatingStar($event)"></rating>
           </p>
         </div>
         <hr>
@@ -36,15 +35,15 @@
         <div class="text-center" *ngIf="pendingTag == 'true'">
           <div class="row">
             <div class="col-md-4 col-md-offset-2">
-              <h5><button class="btn btn-info" (click) ="approval()"> Approve</button></h5>
+              <h5><button class="btn btn-info" (click)="approval()"> Approve</button></h5>
             </div>
             <div class="col-md-3">
-               <h5><button class="btn btn-danger" (click) ="rejection()"> Rejecting  </button></h5>
-             </div>
+              <h5><button class="btn btn-danger" (click)="rejection()"> Rejecting  </button></h5>
+            </div>
           </div>
         </div>
       </div>
-      <div class="card">
+      <div class="card" *ngIf="causeNameList?.length > 0">
         <div class="header">
           <h4 class="title">Participates Cause</h4>
           <p>Total Cause : <strong>{{causeNameCount}}</strong></p>
@@ -166,7 +165,7 @@
         </div>
       </div>
     </div>
-    <div class="col-lg-8 col-md-7">
+    <div class="col-lg-8 col-md-7" *ngIf="feedbackList?.length > 0">
       <div class="card">
         <div class="header">
           <h4 class="title">Feedback</h4>

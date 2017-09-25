@@ -11,34 +11,38 @@
         </div>
         <div class="collapse navbar-collapse">
             <ul class="nav navbar-nav navbar-right">
-                <li>
+                <!-- <li>
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                         <i class="ti-panel"></i>
                         <p>Stats</p>
                     </a>
-                </li>
-             <!--   <li class="dropdown">
-                      <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                </li> -->
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                             <i class="ti-bell"></i>
-                            <p class="notification">5</p>
+                            <p class="notification">{{userNotification?.length}}</p>
                             <p>Notifications</p>
                             <b class="caret"></b>
                       </a>
-                      <ul class="dropdown-menu">
-                        <li><a href="#">Notification 1</a></li>
-                        <li><a href="#">Notification 2</a></li>
-                        <li><a href="#">Notification 3</a></li>
-                        <li><a href="#">Notification 4</a></li>
-                        <li><a href="#">Another notification</a></li>
-                      </ul>
+                    <ul class="dropdown-menu">
+                        <li *ngFor='let userNotify of userNotification; let row = index;'>
+                            <a href="javascript::">
+                                <span>{{userNotify.message}}</span>
+                                <div class="clearfix"></div>
+                                <span *ngIf="userNotify.type == 1">
+                                    <button class="btn sm-info" (click)="makeItJoin(userNotify)" >Join.</button>
+                                    <button class="btn sm-danger" (click)="makeItReject(userNotify)">Reject.</button>
+                                </span>
+                            </a>
+                        </li>
+                    </ul>
                 </li>
-                    -->
-                <li>
+                <!-- <li>
                     <a href="#">
                         <i class="ti-settings"></i>
                         <p>Settings</p>
                     </a>
-                </li>
+                </li> -->
             </ul>
 
         </div>
