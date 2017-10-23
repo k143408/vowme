@@ -15,7 +15,7 @@
     <string name="forgot_password_url">http://volunteer.org.au/Account/ForgotPassword</string>
     <string name="get_started_text">The greatest gift you can give someone is your time</string>
 
-    <string name="email_regex">[^@]+@[^.@]+(\.[^.@]+)+</string>
+    <string name="email_regex">.+@.+\\.[a-z]+</string>
 
 
     <string name="phone_regex">^((0|\+61)(2|4|3|7|8)){0,1}[0-9]{2}\s{0,1}[0-9]{3}\s{0,1}[0-9]{3}$</string>

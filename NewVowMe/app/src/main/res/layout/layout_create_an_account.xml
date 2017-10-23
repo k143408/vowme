@@ -23,8 +23,6 @@
             android:id="@+id/welcome_Title"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/profile_image"
-            android:layout_centerVertical="true"
             android:layout_gravity="center"
             android:lineSpacingExtra="@dimen/line_spacing"
             android:lines="4"
@@ -37,9 +35,13 @@
             android:singleLine="false"
             android:text="@string/profile_fragment_text"
             android:textColor="@color/text_dark"
-            android:textSize="@dimen/basic_text" />
+            android:textSize="@dimen/basic_text"
+            android:layout_above="@+id/include2"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
 
         <include
+            android:id="@+id/include2"
             layout="@layout/button_create_account"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

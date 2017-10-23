@@ -13,11 +13,11 @@
     <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/button_create_account"
-        android:layout_centerHorizontal="true"
         android:linksClickable="true"
         android:onClick="goToLogin"
-        android:padding="16.0dip">
+        android:padding="16.0dip"
+        android:layout_below="@+id/button_create_account"
+        android:layout_centerHorizontal="true">
 
         <TextView
             android:id="@+id/sign_in_text"
@@ -35,6 +35,11 @@
             android:paddingRight="4.0dip"
             android:text="@string/have_account_text"
             android:textColor="@android:color/white"
-            android:textSize="@dimen/basic_text" />
+            android:textSize="@dimen/basic_text"
+            android:layout_marginLeft="128dp"
+            android:layout_marginStart="128dp"
+            android:layout_alignParentTop="true"
+            android:layout_toRightOf="@+id/sign_in_text"
+            android:layout_toEndOf="@+id/sign_in_text" />
     </RelativeLayout>
 </RelativeLayout>
