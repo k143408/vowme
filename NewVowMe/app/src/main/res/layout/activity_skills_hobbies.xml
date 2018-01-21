@@ -46,7 +46,7 @@
                     app:counterEnabled="true"
                     app:counterMaxLength="500">
 
-                    <govol.utilities.customWidgets.CustomMultilineActionTextEdit
+                    <com.vowme.app.utilities.customWidgets.CustomMultilineActionTextEdit
                         android:id="@+id/skill_qual_txt"
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
@@ -78,7 +78,7 @@
                     app:counterEnabled="true"
                     app:counterMaxLength="200">
 
-                    <govol.utilities.customWidgets.CustomMultilineActionTextEdit
+                    <com.vowme.app.utilities.customWidgets.CustomMultilineActionTextEdit
                         android:id="@+id/hobbies_txt"
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"

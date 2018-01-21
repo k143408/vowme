@@ -71,7 +71,7 @@ public class LocationAutoCompleteArrayAdapter extends ArrayAdapter<SearchItem> i
     private void addLocationsUnAuthorized(String results) throws JSONException {
         JSONArray locations = JSONHelper.getJSONArrayFromString(results);
         for (int i = 0; i < locations.length(); i++) {
-            this.mItemValues.add(new SearchItem(AutoCompleteCategorie.KEYWORD, locations.getJSONObject(i).getString("Name"), false));
+            this.mItemValues.add(new SearchItem(AutoCompleteCategorie.KEYWORD, locations.getJSONObject(i).getString("name"), false));
         }
     }
 
@@ -172,7 +172,7 @@ public class LocationAutoCompleteArrayAdapter extends ArrayAdapter<SearchItem> i
 
     private class GetLocationsUnAuthorized extends ApiWCFRequest {
         public GetLocationsUnAuthorized(CharSequence name) {
-            super(HttpRequestType.GET, LocationAutoCompleteArrayAdapter.this.apiViktorURL, "Locations/" + LocationAutoCompleteArrayAdapter.this.apiViktorClientSecret + "/" + LocationAutoCompleteArrayAdapter.this.apiViktorGetClientSecret + "?Name=" + name);
+            super(HttpRequestType.GET, LocationAutoCompleteArrayAdapter.this.apiViktorURL, "api/lookup/location" +"?name=" + name);
         }
     }
 }

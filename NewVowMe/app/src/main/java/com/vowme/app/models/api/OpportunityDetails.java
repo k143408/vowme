@@ -27,27 +27,14 @@ public class OpportunityDetails extends OpportunityItem {
     public OpportunityDetails(JSONObject object, boolean isAutenticatedSearch) {
         super(object, isAutenticatedSearch);
         try {
-            if (isAutenticatedSearch) {
-
-                this.timeRequired = object.getString("timeRequired") == "null" ? "" : object.getString("timeRequired");
-                this.training = object.getString("training") == "null" ? "" : object.getString("training");
-                addInterest(object.getJSONArray("interests"));
-                this.reimbursement = object.getString("reimbursement") == "null" ? "" : object.getString("reimbursement");
-                this.latitude = Double.valueOf(object.getDouble("latitude"));
-                this.longitude = Double.valueOf(object.getDouble("longitude"));
-                this.organisationDescription = object.getString("organisationDescription");
-                this.hasExpressedInterest = object.getBoolean("hasExpressedInterest");
-                this.displayOnMap = true;
-                return;
-            }
-            this.timeRequired = object.getString("TimeRequired") == "null" ? "" : object.getString("TimeRequired");
-            this.training = object.getString("Training") == "null" ? "" : object.getString("Training");
-            addInterest(object.getJSONArray("Skills"));
-            this.reimbursement = object.getString("Reimbursement") == "null" ? "" : object.getString("Reimbursement");
-            this.latitude = Double.valueOf(object.getDouble("Latitude"));
-            this.longitude = Double.valueOf(object.getDouble("Longitude"));
-            this.organisationDescription = object.getString("OrganisationDescription");
-            this.displayOnMap = object.getBoolean("DisplayOnMap");
+            this.timeRequired = "";//object.getString("TimeRequired") == "null" ? "" : object.getString("TimeRequired");
+            this.training = "";//object.getString("Training") == "null" ? "" : object.getString("Training");
+            addInterest(object.getJSONArray("causeSkills"));
+            this.reimbursement = "";//object.getString("Reimbursement") == "null" ? "" : object.getString("Reimbursement");
+            this.latitude = Double.valueOf(object.getDouble("latitude"));
+            this.longitude = Double.valueOf(object.getDouble("longitude"));
+            this.organisationDescription = object.getString("description");
+            this.displayOnMap = true;
             this.hasExpressedInterest = false;
         } catch (JSONException e) {
             e.printStackTrace();

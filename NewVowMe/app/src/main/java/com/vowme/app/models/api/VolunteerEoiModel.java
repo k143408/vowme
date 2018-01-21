@@ -27,14 +27,14 @@ public class VolunteerEoiModel extends PostApiModel {
 
     public VolunteerEoiModel(JSONObject object, String source) {
         try {
-            this.FirstName = object.getString("firstName");
-            this.LastName = object.getString("lastName");
+            this.FirstName = object.getString("firstname");
+            this.LastName = object.getString("lastname");
             this.Email = object.getString("email");
-            this.YearOfBirth = Integer.valueOf(object.getInt("yearOfBirth"));
-            this.Postcode = object.getString("postcode");
-            this.PhoneNumber = object.getString("phoneNumber") == "null" ? "" : object.getString("phoneNumber");
+            this.YearOfBirth = Integer.valueOf(object.getInt("yearofbirth"));
+            this.Postcode = object.getString("cnic");
             this.Gender = object.getString("gender") == "null" ? "" : object.getString("gender");
-            this.Qualification = object.getString("qualification") == "null" ? "" : object.getString("qualification");
+            this.PhoneNumber = object.getJSONObject("userInfo").getString("contactNumber1");
+            this.Qualification = object.getJSONArray("userSkills").toString();
         } catch (JSONException e) {
             e.printStackTrace();
         }

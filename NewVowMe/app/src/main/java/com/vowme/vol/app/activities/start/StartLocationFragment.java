@@ -26,7 +26,7 @@ public class StartLocationFragment extends BaseFragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View result = inflater.inflate(R.layout.fragment_start_location, container, false);
         this.searchText = (CustomMultiAutoCompleteTextView) result.findViewById(R.id.search_edit_frame_location);
-        this.searchText.setUpSearchlocationText(getBaseActivity(), getString(R.string.apiViktorURL), getResources().getString(R.string.apiViktorClientSecret), getResources().getString(R.string.apiViktorGetClientSecret), getString(R.string.apiVolunteerURL), getBaseActivity().getApliAccessToken(), new ArrayList(), false);
+        this.searchText.setUpSearchlocationText(getBaseActivity(), getString(R.string.apiVolunteerURL1), getResources().getString(R.string.apiViktorClientSecret), getResources().getString(R.string.apiViktorGetClientSecret), getString(R.string.apiVolunteerURL1), getBaseActivity().getApliAccessToken(), new ArrayList(), false);
         this.searchText.addTextChangedListener(getCustomMultiLocationTextView(this.searchText, false));
         return result;
     }

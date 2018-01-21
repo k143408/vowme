@@ -85,6 +85,7 @@ public class AdjustmentActivity extends FilteringActivity {
                 params.availableForEmergencyResponse = false;
             }
             new putVolunteerOnCallAvailabilities(params.toJsonObject()).execute(new Void[0]);
+            finish();
             return;
         }
         putUserAdjustmentData(this.idCausesSelected, this.idInterestsSelected, this.nameCauseSelected, this.nameInterestsSelected);
@@ -104,76 +105,12 @@ public class AdjustmentActivity extends FilteringActivity {
     /* JADX WARNING: inconsistent code. */
     /* Code decompiled incorrectly, please refer to instructions dump. */
     private void extractData(org.json.JSONArray r6, LookupType r7) {
-        /*
-        r5 = this;
-        r1 = 0;
-    L_0x0001:
-        r3 = r6.length();
-        if (r1 >= r3) goto L_0x007e;
-    L_0x0007:
-        r2 = new com.vowme.app.models.lookUp.Lookup;	 Catch:{ JSONException -> 0x004b }
-        r3 = r6.getJSONObject(r1);	 Catch:{ JSONException -> 0x004b }
-        r2.<init>(r3);	 Catch:{ JSONException -> 0x004b }
-        r3 = com.vowme.app.activities.recommended.AdjustmentActivity.C08311.$SwitchMap$com.vowme.app$models$Enum$LookupType;	 Catch:{ JSONException -> 0x004b }
-        r4 = r7.ordinal();	 Catch:{ JSONException -> 0x004b }
-        r3 = r3[r4];	 Catch:{ JSONException -> 0x004b }
-        switch(r3) {
-            case 1: goto L_0x0034;
-            case 2: goto L_0x0050;
-            case 3: goto L_0x0067;
-            default: goto L_0x001b;
-        };	 Catch:{ JSONException -> 0x004b }
-    L_0x001b:
-        r3 = r5.idProgramsSelected;	 Catch:{ JSONException -> 0x004b }
-        r4 = r2.getId();	 Catch:{ JSONException -> 0x004b }
-        r4 = java.lang.Integer.valueOf(r4);	 Catch:{ JSONException -> 0x004b }
-        r3.add(r4);	 Catch:{ JSONException -> 0x004b }
-        r3 = r5.nameProgramsSelected;	 Catch:{ JSONException -> 0x004b }
-        r4 = r2.getName();	 Catch:{ JSONException -> 0x004b }
-        r3.add(r4);	 Catch:{ JSONException -> 0x004b }
-    L_0x0031:
-        r1 = r1 + 1;
-        goto L_0x0001;
-    L_0x0034:
-        r3 = r5.idCausesSelected;	 Catch:{ JSONException -> 0x004b }
-        r4 = r2.getId();	 Catch:{ JSONException -> 0x004b }
-        r4 = java.lang.Integer.valueOf(r4);	 Catch:{ JSONException -> 0x004b }
-        r3.add(r4);	 Catch:{ JSONException -> 0x004b }
-        r3 = r5.nameCauseSelected;	 Catch:{ JSONException -> 0x004b }
-        r4 = r2.getName();	 Catch:{ JSONException -> 0x004b }
-        r3.add(r4);	 Catch:{ JSONException -> 0x004b }
-        goto L_0x0031;
-    L_0x004b:
-        r0 = move-exception;
-        r0.printStackTrace();
-        goto L_0x0031;
-    L_0x0050:
-        r3 = r5.idInterestsSelected;	 Catch:{ JSONException -> 0x004b }
-        r4 = r2.getId();	 Catch:{ JSONException -> 0x004b }
-        r4 = java.lang.Integer.valueOf(r4);	 Catch:{ JSONException -> 0x004b }
-        r3.add(r4);	 Catch:{ JSONException -> 0x004b }
-        r3 = r5.nameInterestsSelected;	 Catch:{ JSONException -> 0x004b }
-        r4 = r2.getName();	 Catch:{ JSONException -> 0x004b }
-        r3.add(r4);	 Catch:{ JSONException -> 0x004b }
-        goto L_0x0031;
-    L_0x0067:
-        r3 = r5.idDurationsSelected;	 Catch:{ JSONException -> 0x004b }
-        r4 = r2.getId();	 Catch:{ JSONException -> 0x004b }
-        r4 = java.lang.Integer.valueOf(r4);	 Catch:{ JSONException -> 0x004b }
-        r3.add(r4);	 Catch:{ JSONException -> 0x004b }
-        r3 = r5.nameDurationsSelected;	 Catch:{ JSONException -> 0x004b }
-        r4 = r2.getName();	 Catch:{ JSONException -> 0x004b }
-        r3.add(r4);	 Catch:{ JSONException -> 0x004b }
-        goto L_0x0031;
-    L_0x007e:
-        return;
-        */
-        throw new UnsupportedOperationException("Method not decompiled: com.vowme.app.activities.recommended.AdjustmentActivity.extractData(org.json.JSONArray, com.vowme.app.models.Enum$LookupType):void");
+
     }
 
     private class GetVolunteerBasicData extends ApiRestFullRequest {
         public GetVolunteerBasicData() {
-            super(HttpRequestType.GET, AdjustmentActivity.this.getString(R.string.apiVolunteerURL), "api/volunteer/basic", AdjustmentActivity.this.getUserAccessToken());
+            super(HttpRequestType.GET, AdjustmentActivity.this.getString(R.string.apiVolunteerURL1), "api/volunteer/basic", AdjustmentActivity.this.getUserAccessToken());
         }
 
         protected void onPostExecuteBody(String result) {
@@ -205,7 +142,7 @@ public class AdjustmentActivity extends FilteringActivity {
 
     private class GetVolunteerOnCallAvailabilities extends ApiRestFullRequest {
         public GetVolunteerOnCallAvailabilities() {
-            super(HttpRequestType.GET, AdjustmentActivity.this.getString(R.string.apiVolunteerURL), "api/volunteer/oncallavailability", AdjustmentActivity.this.getUserAccessToken());
+            super(HttpRequestType.GET, AdjustmentActivity.this.getString(R.string.apiVolunteerURL1), "api/volunteer/oncallavailability", AdjustmentActivity.this.getUserAccessToken());
         }
 
         protected void onPostExecuteBody(String result) {
@@ -241,7 +178,7 @@ public class AdjustmentActivity extends FilteringActivity {
 
     private class putVolunteerBasicData extends ApiRestFullRequest {
         public putVolunteerBasicData(String dataName, String param) {
-            super(HttpRequestType.PUT, AdjustmentActivity.this.getString(R.string.apiVolunteerURL), "api/volunteer/" + dataName, param, AdjustmentActivity.this.getUserAccessToken());
+            super(HttpRequestType.PUT, AdjustmentActivity.this.getString(R.string.apiVolunteerURL1), "api/volunteer/" + dataName, param, AdjustmentActivity.this.getUserAccessToken());
         }
 
         protected void onPostExecuteBody(String result) {
@@ -268,7 +205,7 @@ public class AdjustmentActivity extends FilteringActivity {
 
     private class putVolunteerLocality extends ApiRestFullRequest {
         public putVolunteerLocality(JSONObject param) {
-            super(HttpRequestType.PUT, AdjustmentActivity.this.getString(R.string.apiVolunteerURL), "api/volunteer/locality", param, AdjustmentActivity.this.getUserAccessToken());
+            super(HttpRequestType.PUT, AdjustmentActivity.this.getString(R.string.apiVolunteerURL1), "api/volunteer/locality", param, AdjustmentActivity.this.getUserAccessToken());
         }
 
         protected void onPostExecuteBody(String result) {
@@ -284,7 +221,7 @@ public class AdjustmentActivity extends FilteringActivity {
 
     public class putVolunteerOnCallAvailabilities extends ApiRestFullRequest {
         public putVolunteerOnCallAvailabilities(JSONObject param) {
-            super(HttpRequestType.PUT, AdjustmentActivity.this.getString(R.string.apiVolunteerURL), "api/volunteer/oncallavailability", param, AdjustmentActivity.this.getUserAccessToken());
+            super(HttpRequestType.PUT, AdjustmentActivity.this.getString(R.string.apiVolunteerURL1), "api/volunteer/oncallavailability", param, AdjustmentActivity.this.getUserAccessToken());
         }
 
         protected void onPostExecuteBody(String result) {

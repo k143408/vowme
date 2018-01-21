@@ -18,13 +18,15 @@ public class SplashActivity extends BaseActivity {
 
     private class GetRefreshAccessTokenUser extends PostAccessToken {
         public GetRefreshAccessTokenUser(String refreshToken) {
-            super(SplashActivity.this.getString(R.string.apiVolunteerURL), "oauth/token", PostAccessTokenType.REFRESH, SplashActivity.this.getBaseContext(), refreshToken);
+            super(SplashActivity.this.getString(R.string.apiVolunteerURL1), "oauth/token", PostAccessTokenType.REFRESH, SplashActivity.this.getBaseContext(), refreshToken);
         }
 
         protected void onPostExecuteBody(OauthRequestResponse result) {
             Intent launchIntent = new Intent();
+            JSONObject json =null;
             try {
-                JSONObject json = new JSONObject(result.getJsonAsString());
+                if ("".equals(result.getJsonAsString()) )
+                json = new JSONObject(result.getJsonAsString());
                 if (result.getErrorCode() == Callback.DEFAULT_DRAG_ANIMATION_DURATION) {
                     SplashActivity.this.putAccessTokenInfos(json, true);
                     launchIntent.setClass(SplashActivity.this.getApplicationContext(), MainActivity.class);
@@ -54,8 +56,6 @@ public class SplashActivity extends BaseActivity {
             }
             startActivity(launchIntent);
             finish();
-        } else if (isUserExpired()) {
-            new GetRefreshAccessTokenUser(getRefreshToken()).execute(new Void[0]);
         } else {
             launchIntent.setClass(getApplicationContext(), MainActivity.class);
             startActivity(launchIntent);

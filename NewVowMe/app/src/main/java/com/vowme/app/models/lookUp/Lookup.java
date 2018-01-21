@@ -14,8 +14,10 @@ public class Lookup {
 
     public Lookup(JSONObject object) {
         try {
-            this.id = Integer.valueOf(object.getInt("id"));
-            this.name = object.getString("name");
+            if (object != null) {
+                this.id = Integer.valueOf(object.getInt("id"));
+                this.name = object.getString("name");
+            }
         } catch (JSONException e) {
             e.printStackTrace();
         }

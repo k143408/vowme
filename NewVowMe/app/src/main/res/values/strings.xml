@@ -11,7 +11,7 @@
     <string name="client_id">volunteerProfileAndroid</string>
     <string name="client_secret">volsecret</string>
 
-    <string name="app_opportunity_url">http://govolunteer.com.au/Opportunity/Details/</string>
+    <string name="app_opportunity_url">https://play.google.com/store?hl=en</string>
     <string name="forgot_password_url">http://volunteer.org.au/Account/ForgotPassword</string>
     <string name="get_started_text">The greatest gift you can give someone is your time</string>
 
@@ -20,6 +20,7 @@
 
     <string name="phone_regex">^((0|\+61)(2|4|3|7|8)){0,1}[0-9]{2}\s{0,1}[0-9]{3}\s{0,1}[0-9]{3}$</string>
     <string name="postcode_regex">^((0[289][0-9]{2})|([1345689][0-9]{3})|(2[0-8][0-9]{2})|(290[0-9])|(291[0-4])|(7[0-4][0-9]{2})|(7[8-9][0-9]{2}))*$</string>
+    <string name="cnic_regex">^[0-9+]{5}-[0-9+]{7}-[0-9]{1}$</string>
     <string name="profile_fragment_text">Build your volunteer profile, express interest and shortlist more opportunities. Simply create an account and you\'re good to go (it only takes a few minutes).</string>
     <string name="search_fragment_text">CTA\'s for discovering causes / interests / types or feature opportunities (potential paid promoted opportunities).</string>
     <string name="sign_in_text">Sign in.</string>
@@ -120,4 +121,5 @@
     <string name="link_help">http://govolunteer.com.au/About-Volunteering/</string>
     <string name="link_privacy_statment">http://govolunteer.com.au/Legal/Privacy-Policy</string>
     <string name="link_terms_use">http://govolunteer.com.au/Legal/Terms-of-Use</string>
+    <string name="apiVolunteerURL1">http://10.0.2.2:9000/</string>
 </resources>

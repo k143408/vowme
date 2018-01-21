@@ -64,12 +64,17 @@ public class TimesheetFragment extends ItemListFragment {
         SimpleDateFormat dateFormat = new SimpleDateFormat("MMM yyyy", Locale.ENGLISH);
         for (int i = 0; i < opportunities.length(); i++) {
             try {
+
                 JSONObject opportunity = opportunities.getJSONObject(i);
                 String name = opportunity.getString("name");
-                this.opportunitiesToLog.add(new Lookup(opportunity.getInt("id"), name));
-                JSONArray itemList = opportunity.getJSONArray("viraHoursModels");
+                Integer causeId = opportunity.getInt("id");
+                this.opportunitiesToLog.add(new Lookup(causeId, name));
+                JSONArray itemList = new JSONArray();
+                if (opportunity.has("timesheets"))
+                    itemList = opportunity.getJSONArray("timesheets");
+                TimesheetItem timesheet = null;
                 for (int j = 0; j < itemList.length(); j++) {
-                    TimesheetItem timesheet = new TimesheetItem(itemList.getJSONObject(j), name);
+                    timesheet = new TimesheetItem(itemList.getJSONObject(j), name,causeId);
                     Date month = dateFormat.parse(dateFormat.format(timesheet.date));
                     if (timesheetGrouped.containsKey(month)) {
                         ((GpTimesheetLookup) timesheetGrouped.get(month)).totalHours += timesheet.hours.intValue();
@@ -82,6 +87,9 @@ public class TimesheetFragment extends ItemListFragment {
                         timesheetLookup.list.add(timesheet);
                         timesheetGrouped.put(month, timesheetLookup);
                     }
+                }
+                if (timesheet == null) {
+                    timesheetGrouped.put(new Date(), new GpTimesheetLookup(new TimesheetItem(name,causeId)));
                 }
             } catch (Exception e) {
                 e.printStackTrace();
@@ -112,7 +120,7 @@ public class TimesheetFragment extends ItemListFragment {
     }
 
     protected JSONArray getJSONArrayOpportunities(String result) throws JSONException {
-        return new JSONObject(result).getJSONArray("items");
+        return new JSONObject(result).getJSONArray("content");
     }
 
     protected void extraOnPostExecuteBodyAction(JSONArray opportunities) {
@@ -134,7 +142,7 @@ public class TimesheetFragment extends ItemListFragment {
 
     private class GetVolunteerExpressedOfInterest extends ApiRestFullRequest {
         public GetVolunteerExpressedOfInterest(HashMap<String, String> params) {
-            super(HttpRequestType.GET, TimesheetFragment.this.getString(R.string.apiVolunteerURL), "api/opportunity/accepted", (HashMap) params, TimesheetFragment.this.getBaseActivity().getUserAccessToken());
+            super(HttpRequestType.GET, TimesheetFragment.this.getString(R.string.apiVolunteerURL1), "api/opportunity/accepted/" + TimesheetFragment.this.getBaseActivity().getUserAccessToken() + "?page=" + params.get("pageIndex"), (HashMap) params, TimesheetFragment.this.getBaseActivity().getUserAccessToken());
         }
 
         protected void onProgressUpdate(Void... values) {
@@ -155,8 +163,16 @@ public class TimesheetFragment extends ItemListFragment {
     }
 
     private class GpTimesheetLookup {
-        List<TimesheetItem> list = new ArrayList();
+
+        List<TimesheetItem> list = new ArrayList(1);
         int totalHours = 0;
         int totalMinutes = 0;
+
+        GpTimesheetLookup() {
+        }
+        GpTimesheetLookup(TimesheetItem timesheetItem) {
+            list.add(timesheetItem);
+        }
+
     }
 }

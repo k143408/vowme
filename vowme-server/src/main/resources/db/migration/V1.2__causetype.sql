@@ -15,12 +15,6 @@ DROP COLUMN `eventType`;
 ALTER TABLE `approvals` 
 ADD COLUMN `causeid` INT(11) NULL AFTER `id`,
 ADD INDEX `cause_fk_idx` (`causeid` ASC);
-ALTER TABLE `approvals` 
-ADD CONSTRAINT `cause_fk`
-  FOREIGN KEY (`causeid`)
-  REFERENCES `cause` (`id`)
-  ON DELETE NO ACTION
-  ON UPDATE NO ACTION;
 
 ALTER TABLE `approvals` 
 ADD COLUMN `is_approved` BIT(1) NULL AFTER `created_at`;

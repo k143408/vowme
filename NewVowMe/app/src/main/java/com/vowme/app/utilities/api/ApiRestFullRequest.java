@@ -66,7 +66,7 @@ public class ApiRestFullRequest extends AsyncTask<Void, Void, String> {
         this.route = route;
         this.accessToken = accessToken;
         this.bodyParameters = bodyParameters;
-    }
+        }
 
     public ApiRestFullRequest(HttpRequestType requestType, String baseURL, String route, String stringAsJsonParameters, String accessToken) {
         this.requestType = requestType;
@@ -112,13 +112,12 @@ public class ApiRestFullRequest extends AsyncTask<Void, Void, String> {
             urlConnection.setRequestProperty("Authorization", "Bearer " + this.accessToken);
             if ("POST".equalsIgnoreCase(this.requestType.getValue())) {
                 urlConnection.setRequestProperty("content-type", "application/json");
-                byte[] outputInBytes = getPostDataFromJson(this.bodyParameters).getBytes("UTF-8");
+                byte[] outputInBytes = this.bodyParameters.toString().getBytes("UTF-8");
                 OutputStream os = urlConnection.getOutputStream();
                 os.write( outputInBytes );
                 os.close();
                 BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(os, HttpRequest.CHARSET_UTF8));
                 writer.close();
-
             }
             reader = new BufferedReader(new InputStreamReader(new BufferedInputStream(urlConnection.getInputStream()), HttpRequest.CHARSET_UTF8));
             while (true) {

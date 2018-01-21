@@ -35,9 +35,9 @@ public class CustomSpinnerTextView extends AutoCompleteTextView {
     public void setUpSpinnerTextView(int resource, List<?> mItemValues) {
         setAdapter(new CustomSpinnerpinnerArrayAdapter(getContext(), resource, mItemValues));
         setInputType(0);
-        setOnFocusChangeListener(new C09091());
-        setOnClickListener(new C09102());
-        setOnItemClickListener(new C09113());
+        setOnFocusChangeListener(new ChangeListener());
+        setOnClickListener(new ClickListener());
+        setOnItemClickListener(new ItemClickListener());
     }
 
     public boolean onCheckIsTextEditor() {
@@ -54,8 +54,8 @@ public class CustomSpinnerTextView extends AutoCompleteTextView {
         return conn;
     }
 
-    class C09091 implements OnFocusChangeListener {
-        C09091() {
+    class ChangeListener implements OnFocusChangeListener {
+        ChangeListener() {
         }
 
         public void onFocusChange(View v, boolean hasFocus) {
@@ -67,8 +67,8 @@ public class CustomSpinnerTextView extends AutoCompleteTextView {
         }
     }
 
-    class C09102 implements OnClickListener {
-        C09102() {
+    class ClickListener implements OnClickListener {
+        ClickListener() {
         }
 
         public void onClick(View v) {
@@ -78,8 +78,8 @@ public class CustomSpinnerTextView extends AutoCompleteTextView {
         }
     }
 
-    class C09113 implements OnItemClickListener {
-        C09113() {
+    class ItemClickListener implements OnItemClickListener {
+        ItemClickListener() {
         }
 
         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {

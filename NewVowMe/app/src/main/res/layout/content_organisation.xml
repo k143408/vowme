@@ -73,14 +73,14 @@
                                 <TextView
                                     android:id="@+id/orga_name"
                                     style="@style/LightTitle"
-                                    android:text="New Text" />
+                                    android:text="" />
 
                                 <TextView
                                     android:id="@+id/orga_website"
                                     android:layout_width="fill_parent"
                                     android:layout_height="wrap_content"
                                     android:text="New Text"
-                                    android:textColor="@color/text_dark" />
+                                    android:textColor="@color/tw__solid_white" />
                             </LinearLayout>
                         </LinearLayout>
 
@@ -95,7 +95,7 @@
                                 android:id="@+id/orga_ic_loc"
                                 style="@style/SmallFontIcon"
                                 android:text="@string/ic_location_on"
-                                android:textColor="@color/text_dark" />
+                                android:textColor="@color/tw__solid_white" />
 
                             <TextView
                                 android:id="@+id/orga_location"
@@ -104,14 +104,14 @@
                                 android:paddingBottom="4.0dip"
                                 android:paddingRight="32.0dip"
                                 android:text="Locale, State"
-                                android:textColor="@color/text_dark"
+                                android:textColor="@color/tw__solid_white"
                                 android:textSize="@dimen/subtitle" />
 
                             <TextView
                                 android:id="@+id/orga_ic_cause"
                                 style="@style/SmallFontIcon"
                                 android:text="@string/ic_local_offer"
-                                android:textColor="@color/text_dark" />
+                                android:textColor="@color/tw__solid_white" />
 
                             <TextView
                                 android:id="@+id/orga_cause"
@@ -191,7 +191,7 @@
                     android:linksClickable="true"
                     android:paddingLeft="16.0dip"
                     android:paddingRight="16.0dip"
-                    android:text="street"
+                    android:text=""
                     android:textColor="@color/text_light"
                     android:textSize="@dimen/subtitle" />
 

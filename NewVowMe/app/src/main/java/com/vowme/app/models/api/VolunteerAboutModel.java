@@ -9,12 +9,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class VolunteerAboutModel extends PostApiModel {
-    public String hobbies;
+    public String hobbies = "";
     public int id;
-    public String qualification;
+    public String qualification = "";
     public List<Lookup> requirements = new ArrayList();
     List<Lookup> languages = new ArrayList();
 
+    public VolunteerAboutModel(){
+    }
     public VolunteerAboutModel(JSONObject object) {
         try {
             this.id = object.getInt("id");

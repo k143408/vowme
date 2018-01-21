@@ -17,8 +17,8 @@
         android:focusable="true"
         android:focusableInTouchMode="true"
         android:imeOptions="actionNext"
-        android:textColor="@color/text_light"
-        android:textColorHint="@color/dis_hint_light"
+        android:textColor="@color/backgroundBottomBarColor"
+        android:textColorHint="@color/backgroundBottomBarColor"
         android:textIsSelectable="false"
         android:textSize="@dimen/basic_text" />
 </android.support.design.widget.TextInputLayout>

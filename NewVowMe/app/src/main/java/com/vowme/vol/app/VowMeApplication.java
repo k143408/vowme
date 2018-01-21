@@ -15,7 +15,6 @@ import java.io.StringWriter;
 
 public class VowMeApplication extends Application {
 
-
     public static String getFileName() {
         return Environment.getExternalStorageDirectory() + "/com.vowme.vol.app/error_log.txt";
     }

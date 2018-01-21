@@ -68,12 +68,12 @@ public class CustomMultiAutoCompleteTextView extends AppCompatMultiAutoCompleteT
         setTextIsSelectable(false);
         setTokenizer(new CustomTokenizer());
         setImeOptions(6);
-        setOnEditorActionListener(new C09031());
-        setOnItemClickListener(new C09042());
-        setOnFocusChangeListener(new C09053());
-        setOnClickListener(new C09064());
-        addTextChangedListener(new C09075());
-        setCustomSelectionActionModeCallback(new C09086());
+        setOnEditorActionListener(new EditorActionListener());
+        setOnItemClickListener(new ItemClickListener());
+        setOnFocusChangeListener(new FocusChangeListener());
+        setOnClickListener(new OnClickListener());
+        addTextChangedListener(new TextChangedListener());
+        setCustomSelectionActionModeCallback(new SelectionActionModeCallback());
     }
 
     public void setUpSearchlocationText(Context context, String apiViktorURL, String apiViktorClientSecret, String apiViktorGetClientSecret, String apiVolunteerURL, String volunteerAccessToken, List<String> volunteerLocation, boolean isLoggedinSearh) {
@@ -105,8 +105,8 @@ public class CustomMultiAutoCompleteTextView extends AppCompatMultiAutoCompleteT
         return new ArrayList(this.mItems);
     }
 
-    class C09031 implements OnEditorActionListener {
-        C09031() {
+    class EditorActionListener implements OnEditorActionListener {
+        EditorActionListener() {
         }
 
         public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
@@ -117,8 +117,8 @@ public class CustomMultiAutoCompleteTextView extends AppCompatMultiAutoCompleteT
         }
     }
 
-    class C09042 implements OnItemClickListener {
-        C09042() {
+    class ItemClickListener implements OnItemClickListener {
+        ItemClickListener() {
         }
 
         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -131,8 +131,8 @@ public class CustomMultiAutoCompleteTextView extends AppCompatMultiAutoCompleteT
         }
     }
 
-    class C09053 implements OnFocusChangeListener {
-        C09053() {
+    class FocusChangeListener implements OnFocusChangeListener {
+        FocusChangeListener() {
         }
 
         public void onFocusChange(View v, boolean hasFocus) {
@@ -142,8 +142,8 @@ public class CustomMultiAutoCompleteTextView extends AppCompatMultiAutoCompleteT
         }
     }
 
-    class C09064 implements OnClickListener {
-        C09064() {
+    class OnClickListener implements View.OnClickListener {
+        OnClickListener() {
         }
 
         public void onClick(View v) {
@@ -151,8 +151,8 @@ public class CustomMultiAutoCompleteTextView extends AppCompatMultiAutoCompleteT
         }
     }
 
-    class C09075 implements TextWatcher {
-        C09075() {
+    class TextChangedListener implements TextWatcher {
+        TextChangedListener() {
         }
 
         public void onTextChanged(CharSequence s, int start, int before, int count) {
@@ -191,8 +191,8 @@ public class CustomMultiAutoCompleteTextView extends AppCompatMultiAutoCompleteT
         }
     }
 
-    class C09086 implements Callback {
-        C09086() {
+    class SelectionActionModeCallback implements Callback {
+        SelectionActionModeCallback() {
         }
 
         public boolean onCreateActionMode(ActionMode mode, Menu menu) {

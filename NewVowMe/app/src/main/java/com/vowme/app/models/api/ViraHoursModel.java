@@ -32,19 +32,18 @@ public class ViraHoursModel extends PostApiModel {
     }
 
     public ViraHoursModel(JSONObject object) {
-        Exception e;
         try {
-            this.id = object.getInt("id");
-            this.positionId = object.getInt("positionId");
-            this.hours = Integer.valueOf(object.getInt("hours"));
-            this.minutes = Integer.valueOf(object.getInt("minutes"));
-            this.date = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss").parse(object.getString("date"));
-            return;
-        } catch (JSONException e2) {
-            e = e2;
-        } catch (ParseException e3) {
-            e = e3;
+            if (object != null) {
+                this.id = object.getInt("id");
+                this.positionId = 0;//object.getInt("positionId");
+                this.hours = Integer.valueOf(object.getInt("hours"));
+                this.minutes = Integer.valueOf(object.getInt("minutes"));
+                this.date = new SimpleDateFormat("yyyy-MM-dd").parse(object.getString("createAt"));
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        } catch (ParseException e) {
+            e.printStackTrace();
         }
-        e.printStackTrace();
     }
 }

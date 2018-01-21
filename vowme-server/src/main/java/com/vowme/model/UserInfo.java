@@ -64,7 +64,17 @@ public class UserInfo {
 	@Column(name="organization_name")
 	private String organizationName;
 	
+	@Column
+	private String qualification;
 	
+	public String getQualification() {
+		return qualification;
+	}
+
+	public void setQualification(String qualification) {
+		this.qualification = qualification;
+	}
+
 	/**
 	 * Gets the organization name.
 	 *

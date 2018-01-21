@@ -18,8 +18,8 @@ public class UserOAuthSharedDataHelper {
     private static final String APLI_OAUTH_ACCESS_TOKEN = "apli_access_token";
     private static final String APLI_OAUTH_REFRESH_TOKEN = "apli_refresh_token";
     private static final String GCM_REGISTRATION_TOKEN = "gcm_registration_token";
-    private static final String OAUTH_ACCESS_EXPIRES = ".expires";
-    private static final String OAUTH_ACCESS_ISSUED = ".issued";
+    private static final String OAUTH_ACCESS_EXPIRES = "expires";
+    private static final String OAUTH_ACCESS_ISSUED = "issued";
     private static final String OAUTH_ACCESS_TOKEN = "access_token";
     private static final String OAUTH_LOGGED_IN = "logged_in";
     private static final String OAUTH_REFRESH_TOKEN = "refresh_token";
@@ -27,7 +27,7 @@ public class UserOAuthSharedDataHelper {
     public static void putUserAccessToken(SharedPreferences userDefaults, JSONObject json, boolean isLoggedIn) {
         Editor editor = userDefaults.edit();
         try {
-            editor.putString("access_token", json.getString("access_token"));
+            editor.putString("access_token", json.getString(OAUTH_ACCESS_TOKEN));
             editor.putString(OAUTH_ACCESS_ISSUED, json.getString(OAUTH_ACCESS_ISSUED));
             editor.putString(OAUTH_ACCESS_EXPIRES, json.getString(OAUTH_ACCESS_EXPIRES));
             editor.putString(OAUTH_REFRESH_TOKEN, json.getString(OAUTH_REFRESH_TOKEN));
@@ -58,10 +58,11 @@ public class UserOAuthSharedDataHelper {
         Editor editor = userDefaults.edit();
         try {
             editor.putString(APLI_OAUTH_ACCESS_TOKEN, json.getString("access_token"));
-            editor.putString(APLI_OAUTH_ACCESS_ISSUED, json.getString(OAUTH_ACCESS_ISSUED));
+           /* editor.putString(APLI_OAUTH_ACCESS_ISSUED, json.getString(OAUTH_ACCESS_ISSUED));
             editor.putString(APLI_OAUTH_ACCESS_EXPIRES, json.getString(OAUTH_ACCESS_EXPIRES));
             editor.putString(APLI_OAUTH_REFRESH_TOKEN, json.getString(OAUTH_REFRESH_TOKEN));
-            editor.commit();
+            */
+           editor.commit();
         } catch (JSONException e) {
             e.printStackTrace();
         }

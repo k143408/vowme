@@ -19,7 +19,10 @@ import com.vowme.vol.app.R;
 import com.vowme.vol.app.activities.MainActivity;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 public class StartStepsActivity extends BaseActivity {
     private ViewPagerAdapter adapter;
@@ -102,7 +105,7 @@ public class StartStepsActivity extends BaseActivity {
     }
 
     private void actionNext() {
-        List<String> names = new ArrayList();
+        Set<String> names = new HashSet<>();
         this.dotSteps[this.tabPosition - 1].setSelected(false);
         this.dotSteps[this.tabPosition].setSelected(true);
         List<Integer> ids;
@@ -115,7 +118,7 @@ public class StartStepsActivity extends BaseActivity {
                         names.add(lookup.getName());
                     }
                 }
-                putUserCausesData(ids, names);
+                putUserCausesData(ids, new ArrayList<String>(names));
                 return;
             case 2:
                 ids = ((StartInterestsFragment) this.adapter.getItem(this.tabPosition - 1)).getChecked();
@@ -125,7 +128,7 @@ public class StartStepsActivity extends BaseActivity {
                         names.add(lookup2.getName());
                     }
                 }
-                putUserInterestsData(ids, names);
+                putUserInterestsData(ids, new ArrayList<String>(names));
                 this.menuItemNext.setVisible(false);
                 this.menuItemDone.setVisible(true);
                 return;
@@ -163,7 +166,6 @@ public class StartStepsActivity extends BaseActivity {
             }
             StartStepsActivity.this.previousPosition = position;
         }
-
         public void onPageScrollStateChanged(int state) {
         }
     }

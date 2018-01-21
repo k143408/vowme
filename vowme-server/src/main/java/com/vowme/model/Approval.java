@@ -1,6 +1,7 @@
 package com.vowme.model;
 
 import java.io.Serializable;
+import java.sql.Timestamp;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -14,6 +15,7 @@ import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.vowme.dto.EoiDTO;
 
 
 
@@ -229,5 +231,17 @@ public class Approval extends BaseModel implements Serializable {
 	public void setOverride(Byte override) {
 		this.override = override;
 	}
+
+	public Approval(EoiDTO eoi, Cause cause,User user) {
+		super();
+		this.actionby = cause.getUser();
+		this.cause = cause;
+		this.description = eoi.getQualification();
+		//this.createdAt = new Timestamp(System.currentTimeMillis()).getTime();
+		this.user = user;
+		this.isApproved = new Byte("2");
+	}
+	
+	
 
 }

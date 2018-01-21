@@ -36,6 +36,8 @@ public class ApiWCFRequest extends AsyncTask<Void, Void, String> {
         this.baseURL = baseURL;
         this.route = route;
         this.parameters = parameters;
+
+
     }
 
     protected String doInBackground(Void... params) {

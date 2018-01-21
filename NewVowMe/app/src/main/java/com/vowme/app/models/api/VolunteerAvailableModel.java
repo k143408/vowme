@@ -21,6 +21,7 @@ public class VolunteerAvailableModel extends PostApiModel {
     public List<Integer> morning = new ArrayList();
     public List<List<String>> sentenceAvaibility = new ArrayList();
 
+    public VolunteerAvailableModel(){}
     public VolunteerAvailableModel(JSONObject object) {
         try {
             this.id = object.getInt("id");

@@ -6,7 +6,11 @@ import java.util.concurrent.Callable;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
+import com.vowme.dto.DateParam;
+import com.vowme.dto.EoiDTO;
+import com.vowme.dto.LoginDTO;
 import com.vowme.dto.UserDTO;
+import com.vowme.dto.VolunteerDTO;
 import com.vowme.model.Approval;
 import com.vowme.model.Boardcast;
 import com.vowme.model.User;
@@ -123,6 +127,15 @@ public interface UserService {
 
 	
 	public List<User> getAllOrganizor();
+
+	
+	public VolunteerDTO registerVolunteer(LoginDTO account);
+
+	public Approval EOIForCause(EoiDTO eoi, Long userId, Long causeId);
+
+	public boolean isEOIExists(Long userId, Long causeId);
+
+	public Boolean logHours(DateParam dateParam, Long userId, Long causeId);
 	
 
 }

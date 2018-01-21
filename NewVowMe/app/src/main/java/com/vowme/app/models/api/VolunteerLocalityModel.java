@@ -9,10 +9,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class VolunteerLocalityModel extends PostApiModel {
-    public String location;
-    public List<Lookup> suburbs;
+    public String location= "";
+    public List<Lookup> suburbs = new ArrayList<>();
     public boolean surroundingAreas;
 
+    public VolunteerLocalityModel(){
+
+    }
     public VolunteerLocalityModel(String location, boolean surroundingAreas) {
         this.location = location;
         this.surroundingAreas = surroundingAreas;

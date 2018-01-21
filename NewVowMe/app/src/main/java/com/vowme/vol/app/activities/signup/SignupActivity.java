@@ -117,7 +117,7 @@ public class SignupActivity extends FormValidationActivity implements OnConnecti
         this.rePasswordText = (EditText) findViewById(R.id.repassword_txt);
         TextView termPrivacy = (TextView) findViewById(R.id.term_privacy);
         termPrivacy.setMovementMethod(LinkMovementMethod.getInstance());
-        TextViewHelper.formatTermsPrivacy(this, termPrivacy, new C08541(), new C08552());
+        TextViewHelper.formatTermsPrivacy(this, termPrivacy, null, null);
         initFieldsSubmitButton();
         initExternalLogins();
     }
@@ -146,7 +146,7 @@ public class SignupActivity extends FormValidationActivity implements OnConnecti
         }
         TextInputLayout floatingPostcodeText = (TextInputLayout) findViewById(R.id.input_layout_postcode);
         if (!(floatingPostcodeText == null || floatingPostcodeText.getEditText() == null)) {
-            floatingPostcodeText.getEditText().addTextChangedListener(getFloatingTextRegexValidator(floatingPostcodeText, getResources().getString(R.string.postcode_regex), "Please enter a postcode.", "The postcode must be a valid number."));
+            floatingPostcodeText.getEditText().addTextChangedListener(getFloatingTextRegexValidator(floatingPostcodeText, getResources().getString(R.string.cnic_regex), "Please enter a proper CNIC format.", "The CNIC must be written in NADRA's format ."));
         }
         TextInputLayout floatingUsernameText = (TextInputLayout) findViewById(R.id.input_layout_username);
         if (!(floatingUsernameText == null || floatingUsernameText.getEditText() == null)) {
@@ -209,8 +209,8 @@ public class SignupActivity extends FormValidationActivity implements OnConnecti
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         this.callbackManager.onActivityResult(requestCode, resultCode, data);
-        LISessionManager.getInstance(getApplicationContext()).onActivityResult(this, requestCode, resultCode, data);
-        this.buttonTwitter.onActivityResult(requestCode, resultCode, data);
+    //    LISessionManager.getInstance(getApplicationContext()).onActivityResult(this, requestCode, resultCode, data);
+    //    this.buttonTwitter.onActivityResult(requestCode, resultCode, data);
         if (requestCode == ActivityCode.RC_SIGN_IN.getValue()) {
             GoogleSignInResult result = Auth.GoogleSignInApi.getSignInResultFromIntent(data);
             if (result.isSuccess()) {
@@ -224,7 +224,7 @@ public class SignupActivity extends FormValidationActivity implements OnConnecti
 
     private void initExternalLogins() {
         initFacebook();
-        initTwitter();
+      //  initTwitter();
         initGoogle();
     }
 
@@ -239,15 +239,15 @@ public class SignupActivity extends FormValidationActivity implements OnConnecti
 
     private void initFacebook() {
         this.callbackManager = Factory.create();
-        LoginManager.getInstance().registerCallback(this.callbackManager, new C08574());
-        this.profileTracker = new C08585();
+        LoginManager.getInstance().registerCallback(this.callbackManager, new FacebookLoginListener());
+        this.profileTracker = new ProfileTrackerLister();
     }
 
     private void executeActionFacebbok(AccessToken facebookToken) {
         updateView(LoginProvider.FACEBOOK);
         this.loginProvider = LoginProvider.FACEBOOK.getValue();
         this.keyProvider = facebookToken.getUserId();
-        GraphRequest request = GraphRequest.newMeRequest(facebookToken, new C08596());
+        GraphRequest request = GraphRequest.newMeRequest(facebookToken, new GraphJSONObjectListener());
         Bundle parameters = new Bundle();
         parameters.putString(GraphRequest.FIELDS_PARAM, "email");
         request.setParameters(parameters);
@@ -357,23 +357,6 @@ public class SignupActivity extends FormValidationActivity implements OnConnecti
         this.profileTracker.stopTracking();
     }
 
-    class C08541 extends CustomClickableSpan {
-        C08541() {
-        }
-
-        public void onClick(View widget) {
-            SignupActivity.this.startActivity(new Intent("android.intent.action.VIEW", Uri.parse(SignupActivity.this.getResources().getString(R.string.link_terms_use))));
-        }
-    }
-
-    class C08552 extends CustomClickableSpan {
-        C08552() {
-        }
-
-        public void onClick(View widget) {
-            SignupActivity.this.startActivity(new Intent("android.intent.action.VIEW", Uri.parse(SignupActivity.this.getResources().getString(R.string.link_privacy_statment))));
-        }
-    }
 
     class C08563 implements TextWatcher {
         C08563() {
@@ -390,8 +373,8 @@ public class SignupActivity extends FormValidationActivity implements OnConnecti
         }
     }
 
-    class C08574 implements FacebookCallback<LoginResult> {
-        C08574() {
+    class FacebookLoginListener implements FacebookCallback<LoginResult> {
+        FacebookLoginListener() {
         }
 
         public void onSuccess(LoginResult loginResult) {
@@ -407,8 +390,8 @@ public class SignupActivity extends FormValidationActivity implements OnConnecti
         }
     }
 
-    class C08585 extends ProfileTracker {
-        C08585() {
+    class ProfileTrackerLister extends ProfileTracker {
+        ProfileTrackerLister() {
         }
 
         protected void onCurrentProfileChanged(Profile oldProfile, Profile currentProfile) {
@@ -418,8 +401,8 @@ public class SignupActivity extends FormValidationActivity implements OnConnecti
         }
     }
 
-    class C08596 implements GraphJSONObjectCallback {
-        C08596() {
+    class GraphJSONObjectListener implements GraphJSONObjectCallback {
+        GraphJSONObjectListener() {
         }
 
         public void onCompleted(JSONObject object, GraphResponse response) {
@@ -482,7 +465,7 @@ public class SignupActivity extends FormValidationActivity implements OnConnecti
 
     private class GetAccessTokenUser extends PostAccessToken {
         public GetAccessTokenUser(String userName, String password) {
-            super(SignupActivity.this.getString(R.string.apiVolunteerURL), "oauth/token", PostAccessTokenType.PASSWORD, SignupActivity.this.getBaseContext(), userName, password);
+            super(SignupActivity.this.getString(R.string.apiVolunteerURL1), "oauth/token", PostAccessTokenType.PASSWORD, SignupActivity.this.getBaseContext(), userName, password);
         }
 
         protected void onPostExecuteBody(OauthRequestResponse result) {
@@ -510,7 +493,7 @@ public class SignupActivity extends FormValidationActivity implements OnConnecti
     private class postVolunteerRegistration extends ApiRestFullRequest {
 
         public postVolunteerRegistration(JSONObject param, boolean isExternal) {
-            super(HttpRequestType.POST, SignupActivity.this.getString(R.string.apiVolunteerURL), "api/account/" + (isExternal ? "RegisterVolunteerExternalLogin" : "RegisterVolunteer"), param, SignupActivity.this.getApliAccessToken());
+            super(HttpRequestType.POST, SignupActivity.this.getString(R.string.apiVolunteerURL1), "api/account/register-volunteer", param, SignupActivity.this.getApliAccessToken());
         }
 
         protected void onPostExecuteBody(String result) {
@@ -531,8 +514,8 @@ public class SignupActivity extends FormValidationActivity implements OnConnecti
                 }
                 SignupActivity.this.volunteerId = Integer.valueOf(json.getInt("volunteerId"));
                 SignupActivity.this.threadCount = 0;
-                new putVolunteerBasicData("cause", "\"" + TextUtils.join(",", SignupActivity.this.getAdjustmentCauses()) + "\"").execute(new Void[0]);
-                new putVolunteerBasicData("interest", "\"" + TextUtils.join(",", SignupActivity.this.getAdjustmentInterests()) + "\"").execute(new Void[0]);
+                new GetAccessTokenUser(SignupActivity.this.model.getUserName(), SignupActivity.this.model.getPassword()).execute(new Void[0]);
+              //  new putVolunteerBasicData("interest", "\"" + TextUtils.join(",", SignupActivity.this.getAdjustmentInterests()) + "\"").execute(new Void[0]);
             } catch (JSONException e) {
                 SignupActivity.this.enableSubmitButton();
                 SignupActivity.this.dismissProgress();
@@ -552,7 +535,7 @@ public class SignupActivity extends FormValidationActivity implements OnConnecti
 
     private class putVolunteerBasicData extends ApiRestFullRequest {
         public putVolunteerBasicData(String dataName, String param) {
-            super(HttpRequestType.PUT, SignupActivity.this.getString(R.string.apiVolunteerURL), "api/volunteer/" + SignupActivity.this.volunteerId.toString() + "/" + dataName, param, SignupActivity.this.getApliAccessToken());
+            super(HttpRequestType.PUT, SignupActivity.this.getString(R.string.apiVolunteerURL1), "api/volunteer/" + SignupActivity.this.volunteerId.toString() + "/" + dataName, param, SignupActivity.this.getApliAccessToken());
         }
 
         protected void onPostExecuteBody(String result) {

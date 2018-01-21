@@ -15,8 +15,10 @@ import org.springframework.web.bind.annotation.RestController;
 import com.vowme.dto.UserDTO;
 import com.vowme.model.Boardcast;
 import com.vowme.model.User;
+import com.vowme.model.UserInfo;
+import com.vowme.repository.UserRepository;
 import com.vowme.service.UserService;
-
+import com.vowme.util.DateUtils;
 
 /**
  * The Class UserController.
@@ -29,14 +31,18 @@ public class UserController extends BaseController {
 	@Autowired
 	private UserService userService;
 	
+	@Autowired
+	private UserRepository userRepo;
+
 	/**
 	 * Gets the teams by user id.
 	 *
-	 * @param userId the user id
+	 * @param userId
+	 *            the user id
 	 * @return the teams by user id
 	 */
 	@GetMapping("team/{userId}")
-	public Callable<List<User>> getTeamsByUserId(@PathVariable Long userId){
+	public Callable<List<User>> getTeamsByUserId(@PathVariable Long userId) {
 		return new Callable<List<User>>() {
 			@Override
 			public List<User> call() throws Exception {
@@ -44,22 +50,24 @@ public class UserController extends BaseController {
 			}
 		};
 	}
-	
+
 	@GetMapping("team/{causeId}/{userId}/")
-	public Callable<Boardcast> joinCause(@PathVariable Long causeId,@PathVariable Long userId,@RequestParam String email){
+	public Callable<Boardcast> joinCause(@PathVariable Long causeId, @PathVariable Long userId,
+			@RequestParam String email) {
 		return () -> {
-			return userService.joinCause(causeId,userId,email).call();
+			return userService.joinCause(causeId, userId, email).call();
 		};
 	}
-	
+
 	/**
 	 * Gets the rank by user id.
 	 *
-	 * @param userId the user id
+	 * @param userId
+	 *            the user id
 	 * @return the rank by user id
 	 */
 	@GetMapping("rank/{userId}")
-	public Callable<Float> getRankByUserId(@PathVariable Long userId){
+	public Callable<Float> getRankByUserId(@PathVariable Long userId) {
 		return new Callable<Float>() {
 			@Override
 			public Float call() throws Exception {
@@ -67,11 +75,12 @@ public class UserController extends BaseController {
 			}
 		};
 	}
-	
+
 	/**
 	 * Gets the details.
 	 *
-	 * @param userId the user id
+	 * @param userId
+	 *            the user id
 	 * @return the details
 	 */
 	@GetMapping("{userId}")
@@ -83,11 +92,12 @@ public class UserController extends BaseController {
 			}
 		};
 	}
-	
+
 	/**
 	 * Post.
 	 *
-	 * @param user the user
+	 * @param user
+	 *            the user
 	 * @return the callable
 	 */
 	@PostMapping
@@ -96,6 +106,30 @@ public class UserController extends BaseController {
 			@Override
 			public User call() throws Exception {
 				return userService.save(user);
+			}
+		};
+	}
+
+	@GetMapping("random")
+	public Callable<User> random() {
+		return new Callable<User>() {
+
+			@Override
+			public User call() throws Exception {
+				User user = new User(true, "123456789012", "jibrantk", "Jibran", "Last", "jibrantk", "FACEBOOK");
+				user = userRepo.saveAndFlush(user);
+				UserInfo userInfo = new UserInfo();
+				userInfo.setAboutMe("This is Jibran Tariq From ABC");
+				userInfo.setAddress("E-150 Block Gulshan E Jamal");
+				userInfo.setCity("Karachi");
+				userInfo.setContactNumber1("02145679843");
+				userInfo.setZipcode(75025);
+				userInfo.setIsOrganizer(true);
+				userInfo.setUpdatedAt(DateUtils.getCurrentTime());
+				user.setUserInfo(userInfo);
+				user = userRepo.saveAndFlush(user);
+				
+				return user;
 			}
 		};
 	}

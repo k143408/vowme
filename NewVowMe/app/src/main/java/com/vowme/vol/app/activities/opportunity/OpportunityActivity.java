@@ -101,7 +101,6 @@ public class OpportunityActivity extends BaseActivity implements OnMapReadyCallb
                 opportunityText.append(this.opportunity.getName());
                 opportunityText.append(System.getProperty("line.separator"));
                 opportunityText.append(getResources().getString(R.string.app_opportunity_url));
-                opportunityText.append(this.id);
                 Intent myShareIntent = new Intent("android.intent.action.SEND");
                 myShareIntent.setType("text/plain");
                 myShareIntent.putExtra("android.intent.extra.TEXT", opportunityText.toString());
@@ -237,7 +236,7 @@ public class OpportunityActivity extends BaseActivity implements OnMapReadyCallb
 
     private class GetViktorRecommendedOpportunity extends ApiWCFRequest {
         public GetViktorRecommendedOpportunity() {
-            super(HttpRequestType.GET, OpportunityActivity.this.getString(R.string.apiViktorURL), "Opportunities/" + OpportunityActivity.this.getResources().getString(R.string.apiViktorClientSecret) + "/" + OpportunityActivity.this.getResources().getString(R.string.apiViktorGetClientSecret) + "/" + OpportunityActivity.this.id);
+            super(HttpRequestType.GET, OpportunityActivity.this.getString(R.string.apiVolunteerURL1), "api/dashboard/cause/" + OpportunityActivity.this.id);
         }
 
         protected void onPostExecuteBody(String result) {
@@ -262,17 +261,22 @@ public class OpportunityActivity extends BaseActivity implements OnMapReadyCallb
 
     private class GetVolunteerEmail extends ApiRestFullRequest {
         public GetVolunteerEmail() {
-            super(HttpRequestType.GET, OpportunityActivity.this.getString(R.string.apiVolunteerURL), "api/volunteer/email", OpportunityActivity.this.getUserAccessToken());
+            super(HttpRequestType.GET, OpportunityActivity.this.getString(R.string.apiVolunteerURL1), "api/user/"+OpportunityActivity.this.getUserAccessToken(),"" );
         }
 
         protected void onPostExecuteBody(String result) {
-            OpportunityActivity.this.volunteerEmail = result;
+            try {
+                JSONObject jsonObject = new JSONObject(result);
+                OpportunityActivity.this.volunteerEmail = jsonObject.getString("email");
+            }catch (JSONException ex){
+
+            }
         }
     }
 
     private class GetVolunteerRecommendedOpportunity extends ApiRestFullRequest {
         public GetVolunteerRecommendedOpportunity() {
-            super(HttpRequestType.GET, OpportunityActivity.this.getString(R.string.apiVolunteerURL), "api/opportunity/" + OpportunityActivity.this.id, OpportunityActivity.this.getUserAccessToken());
+            super(HttpRequestType.GET, OpportunityActivity.this.getString(R.string.apiVolunteerURL1), "api/dashboard/cause/" + OpportunityActivity.this.id, OpportunityActivity.this.getUserAccessToken());
         }
 
         protected void onPostExecuteBody(String result) {

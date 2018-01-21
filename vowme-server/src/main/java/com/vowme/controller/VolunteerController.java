@@ -8,6 +8,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -34,7 +35,7 @@ public class VolunteerController extends BaseController {
 	/** The cause service. */
 	@Autowired
 	private CauseService causeService;
-
+	
 	/**
 	 * Gets the.
 	 *
@@ -210,6 +211,16 @@ public class VolunteerController extends BaseController {
 		return () -> {
 			return userService.approvalForCause(userId, volId, causeId, comment);
 		};
+	}
+	
+	@PutMapping("{id}/cause")
+	public User updateCause(@PathVariable("id")Long id) {
+		return userService.getUser(id);
+	}
+	
+	@PutMapping("{id}/interest")
+	public User updateInterest(@PathVariable("id")Long id) {
+		return userService.getUser(id);
 	}
 
 }

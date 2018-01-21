@@ -91,7 +91,7 @@ public class PostAccessToken extends AsyncTask<Void, Void, OauthRequestResponse>
                 } else if (this.postAccessTokenType == PostAccessTokenType.PASSWORD) {
                     inputString = "grant_type=password&username=" + this.userName + "&password=" + this.password + "&client_id=" + this.context.getResources().getString(R.string.client_id) + "&scope=mobile";
                 } else if (this.postAccessTokenType == PostAccessTokenType.EXTERNAL) {
-                    inputString = "grant_type=external_vol&LoginProvider=" + this.loginProvider + "&ProviderKey=" + this.providerKey + "&client_id=" + this.context.getResources().getString(R.string.client_id) + "&client_secret=" + this.context.getResources().getString(R.string.client_secret) + "&scope=mobile";
+                    inputString = "grant_type=external_vol&loginprovider=" + this.loginProvider + "&providerkey=" + this.providerKey + "&client_id=" + this.context.getResources().getString(R.string.client_id) + "&client_secret=" + this.context.getResources().getString(R.string.client_secret) + "&scope=mobile";
                 } else {
                     inputString = "grant_type=refresh_token&refresh_token=" + this.refreshToken + "&client_id=" + this.context.getResources().getString(R.string.client_id) + "&client_secret=" + this.context.getResources().getString(R.string.client_secret);
                 }

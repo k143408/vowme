@@ -95,11 +95,12 @@
                                 android:onClick="onEditProfileClick"
                                 android:text="EDIT PROFILE" />
 
-                            <TextView
+                            <!--<TextView
                                 android:id="@+id/act_download_profile"
                                 style="@style/ButtonTextLink"
                                 android:onClick="onDownloadProfileClick"
                                 android:text="DOWNLOAD" />
+                                -->
                         </LinearLayout>
                     </LinearLayout>
                 </RelativeLayout>

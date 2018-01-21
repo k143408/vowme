@@ -132,7 +132,7 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-md-6">
+        <!-- <div class="col-md-6">
             <div class="card">
                 <div class="header">
                     <h4 class="title">Email Statistics</h4>
@@ -153,7 +153,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> -->
         <div class="col-md-6" *ngIf="volunteerList?.length > 0">
             <div class="card ">
                 <div class="header">
@@ -178,7 +178,7 @@
                                     <td>{{user.firstname}} {{user.lastname}}</td>
                                     <td>{{user.userInfo.city}}</td>
                                     <td *ngIf="user.emailVerified == 1 && user.cnicVerified == 1 ">Yes</td>
-                                    <td *ngIf="user.emailVerified == 0 || user.cnicVerified == 0">No</td>
+                                    <td *ngIf="user.emailVerified == null || user.cnicVerified == 0">No</td>
                                     <td><a [routerLink]="['/volunteer-detail',user.id]"><span class="ti-fullscreen"></span></a></td>
                                 </tr>
                             </tbody>
@@ -192,7 +192,7 @@
                         </div>
                         <hr>
                         <div class="stats">
-                            <i class="ti-check"></i> Data is automated.
+                            <!-- <i class="ti-check"></i> Data is automated. -->
                         </div>
                     </div>
                 </div>

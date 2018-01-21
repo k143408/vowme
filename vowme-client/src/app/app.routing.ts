@@ -13,13 +13,18 @@ import { TypographyComponent } from './typography/typography.component';
 import { IconsComponent } from './icons/icons.component';
 import { MapsComponent } from './maps/maps.component';
 import { NotificationsComponent } from './notifications/notifications.component';
+import { LoginComponent } from 'app/login/login.component';
 
 
 export const AppRoutes: Routes = [
     {
         path: '',
-        redirectTo: 'dashboard',
+        redirectTo: 'dashboard', 
         pathMatch: 'full',
+    },
+    {
+        path: 'login',
+        component: LoginComponent
     },
     {
         path: 'dashboard',

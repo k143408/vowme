@@ -32,18 +32,20 @@ public class TimesheetItemRecyclerViewAdapter extends ListItemRecyclerViewAdapte
     public void onBindViewHolder(final android.support.v7.widget.RecyclerView.ViewHolder holder, int position) {
         if (holder instanceof ViewHolder) {
             ViewHolder vh = (ViewHolder) holder;
-            vh.mItem = (TimesheetItem) this.mValues.get(position);
-            vh.date.setText(vh.mItem.dateAsString);
-            vh.name.setText(vh.mItem.name);
-            vh.hours.setText(TextViewHelper.getHourTimeToString(vh.mItem.hours));
-            vh.minutes.setText(TextViewHelper.getMinuteTimeToString(vh.mItem.minutes));
-            vh.mLayout.setOnClickListener(new OnClickListener() {
-                public void onClick(View v) {
-                    if (TimesheetItemRecyclerViewAdapter.this.mListener != null) {
-                        TimesheetItemRecyclerViewAdapter.this.mListener.onListFragmentInteraction(((ViewHolder) holder).mItem);
+            if (this.mValues.size() != 0) {
+                vh.mItem = (TimesheetItem) this.mValues.get(position);
+                vh.date.setText(vh.mItem.dateAsString);
+                vh.name.setText(vh.mItem.name);
+                vh.hours.setText(TextViewHelper.getHourTimeToString(vh.mItem.hours));
+                vh.minutes.setText(TextViewHelper.getMinuteTimeToString(vh.mItem.minutes));
+                vh.mLayout.setOnClickListener(new OnClickListener() {
+                    public void onClick(View v) {
+                        if (TimesheetItemRecyclerViewAdapter.this.mListener != null) {
+                            TimesheetItemRecyclerViewAdapter.this.mListener.onListFragmentInteraction(((ViewHolder) holder).mItem);
+                        }
                     }
-                }
-            });
+                });
+            }
         }
     }
 

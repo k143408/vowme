@@ -62,9 +62,9 @@ public class SearchResultListFragment extends OpportunityListFragment {
     }
 
     protected JSONArray getJSONArrayOpportunities(String result) throws JSONException {
-        JSONObject resultObject = new JSONObject(new JSONObject(result).getString("GetOpportunitiesVolunteerResult"));
-        if (resultObject.getInt("TotalCount") > 0) {
-            return resultObject.getJSONArray("Opportunities");
+        JSONObject resultObject = new JSONObject(result);
+        if (resultObject.getInt("totalElements") > 0) {
+            return resultObject.getJSONArray("content");
         }
         return new JSONArray();
     }
@@ -75,7 +75,9 @@ public class SearchResultListFragment extends OpportunityListFragment {
     private void setSubtitle(String result) {
         Toolbar toolbar = (Toolbar) getActivity().findViewById(R.id.toolbar_no_tabs);
         try {
-            toolbar.setSubtitle(new JSONObject(new JSONObject(result).getString("GetOpportunitiesVolunteerResult")).getString("TotalCount") + " listings");
+            JSONObject resultObject = new JSONObject(result);
+
+            toolbar.setSubtitle(resultObject.getInt("totalElements") + " listings");
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -89,7 +91,7 @@ public class SearchResultListFragment extends OpportunityListFragment {
 
     private class GetViktorRecommendedOpportunities extends ApiWCFRequest {
         public GetViktorRecommendedOpportunities(JSONObject params) {
-            super(HttpRequestType.POST, SearchResultListFragment.this.getString(R.string.apiViktorURL), "Opportunities/" + SearchResultListFragment.this.getResources().getString(R.string.apiViktorClientSecret) + "/" + SearchResultListFragment.this.getResources().getString(R.string.apiViktorGetClientSecret) + "/" + Integer.toString(SearchResultListFragment.this.currentPage), params);
+            super(HttpRequestType.POST, SearchResultListFragment.this.getString(R.string.apiVolunteerURL1), "api/search?page=" + Integer.toString(SearchResultListFragment.this.currentPage), params);
         }
 
         protected void onProgressUpdate(Void... values) {

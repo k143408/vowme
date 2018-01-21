@@ -133,7 +133,7 @@ export class CauseDetailComponent extends BaseComponent implements OnInit {
               reject('Date should not be lesser than current date or end date should be within in 3 months.');
             }
           } else {
-            reject('Please provide all fields! <br/> Date format should be in <strong>dd mm yyyy e.g. 01/01/2018</strong>')
+            reject('Please provide all fields! <br/> Date format should be in <strong> mm dd yyyy e.g. 12/26/2017</strong>')
           }
         })
       }

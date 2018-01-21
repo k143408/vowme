@@ -58,9 +58,6 @@ public class UserNavigationSharedDataHelper {
     }
 
     public static boolean getUserHaveDoneWizard(SharedPreferences userDefaults) {
-        Editor editor = userDefaults.edit();
-        editor.putBoolean(HAVE_DONE_WIZARD, false);
-        editor.commit();
         return userDefaults.getBoolean(HAVE_DONE_WIZARD, false);
     }
 

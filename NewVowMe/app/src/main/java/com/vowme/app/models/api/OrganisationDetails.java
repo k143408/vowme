@@ -24,33 +24,19 @@ public class OrganisationDetails {
 
     public OrganisationDetails(JSONObject object, boolean isAutenticatedSearch) {
         try {
-            if (isAutenticatedSearch) {
+            this.id = object.getInt("id");
+            this.name = object.getJSONObject("userInfo").getString("organizationName");
+            this.description = object.getJSONObject("userInfo").getString("aboutMe");
+            //this.serviceFocus = object.getString("serviceFocus");
+            this.street = object.getJSONObject("userInfo").getString("address");
+            this.postcode = object.getJSONObject("userInfo").getString("zipcode");
+            //this.suburb = object.getString("suburb");
+            this.state = "";//object.getString(ServerProtocol.DIALOG_PARAM_STATE);
+            //this.stateCode = object.getString("stateCode");
+            this.website = object.getString("email");
+            this.logoFileName = "";//object.getString("logoFileName");
+            return;
 
-                this.id = object.getInt("id");
-                this.name = object.getString("name");
-                this.description = object.getString("description");
-                this.serviceFocus = object.getString("serviceFocus");
-                this.street = object.getString("street");
-                this.postcode = object.getString("postcode");
-                this.suburb = object.getString("suburb");
-                this.state = object.getString(ServerProtocol.DIALOG_PARAM_STATE);
-                this.stateCode = object.getString("stateCode");
-                this.website = object.getString("website");
-                this.logoFileName = object.getString("logoFileName");
-                return;
-
-            }
-            this.id = object.getInt("Id");
-            this.name = object.getString("Name");
-            this.description = object.getString("Description");
-            this.serviceFocus = object.getString("ServiceFocusName");
-            this.street = object.getString("Street");
-            this.postcode = object.getString("Postcode");
-            this.suburb = object.getString("SuburbName");
-            this.state = object.getString("StateName");
-            this.stateCode = object.getString("StateCode");
-            this.website = object.getString("Website");
-            this.logoFileName = object.getString("LogoFileName");
         } catch (JSONException e) {
             e.printStackTrace();
             return;

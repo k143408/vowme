@@ -75,7 +75,7 @@ public abstract class ListItemRecyclerViewAdapter extends Adapter<ViewHolder> {
 
     public int getItemViewType(int position) {
         if (this.mValues.size() == 0) {
-            return this.fragmentViewType.getValue();
+            return this.fragmentViewType == null ? 0 : this.fragmentViewType.getValue();
         }
         if (this.fragmentViewType != ListViewType.SHORTLIST || this.isLoggedIn || getItemCount() <= 0 || position != getItemCount() - 1) {
             return super.getItemViewType(position);

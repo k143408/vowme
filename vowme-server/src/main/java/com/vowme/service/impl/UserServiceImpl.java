@@ -10,15 +10,22 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.vowme.dto.DateParam;
+import com.vowme.dto.EOI;
+import com.vowme.dto.EoiDTO;
+import com.vowme.dto.LoginDTO;
 import com.vowme.dto.UserDTO;
+import com.vowme.dto.VolunteerDTO;
 import com.vowme.model.Approval;
 import com.vowme.model.Boardcast;
 import com.vowme.model.Cause;
 import com.vowme.model.Participate;
+import com.vowme.model.Timesheet;
 import com.vowme.model.User;
 import com.vowme.repository.ApprovalRepository;
 import com.vowme.repository.BoardcastRepository;
 import com.vowme.repository.ParticipateRepository;
+import com.vowme.repository.TimesheetRespository;
 import com.vowme.repository.UserRepository;
 import com.vowme.service.CauseService;
 import com.vowme.service.FeedbackService;
@@ -52,6 +59,9 @@ public class UserServiceImpl implements UserService {
 
 	@Autowired
 	private ParticipateRepository participateRepository;
+	
+	@Autowired
+	private TimesheetRespository timesheetRespository;
 
 	@Override
 	public Page<User> getVolunteers(Pageable pageable) {
@@ -71,6 +81,8 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public User save(UserDTO userDto) {
 		User user = userRepository.findOne(userDto.getUserId());
+		
+		user = user == null ? new User() : user;
 
 		user.getUserInfo().setAboutMe(userDto.getAboutMe());
 		user.getUserInfo().setAddress(userDto.getAddress());
@@ -82,8 +94,9 @@ public class UserServiceImpl implements UserService {
 		user.setLastname(userDto.getLastName());
 		user.setUpdatedAt(DateUtils.getCurrentTime());
 		user.getUserInfo().setUpdatedAt(DateUtils.getCurrentTime());
+		
 		userRepository.save(user);
-
+		
 		return user;
 	}
 
@@ -135,8 +148,7 @@ public class UserServiceImpl implements UserService {
 	}
 
 	private String getInventationContent(User user, Cause cause) {
-		return String.format("%s wants you to join '%s'. Kindly reponse by signing in dashboard", user.getFullName(),
-				cause.getName());
+		return String.format("%s wants you to join '%s'", user.getFullName(), cause.getName());
 	}
 
 	private String getRejectionContent(User user, Cause cause, String comments) {
@@ -180,9 +192,9 @@ public class UserServiceImpl implements UserService {
 			}
 			approvalRepository.save(approval);
 			try {
-				notificationService
-						.notify(cause, volunteer.getEmail(), String.format("Notification from %s", cause.getName()),
-								StringUtil.isEmptyOrNull(comments) ? getRejectionContent(user, cause, comments) : getSucessfullNoticfication(user, cause))
+				notificationService.notify(cause, volunteer.getEmail(),
+						String.format("Notification from %s", cause.getName()), StringUtil.isEmptyOrNull(comments)
+								? getRejectionContent(user, cause, comments) : getSucessfullNoticfication(user, cause))
 						.call();
 			} catch (Exception e) {
 			}
@@ -197,7 +209,40 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public List<User> getAllOrganizor() {
-		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public VolunteerDTO registerVolunteer(LoginDTO account) {
+		User user = userRepository.findByEmail(account.getEmailAddress());
+		if (user != null) {
+			return new VolunteerDTO(user.getId(), true);
+		}
+		user = new User(true, account.getCnic(), account.getEmailAddress(), account.getFirstName(),
+				account.getLastName(), account.getUserName(), account.getLoginProvider());
+		user = userRepository.save(user);
+		return new VolunteerDTO(user.getId(), false);
+	}
+
+	@Override
+	public Approval EOIForCause(EoiDTO eoi, Long userId, Long causeId) {
+		User findById = userRepository.findById(userId);
+		findById.setCnic(eoi.getPostcode());
+		Cause causesById = causeService.getCausesById(causeId);
+		return approvalRepository.saveAndFlush(new Approval(eoi,causesById,findById));
+	}
+
+	@Override
+	public boolean isEOIExists(Long userId, Long causeId) {
+		return approvalRepository.getUserWithCause(userId, causeId) != null ? true : false;
+	}
+	
+	@Override
+	public Boolean logHours(DateParam dateParam, Long userId, Long causeId){
+		User findById = userRepository.findById(userId);
+		Cause causesById = causeService.getCausesById(causeId);
+		Timesheet saveAndFlush = timesheetRespository.saveAndFlush(new Timesheet(dateParam, findById, causesById));
+		return saveAndFlush.getId() != null ? true : false; 
+		
 	}
 }

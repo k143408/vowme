@@ -72,15 +72,10 @@ public class RecommendedListFragment extends OpportunityListFragment {
 
     protected JSONArray getJSONArrayOpportunities(String result) throws JSONException {
         JSONObject json = new JSONObject(result);
-        if (this.isAuthenticated) {
-            this.oppCount.setText(json.getString("totalCount") + " matches based on your preferences");
-            return json.getJSONArray("items");
-        }
-        JSONObject resultObject = new JSONObject(json.getString("GetOpportunitiesVolunteerResult"));
-        int total = resultObject.getInt("TotalCount");
+        int total = json.getInt("totalElements");
         this.oppCount.setText(Integer.toString(total) + " matches based on your preferences");
         if (total > 0) {
-            return resultObject.getJSONArray("Opportunities");
+            return json.getJSONArray("content");
         }
         return new JSONArray();
     }
@@ -96,7 +91,7 @@ public class RecommendedListFragment extends OpportunityListFragment {
 
     private class GetViktorRecommendedOpportunities extends ApiWCFRequest {
         public GetViktorRecommendedOpportunities(JSONObject params) {
-            super(HttpRequestType.POST, RecommendedListFragment.this.getString(R.string.apiViktorURL), "Opportunities/" + RecommendedListFragment.this.getResources().getString(R.string.apiViktorClientSecret) + "/" + RecommendedListFragment.this.getResources().getString(R.string.apiViktorGetClientSecret) + "/" + Integer.toString(RecommendedListFragment.this.currentPage), params);
+            super(HttpRequestType.POST, RecommendedListFragment.this.getString(R.string.apiVolunteerURL1), "api/search?page="+Integer.toString(RecommendedListFragment.this.currentPage), params);
         }
 
         protected void onProgressUpdate(Void... values) {
@@ -121,7 +116,7 @@ public class RecommendedListFragment extends OpportunityListFragment {
 
     private class GetVolunteerRecommendedOpportunities extends ApiRestFullRequest {
         public GetVolunteerRecommendedOpportunities(HashMap<String, String> params) {
-            super(HttpRequestType.GET, RecommendedListFragment.this.getString(R.string.apiVolunteerURL), "api/opportunity/recommended", (HashMap) params, RecommendedListFragment.this.getBaseActivity().getUserAccessToken());
+            super(HttpRequestType.GET, RecommendedListFragment.this.getString(R.string.apiVolunteerURL1), "api/opportunity/recommended/"+RecommendedListFragment.this.getBaseActivity().getUserAccessToken()+"?page="+params.get("pageIndex"), (HashMap) params, RecommendedListFragment.this.getBaseActivity().getUserAccessToken());
         }
 
         protected void onProgressUpdate(Void... values) {

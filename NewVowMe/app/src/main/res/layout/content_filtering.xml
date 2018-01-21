@@ -113,7 +113,9 @@
             android:layout_height="fill_parent"
             android:paddingBottom="8.0dip"
             android:paddingTop="8.0dip"
+            android:paddingLeft="4.0dip"
             android:text="Any"
+            android:textStyle="bold"
             android:textColor="@color/text_light"
             android:textSize="@dimen/basic_text" />
     </LinearLayout>
@@ -137,6 +139,7 @@
             android:paddingBottom="8.0dip"
             android:paddingTop="8.0dip"
             android:text="Interests"
+            android:paddingLeft="4.0dip"
             android:textColor="@color/text_light"
             android:textSize="@dimen/basic_text" />
 
@@ -147,6 +150,8 @@
             android:paddingBottom="8.0dip"
             android:paddingTop="8.0dip"
             android:text="Any"
+            android:paddingLeft="4.0dip"
+            android:textStyle="bold"
             android:textColor="@color/text_light"
             android:textSize="@dimen/basic_text" />
     </LinearLayout>

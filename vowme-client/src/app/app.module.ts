@@ -31,6 +31,7 @@ import { CauseDetailComponent } from './cause-detail/cause-detail.component';
 import { CauselistComponent } from './table/causelist/causelist.component';
 import { PendingListComponent } from './table/pending-list/pending-list.component';
 import { VolunteerPendingComponent } from './volunteer-pending/volunteer-pending.component';
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
   declarations: [
@@ -48,7 +49,8 @@ import { VolunteerPendingComponent } from './volunteer-pending/volunteer-pending
     Rating,
     CauselistComponent,
     PendingListComponent,
-    VolunteerPendingComponent],
+    VolunteerPendingComponent,
+    LoginComponent],
   imports: [
     BrowserModule,
     RouterModule.forRoot(AppRoutes),

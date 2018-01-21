@@ -1,5 +1,6 @@
 package com.vowme.app.models.lookUp;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -24,6 +25,8 @@ public class LookupDesc extends Lookup {
             e.printStackTrace();
         }
     }
+
+
 
     public String getDescription() {
         return this.description;

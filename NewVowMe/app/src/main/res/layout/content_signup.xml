@@ -103,8 +103,8 @@
                             android:layout_width="fill_parent"
                             android:layout_height="wrap_content"
                             android:layout_centerHorizontal="true"
-                            android:hint="Postcode*"
-                            android:inputType="number"
+                            android:hint="CNIC*"
+                            android:inputType="text"
                             android:textColor="@color/text_light"
                             android:textColorHint="@color/dis_hint_light"
                             android:textSize="@dimen/basic_text" />
@@ -278,38 +278,38 @@
                 android:clickable="true"
                 android:onClick="facebookLogin" />
 
-            <ImageView
-                android:id="@+id/ic_google"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginRight="8.0dip"
-                android:background="@drawable/circle_google"
-                android:baselineAlignBottom="true"
-                android:clickable="true"
-                android:onClick="googleLogin" />
+            <!--<ImageView-->
+                <!--android:id="@+id/ic_google"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_gravity="center_horizontal"-->
+                <!--android:layout_marginRight="8.0dip"-->
+                <!--android:background="@drawable/circle_google"-->
+                <!--android:baselineAlignBottom="true"-->
+                <!--android:clickable="true"-->
+                <!--android:onClick="googleLogin" />-->
 
-            <ImageView
-                android:id="@+id/ic_linkedin"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginRight="8.0dip"
-                android:background="@drawable/circle_linkedin"
-                android:baselineAlignBottom="true"
-                android:clickable="true"
-                android:onClick="linkedinLogin" />
+            <!--<ImageView-->
+                <!--android:id="@+id/ic_linkedin"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_gravity="center_horizontal"-->
+                <!--android:layout_marginRight="8.0dip"-->
+                <!--android:background="@drawable/circle_linkedin"-->
+                <!--android:baselineAlignBottom="true"-->
+                <!--android:clickable="true"-->
+                <!--android:onClick="linkedinLogin" />-->
 
-            <ImageView
-                android:id="@+id/ic_twitter"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginRight="8.0dip"
-                android:background="@drawable/circle_twitter"
-                android:baselineAlignBottom="true"
-                android:clickable="true"
-                android:onClick="twitterLogin" />
+            <!--<ImageView-->
+                <!--android:id="@+id/ic_twitter"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_gravity="center_horizontal"-->
+                <!--android:layout_marginRight="8.0dip"-->
+                <!--android:background="@drawable/circle_twitter"-->
+                <!--android:baselineAlignBottom="true"-->
+                <!--android:clickable="true"-->
+                <!--android:onClick="twitterLogin" />-->
         </LinearLayout>
     </android.support.v7.widget.CardView>
 </RelativeLayout>

@@ -55,29 +55,31 @@ public class ExpressInterestActivity extends FormValidationActivity {
 
     private class GetVolunteerEoiDetails extends ApiRestFullRequest {
         public GetVolunteerEoiDetails() {
-            super(HttpRequestType.GET, ExpressInterestActivity.this.getString(R.string.apiVolunteerURL), "api/volunteer/Eoi", ExpressInterestActivity.this.getUserAccessToken());
+            super(HttpRequestType.GET, ExpressInterestActivity.this.getString(R.string.apiVolunteerURL1), "api/opportunity/eoi/"+ExpressInterestActivity.this.getUserAccessToken()+"/"+ExpressInterestActivity.this.oppId, ExpressInterestActivity.this.getUserAccessToken());
         }
 
         protected void onPostExecuteBody(String result) {
-            try {
-                ExpressInterestActivity.this.model = new VolunteerEoiModel(new JSONObject(result), ExpressInterestActivity.this.getResources().getString(R.string.client_id));
-                ExpressInterestActivity.this.firstName.setText(ExpressInterestActivity.this.model.getFirstName());
-                ExpressInterestActivity.this.lastName.setText(ExpressInterestActivity.this.model.getLastName());
-                ExpressInterestActivity.this.yearBirth.setText(ExpressInterestActivity.this.model.getYearOfBirth().toString());
-                ExpressInterestActivity.this.postcode.setText(ExpressInterestActivity.this.model.getPostcode());
-                ExpressInterestActivity.this.email.setText(ExpressInterestActivity.this.model.getEmail());
-                String mGender = ExpressInterestActivity.this.model.getGender();
-                CustomSpinnerTextView access$600 = ExpressInterestActivity.this.gender;
-                if ("F".equals(mGender)) {
-                    mGender = "Female";
-                } else if ("M".equals(mGender)) {
-                    mGender = "Male";
+            if (result != null && !"".equals(result)) {
+                try {
+                    ExpressInterestActivity.this.model = new VolunteerEoiModel(new JSONObject(result), ExpressInterestActivity.this.getResources().getString(R.string.client_id));
+                    ExpressInterestActivity.this.firstName.setText(ExpressInterestActivity.this.model.getFirstName());
+                    ExpressInterestActivity.this.lastName.setText(ExpressInterestActivity.this.model.getLastName());
+                    ExpressInterestActivity.this.yearBirth.setText(ExpressInterestActivity.this.model.getYearOfBirth().toString());
+                    ExpressInterestActivity.this.postcode.setText(ExpressInterestActivity.this.model.getPostcode());
+                    ExpressInterestActivity.this.email.setText(ExpressInterestActivity.this.model.getEmail());
+                    String mGender = ExpressInterestActivity.this.model.getGender();
+                    CustomSpinnerTextView access$600 = ExpressInterestActivity.this.gender;
+                    if ("F".equals(mGender)) {
+                        mGender = "Female";
+                    } else if ("M".equals(mGender)) {
+                        mGender = "Male";
+                    }
+                    access$600.setText(mGender);
+                    ExpressInterestActivity.this.homePhone.setText(ExpressInterestActivity.this.model.getPhoneNumber());
+                    ExpressInterestActivity.this.skills.setText(ExpressInterestActivity.this.model.getQualification());
+                } catch (JSONException e) {
+                    e.printStackTrace();
                 }
-                access$600.setText(mGender);
-                ExpressInterestActivity.this.homePhone.setText(ExpressInterestActivity.this.model.getPhoneNumber());
-                ExpressInterestActivity.this.skills.setText(ExpressInterestActivity.this.model.getQualification());
-            } catch (JSONException e) {
-                e.printStackTrace();
             }
         }
     }
@@ -103,21 +105,21 @@ public class ExpressInterestActivity extends FormValidationActivity {
         }
 
         public postViktorEoi(JSONObject params) {
-            super(HttpRequestType.POST, ExpressInterestActivity.this.getString(R.string.apiViktorURL), "EOI/" + ExpressInterestActivity.this.getResources().getString(R.string.apiViktorClientSecret) + "/" + ExpressInterestActivity.this.getResources().getString(R.string.apiViktorPostClientSecret) + "/" + ExpressInterestActivity.this.oppId, params);
+            super(HttpRequestType.POST, ExpressInterestActivity.this.getString(R.string.apiVolunteerURL1), "api/opportunity/eoi/"+ExpressInterestActivity.this.getUserAccessToken()+"/"+ExpressInterestActivity.this.oppId, params);
         }
 
         protected void onPostExecuteBody(String result) {
             try {
-                CharSequence message = new JSONObject(result).getString("PostExpressionOfInterestResult");
+                CharSequence message = new JSONObject(result).getString("message");
                 if (message.length() == 0 || message.equals("\"Created\"")) {
                     ExpressInterestActivity.this.dismissProgress();
                     ExpressInterestActivity.this.startActivityForResult(new Intent(ExpressInterestActivity.this, ExpressInterestSendedActivity.class), ActivityCode.EXPRESSEDINTEREST.getValue());
                     return;
                 }
-                if (message.equals("\"APPLICATION_EXISTS\"")) {
+                if (message.equals("APPLICATION_EXISTS")) {
                     message = "You have already expressed an interest for this opportunity.";
                 }
-                if (message.equals("\"LIMIT_REACHED\"")) {
+                if (message.equals("LIMIT_REACHED")) {
                     message = "You have reached your limit for expressing interest in opportunities. Please come back another time.";
                 }
                 ExpressInterestActivity.this.enableSubmitButton();
@@ -135,7 +137,7 @@ public class ExpressInterestActivity extends FormValidationActivity {
         super.onCreate(savedInstanceState);
         this.oppId = new String(getIntent().getStringExtra(getResources().getString(R.string.EXTRA_OPP_ID)));
         if (isUserLoggedIn()) {
-            setContentView((int) R.layout.activity_express_interest);
+            setContentView(R.layout.activity_express_interest);
             TextView oppFor = (TextView) findViewById(R.id.opp_for);
             ((TextView) findViewById(R.id.opp_title)).setText(getIntent().getStringExtra(getResources().getString(R.string.EXTRA_OPP_TITLE)));
             TextViewHelper.formatOppForSubtitle(this, oppFor, getIntent().getStringExtra(getResources().getString(R.string.EXTRA_ORGA_NAME)), getIntent().getStringExtra(getResources().getString(R.string.EXTRA_ORGA_CAUSE)), null);
@@ -190,13 +192,13 @@ public class ExpressInterestActivity extends FormValidationActivity {
         }
         TextInputLayout floatingPostcodeText = (TextInputLayout) findViewById(R.id.input_layout_postcode);
         if (!(floatingPostcodeText == null || floatingPostcodeText.getEditText() == null)) {
-            floatingPostcodeText.getEditText().addTextChangedListener(getFloatingTextRegexValidator(floatingPostcodeText, getResources().getString(R.string.postcode_regex), "Please enter a postcode.", "The postcode must be a valid number."));
+            floatingPostcodeText.getEditText().addTextChangedListener(getFloatingTextRegexValidator(floatingPostcodeText, getResources().getString(R.string.cnic_regex), "Please enter a proper CNIC format.", "The CNIC must be written in NADRA's format ."));
         }
         TextInputLayout floatingEmailText = (TextInputLayout) findViewById(R.id.input_layout_email);
         if (!(floatingEmailText == null || floatingEmailText.getEditText() == null)) {
             floatingEmailText.getEditText().addTextChangedListener(getFloatingTextRegexValidator(floatingEmailText, getResources().getString(R.string.email_regex), "Please enter your email address.", "Please enter a valid email address."));
         }
-        TextInputLayout floatingPhoneText = (TextInputLayout) findViewById(R.id.input_layout_phone);
+        /*TextInputLayout floatingPhoneText = (TextInputLayout) findViewById(R.id.input_layout_phone);
         if (!(floatingPhoneText == null || floatingPhoneText.getEditText() == null)) {
             floatingPhoneText.getEditText().addTextChangedListener(getFloatingTextRegexValidator(floatingPhoneText, getResources().getString(R.string.phone_regex), null, "Please enter a valid phone number."));
         }
@@ -204,6 +206,7 @@ public class ExpressInterestActivity extends FormValidationActivity {
         if (!(floatingSkillText == null || floatingSkillText.getEditText() == null)) {
             floatingSkillText.getEditText().addTextChangedListener(getFloatingTextLengthValidator(floatingSkillText, 0, 500, "", "Your skills and qualifications can have length up to 500 characters."));
         }
+        */
         this.gender.setUpSpinnerTextView(17367043, this.values);
         ((TextInputLayout) findViewById(R.id.input_layout_spinner)).setHint("Gender");
     }

@@ -174,6 +174,7 @@ public class Enum {
     }
 
     public enum LookupType {
+        LOCATIONS("locations"),
         CAUSES("causes"),
         INTERESTS("interests"),
         DURATIONS("durations"),
@@ -188,7 +189,6 @@ public class Enum {
         EXPERIENCES("experiences"),
         SUBPROSKILLS("subClassifications"),
         NOTIFICATIONFREQUENCIES("notificationFrequencies"),
-        LOCATIONS("locations"),
         AVAIBILITYFILTER("avaibilitiyFilter"),
         AVAIBILITY("avaibilitiy");
 

@@ -116,7 +116,7 @@ public class MainActivity extends BaseActivity implements ItemListFragment.OnLis
             case R.id.action_add:
                 TimesheetFragment timesheetFragment = (TimesheetFragment) ((ViewPagerAdapter) this.viewPager.getAdapter()).getItem(3);
                 Intent intentBis = new Intent(this, LogHoursActivity.class);
-                intentBis.putExtra(getResources().getString(R.string.EXTRA_MODEL_DETAILS), JSONHelper.ToJSONArray(timesheetFragment.opportunitiesToLog).toString());
+                    intentBis.putExtra(getResources().getString(R.string.EXTRA_MODEL_DETAILS), JSONHelper.ToJSONArray(timesheetFragment.opportunitiesToLog).toString());
                 intentBis.putExtra("android.intent.extra.TEXT", false);
                 startActivityForResult(intentBis, Enum.ActivityCode.LOGHOURS.getValue());
                 return true;
@@ -284,7 +284,7 @@ public class MainActivity extends BaseActivity implements ItemListFragment.OnLis
 
     private class GetVolunteerProfilePdf extends ApiRestFullRequest {
         public GetVolunteerProfilePdf() {
-            super(Enum.HttpRequestType.GET, MainActivity.this.getString(R.string.apiVolunteerURL), "api/volunteer/pdf", MainActivity.this.getUserAccessToken(), true, "/MyVolunteerProfile.pdf", MainActivity.this.getExternalCacheDir());
+            super(Enum.HttpRequestType.GET, MainActivity.this.getString(R.string.apiVolunteerURL1), "api/volunteer/pdf", MainActivity.this.getUserAccessToken(), true, "/MyVolunteerProfile.pdf", MainActivity.this.getExternalCacheDir());
         }
 
         protected void onPostExecuteBody(String result) {

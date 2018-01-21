@@ -65,4 +65,9 @@ public interface UserRepository extends JpaRepository<User, Long> {
 
 	@Query("SELECT distinct u FROM User u JOIN u.userInfo ui where ui.isOrganizer = 1")
 	List<User> getAllOrganizer();
+	
+	User findByUsername(String username);
+	
+	@Query("SELECT distinct u FROM User u where u.provider = ?1 and u.providerKey = ?2")
+	User findByProvider(String provider, Long providerkey);
 }

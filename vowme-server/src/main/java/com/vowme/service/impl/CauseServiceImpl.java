@@ -11,9 +11,15 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.vowme.model.Cause;
+import com.vowme.model.Shortlist;
 import com.vowme.model.Team;
+import com.vowme.model.User;
+import com.vowme.repository.ApprovalRepository;
 import com.vowme.repository.CauseRepository;
+import com.vowme.repository.RecommendedRepository;
+import com.vowme.repository.ShortListRepository;
 import com.vowme.repository.TeamRepository;
+import com.vowme.repository.UserRepository;
 import com.vowme.service.CauseService;
 import com.vowme.util.helper.CauseShortDetail;
 import com.vowme.util.helper.KeyValue;
@@ -23,6 +29,18 @@ public class CauseServiceImpl implements CauseService {
 
 	@Autowired
 	private CauseRepository causeRepository;
+
+	@Autowired
+	private ShortListRepository shortListRepository;
+
+	@Autowired
+	private ApprovalRepository approvalRepository;
+
+	@Autowired
+	private RecommendedRepository recommendedRepository;
+
+	@Autowired
+	private UserRepository userRepository;
 
 	@Autowired
 	private TeamRepository teamRepository;
@@ -74,7 +92,7 @@ public class CauseServiceImpl implements CauseService {
 		}
 		return cause;
 	}
-	
+
 	@Transactional
 	@Override
 	public Cause saveCause(Cause cause) {
@@ -85,6 +103,51 @@ public class CauseServiceImpl implements CauseService {
 	@Override
 	public List<Cause> getAllCause() {
 		return causeRepository.findAll();
+	}
+
+	@Override
+	public Page<Cause> getShortListCause(Long userId, Pageable pageable) {
+		return shortListRepository.getShortListCause(userId, pageable);
+	}
+
+	@Override
+	public Page<Cause> getAccpectedCause(Long userId, Pageable pageable) {
+		return approvalRepository.getApproval(userId, pageable);
+	}
+
+	@Override
+	public Page<Cause> getRecommendedCause(Long userId, Pageable pageable) {
+		return recommendedRepository.getRecommendedCause(userId, pageable);
+	}
+
+	@Override
+	public User getEOI(Long userId, Long causeId) {
+		return approvalRepository.getApprovalUserWithCause(userId, causeId);
+	}
+
+	@Override
+	public Boolean addShortListCause(Long userId, Long causeId) {
+		User user = userRepository.findById(userId);
+		Cause cause = causeRepository.findOne(causeId);
+		return shortListRepository.saveAndFlush(new Shortlist(cause, user)) != null ? true : false;
+	}
+
+	@Override
+	public Boolean deleteShortListCause(Long userId, Long causeId) {
+		shortListRepository.findshortListUserAndCause(userId, causeId).stream().forEach(s -> {
+			shortListRepository.delete(s.getId());
+		});
+		return true;
+	}
+
+	@Override
+	public Page<Cause> getExpressedinterestCause(Long userId, Pageable pageable) {
+		return approvalRepository.getCauseExpressed(userId, pageable);
+	}
+
+	@Override
+	public Page<Cause> getAllCause(Pageable pageable) {
+		return causeRepository.findAll(pageable);
 	}
 
 }

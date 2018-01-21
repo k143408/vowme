@@ -147,8 +147,8 @@ public class LoginActivity extends FormValidationActivity implements OnConnectio
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         this.callbackManager.onActivityResult(requestCode, resultCode, data);
-        LISessionManager.getInstance(getApplicationContext()).onActivityResult(this, requestCode, resultCode, data);
-        this.buttonTwitter.onActivityResult(requestCode, resultCode, data);
+//        LISessionManager.getInstance(getApplicationContext()).onActivityResult(this, requestCode, resultCode, data);
+//        this.buttonTwitter.onActivityResult(requestCode, resultCode, data);
         if (requestCode == ActivityCode.RC_SIGN_IN.getValue()) {
             GoogleSignInResult result = Auth.GoogleSignInApi.getSignInResultFromIntent(data);
             if (result.isSuccess()) {
@@ -163,8 +163,8 @@ public class LoginActivity extends FormValidationActivity implements OnConnectio
 
     private void initExternalLogins() {
         initFacebook();
-        initTwitter();
-        initGoogle();
+    //    initTwitter();
+    //    initGoogle();
     }
 
     public void facebookLogin(View view) {
@@ -179,7 +179,7 @@ public class LoginActivity extends FormValidationActivity implements OnConnectio
 
     private void initFacebook() {
         this.callbackManager = Factory.create();
-        LoginManager.getInstance().registerCallback(this.callbackManager, new C08103());
+        LoginManager.getInstance().registerCallback(this.callbackManager, new FacebookCallableEvent());
     }
 
     public void linkedinLogin(View view) {
@@ -260,8 +260,8 @@ public class LoginActivity extends FormValidationActivity implements OnConnectio
         }
     }
 
-    class C08103 implements FacebookCallback<LoginResult> {
-        C08103() {
+    class FacebookCallableEvent implements FacebookCallback<LoginResult> {
+        FacebookCallableEvent() {
         }
 
         public void onSuccess(LoginResult loginResult) {
@@ -329,7 +329,7 @@ public class LoginActivity extends FormValidationActivity implements OnConnectio
 
     private class GetAccessTokenUser extends PostAccessToken {
         public GetAccessTokenUser(String userName, String password) {
-            super(LoginActivity.this.getString(R.string.apiVolunteerURL), "oauth/token", PostAccessTokenType.PASSWORD, LoginActivity.this.getBaseContext(), userName, password);
+            super(LoginActivity.this.getString(R.string.apiVolunteerURL1), "oauth/token/"+PostAccessTokenType.PASSWORD,PostAccessTokenType.PASSWORD, LoginActivity.this.getBaseContext(), userName, password);
         }
 
         protected void onPostExecuteBody(OauthRequestResponse result) {
@@ -339,7 +339,7 @@ public class LoginActivity extends FormValidationActivity implements OnConnectio
 
     private class GetAccessTokenUserFromExternalLogin extends PostAccessToken {
         public GetAccessTokenUserFromExternalLogin(String loginProvider, String providerKey) {
-            super(LoginActivity.this.getString(R.string.apiVolunteerURL), "oauth/token", LoginActivity.this.getBaseContext(), loginProvider, providerKey);
+            super(LoginActivity.this.getString(R.string.apiVolunteerURL1), "oauth/token", LoginActivity.this.getBaseContext(), loginProvider, providerKey);
         }
 
         protected void onPostExecuteBody(OauthRequestResponse result) {

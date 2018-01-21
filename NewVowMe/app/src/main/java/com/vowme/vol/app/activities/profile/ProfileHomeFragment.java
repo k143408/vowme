@@ -166,7 +166,7 @@ public class ProfileHomeFragment extends BaseFragment {
             }
             this.located.setVisibility(View.VISIBLE);
         }
-        if (this.volModel.interests.size() > 0) {
+        if (this.volModel.interests !=null && this.volModel.interests.size() > 0) {
             this.interestText.setText("");
             for (Lookup item : this.volModel.interests) {
                 this.interestText.append(token.terminateToken(item.getName()));
@@ -175,19 +175,19 @@ public class ProfileHomeFragment extends BaseFragment {
         } else {
             this.interest.setVisibility(View.GONE);
         }
-        if (TextUtils.isEmpty(this.volModel.skillHobbies.hobbies)) {
+        if (this.volModel.skillHobbies == null || TextUtils.isEmpty(this.volModel.skillHobbies.hobbies)) {
             this.hobbies.setVisibility(View.GONE);
         } else {
             this.hobbiesText.setText(this.volModel.skillHobbies.hobbies);
             this.hobbies.setVisibility(View.VISIBLE);
         }
-        if (TextUtils.isEmpty(this.volModel.work.jobTitle) && TextUtils.isEmpty(this.volModel.work.compagny)) {
+        if (this.volModel.work == null || TextUtils.isEmpty(this.volModel.work.jobTitle) && TextUtils.isEmpty(this.volModel.work.compagny)) {
             this.job.setVisibility(View.GONE);
         } else {
             if (!TextUtils.isEmpty(this.volModel.work.jobTitle)) {
                 this.jobText.setText(this.volModel.work.jobTitle);
             }
-            if (TextUtils.isEmpty(this.volModel.work.compagny)) {
+            if (this.volModel.work == null || TextUtils.isEmpty(this.volModel.work.compagny)) {
                 this.atText.setVisibility(View.GONE);
             } else {
                 this.companyText.setText(this.volModel.work.compagny);
@@ -312,7 +312,7 @@ public class ProfileHomeFragment extends BaseFragment {
 
     private class GetVolunteerBasicData extends ApiRestFullRequest {
         public GetVolunteerBasicData() {
-            super(HttpRequestType.GET, ProfileHomeFragment.this.getString(R.string.apiVolunteerURL), "api/volunteer/homeProfile", ProfileHomeFragment.this.getBaseActivity().getUserAccessToken());
+            super(HttpRequestType.GET, ProfileHomeFragment.this.getString(R.string.apiVolunteerURL1), "api/user/"+ProfileHomeFragment.this.getBaseActivity().getUserAccessToken(), ProfileHomeFragment.this.getBaseActivity().getUserAccessToken());
         }
 
         protected void onPostExecuteBody(String result) {

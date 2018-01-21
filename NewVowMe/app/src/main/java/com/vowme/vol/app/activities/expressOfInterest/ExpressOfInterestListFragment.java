@@ -39,7 +39,7 @@ public class ExpressOfInterestListFragment extends ItemListFragment {
 
     private class GetVolunteerExpressedOfInterest extends ApiRestFullRequest {
         public GetVolunteerExpressedOfInterest(HashMap<String, String> params) {
-            super(HttpRequestType.GET, ExpressOfInterestListFragment.this.getString(R.string.apiVolunteerURL), "api/opportunity/expressedinterest", (HashMap) params, ExpressOfInterestListFragment.this.getBaseActivity().getUserAccessToken());
+            super(HttpRequestType.GET, ExpressOfInterestListFragment.this.getString(R.string.apiVolunteerURL1), "api/opportunity/expressedinterest/"+ExpressOfInterestListFragment.this.getBaseActivity().getUserAccessToken(), (HashMap) params, ExpressOfInterestListFragment.this.getBaseActivity().getUserAccessToken());
         }
 
         protected void onProgressUpdate(Void... values) {
@@ -122,7 +122,7 @@ public class ExpressOfInterestListFragment extends ItemListFragment {
     }
 
     protected JSONArray getJSONArrayOpportunities(String result) throws JSONException {
-        return new JSONObject(result).getJSONArray("items");
+        return new JSONObject(result).getJSONArray("content");
     }
 
     protected void extraOnPostExecuteBodyAction(JSONArray opportunities) {

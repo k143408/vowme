@@ -85,6 +85,35 @@ public class User extends BaseModel implements Serializable {
 	/** The rank. */
 	@Column
 	private Float rank;
+	
+	@Column
+	private String provider;
+	
+	@Column(name="provider_key")
+	private Long providerKey;
+	
+	@Column
+	private String yearofbirth;
+	
+	@Column
+	private String gender;
+
+	
+	public String getYearofbirth() {
+		return yearofbirth;
+	}
+
+	public void setYearofbirth(String yearofbirth) {
+		this.yearofbirth = yearofbirth;
+	}
+
+	public String getGender() {
+		return gender;
+	}
+
+	public void setGender(String gender) {
+		this.gender = gender;
+	}
 
 	/** The approvals. */
 	//bi-directional many-to-one association to Approval
@@ -132,6 +161,42 @@ public class User extends BaseModel implements Serializable {
 	@OneToMany(mappedBy="user",fetch=FetchType.LAZY)
 	private List<UserSkill> userSkills;
 
+	@OneToMany(mappedBy="user",fetch=FetchType.LAZY)
+	private List<Shortlist> shortlists;
+
+	@OneToMany(mappedBy="user",fetch=FetchType.LAZY)
+	private List<Recommended> recommended;
+		
+	@OneToMany(mappedBy="user",fetch=FetchType.LAZY)
+	private List<Timesheet> timesheets;
+
+
+	
+	public List<Timesheet> getTimesheets() {
+		return timesheets;
+	}
+
+	public void setTimesheets(List<Timesheet> timesheets) {
+		this.timesheets = timesheets;
+	}
+
+	public List<Recommended> getRecommended() {
+		return recommended;
+	}
+
+	public void setRecommended(List<Recommended> recommended) {
+		this.recommended = recommended;
+	}
+
+	public List<Shortlist> getShortlists() {
+		return shortlists;
+	}
+
+	public void setShortlists(List<Shortlist> shortlists) {
+		this.shortlists = shortlists;
+	}
+
+	
 	/**
 	 * Gets the user skills.
 	 *
@@ -190,6 +255,7 @@ public class User extends BaseModel implements Serializable {
 	 * Instantiates a new user.
 	 */
 	public User() {
+		this.userInfo = new UserInfo();
 	}
 
 	/**
@@ -199,6 +265,19 @@ public class User extends BaseModel implements Serializable {
 	 */
 	public Long getId() {
 		return this.id;
+	}
+
+	public User(Boolean isActive, String cnic, String email, String firstname, String lastname,
+			String username, String provider) {
+		super();
+		this.isActive = isActive ? new Byte("1") : Byte.decode("0");
+		this.cnic = cnic;
+		this.cnicVerified =  "FACEBOOK".equalsIgnoreCase(provider) ? new Byte("1") : new Byte("0");
+		this.email = email;
+		this.firstname = firstname;
+		this.lastname = lastname;
+		this.username = username;
+		this.provider = provider;
 	}
 
 	/**
@@ -675,6 +754,22 @@ public class User extends BaseModel implements Serializable {
 	
 	public boolean isVerified() {
 		return this.cnicVerified.equals(new Byte("0")) && this.emailVerified.equals(new Byte("0")); 
+	}
+
+	public String getProvider() {
+		return provider;
+	}
+
+	public void setProvider(String provider) {
+		this.provider = provider;
+	}
+
+	public Long getProviderKey() {
+		return providerKey;
+	}
+
+	public void setProviderKey(Long providerKey) {
+		this.providerKey = providerKey;
 	}
 
 }

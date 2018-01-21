@@ -21,17 +21,18 @@ public class VolunteerBaseModel extends PostApiModel {
     public VolunteerBaseModel(JSONObject object) {
         try {
             this.id = Integer.valueOf(object.getInt("id"));
-            this.status = object.getInt("status");
+            this.status = object.getBoolean("verified") ? 1 : 0;
             this.email = object.getString("email") == "null" ? "" : object.getString("email");
-            this.title = object.getString("title") == "null" ? "" : object.getString("title");
-            this.firstName = object.getString("firstName") == "null" ? "" : object.getString("firstName");
-            this.lastName = object.getString("lastName") == "null" ? "" : object.getString("lastName");
-            this.age = object.getString("age") == "null" ? "" : object.getString("age");
+            this.title = object.getString("username") == "null" ? "" : object.getString("username");
+            this.firstName = object.getString("firstname") == "null" ? "" : object.getString("firstname");
+            this.lastName = object.getString("lastname") == "null" ? "" : object.getString("lastname");
+            this.age = object.getString("yearofbirth") == "null" ? "" : object.getString("yearofbirth");
             this.gender = object.getString("gender") == "null" ? "" : object.getString("gender");
-            this.address = new AddressBaseModel(object.getJSONObject("address"));
-            this.enteredIntoSystemDate = object.getString("enteredIntoSystemDate") == "null" ? "" : object.getString("enteredIntoSystemDate");
-            this.everydayTitle = object.getString("everydayTitle") == "null" ? "" : object.getString("everydayTitle");
-            this.matchFound = object.getBoolean("matchFound");
+            this.address = new AddressBaseModel(object.getJSONObject("userInfo"));
+            this.enteredIntoSystemDate = object.getString("createdAt") == "0" ? "" : object.getString("createdAt");
+            this.everydayTitle = "";//object.getString("everydayTitle") == "null" ? "" : object.getString("everydayTitle");
+            this.matchFound = true;//object.getBoolean("matchFound");
+            if (object.has("avatar"))
             this.avatar = object.getString("avatar") == "null" ? "" : object.getString("avatar");
         } catch (JSONException e) {
             e.printStackTrace();

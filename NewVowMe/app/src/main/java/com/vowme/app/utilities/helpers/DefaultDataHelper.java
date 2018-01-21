@@ -23,7 +23,7 @@ public class DefaultDataHelper {
     private static List<Lookup> experiences;
     private static boolean hasLoaded;
     private static int[] imageAvaibilityNames = new int[]{0, R.drawable.bullhorn_icon, R.drawable.calendar_icon, R.drawable.briefcase_icon, R.drawable.clock_icon, R.drawable.bolt_icon, R.drawable.bell_icon, R.drawable.phone_icon};
-    private static int[] imageCauseNames = new int[]{R.mipmap.arts_culture, R.mipmap.young_people, R.mipmap.disability_services, R.mipmap.environment_conservation, R.mipmap.education, R.mipmap.migrant_support, R.mipmap.health, R.mipmap.human_rights, R.mipmap.recreation, R.mipmap.seniors, R.mipmap.other, R.mipmap.sport, R.mipmap.emergency_response, R.mipmap.community_service, R.mipmap.museums_heritage, R.mipmap.family_support, R.mipmap.mentoring_advocacy, R.mipmap.disaster_relief, R.mipmap.animal_welfare, R.mipmap.indigenous_australians, R.mipmap.drug_alcohol_support, R.mipmap.veteran_ex_service_community, R.mipmap.homeless};
+    private static int[] imageCauseNames = new int[]{R.mipmap.arts_culture, R.mipmap.young_people, R.mipmap.disability_services, R.mipmap.environment_conservation, R.mipmap.education, R.mipmap.migrant_support, R.mipmap.health, R.mipmap.human_rights, R.mipmap.recreation, R.mipmap.seniors, R.mipmap.other, R.mipmap.sport, R.mipmap.emergency_response, R.mipmap.community_service, R.mipmap.museums_heritage, R.mipmap.family_support, R.mipmap.mentoring_advocacy, R.mipmap.disaster_relief, R.mipmap.animal_welfare, R.mipmap.drug_alcohol_support, R.mipmap.veteran_ex_service_community, R.mipmap.homeless};
     private static int[] imageIntrestNames = new int[]{R.mipmap.working_with_animals, R.mipmap.aged_care, R.mipmap.childcare, R.mipmap.education_training, R.mipmap.retail_sales, R.mipmap.information_tour_guides_heritage, R.mipmap.driving_transportation, R.mipmap.safety_emergency_services, R.mipmap.counselling_help_line, R.mipmap.accounting_finance, R.mipmap.fundraising_events, R.mipmap.garden_maintenance, R.mipmap.art_craft_photography, R.mipmap.food_preparation_service, 0, R.mipmap.it_web_development, R.mipmap.second_language, R.mipmap.governance_board_commitee, R.mipmap.library_services, R.mipmap.trades_maintenance, R.mipmap.tutoring_mentoring, R.mipmap.mediation_advocacy, R.mipmap.administration_office_management, R.mipmap.sport_physical_activities, R.mipmap.music_entertainment, R.mipmap.marketing_media_communications, R.mipmap.research_policy_analysis, R.mipmap.companionship_social_support, R.mipmap.writing_editing, R.mipmap.disability_support};
     private static DefaultDataHelper instance = null;
     private static List<LookupDesc> interests;
@@ -186,77 +186,81 @@ public class DefaultDataHelper {
             return;
         }
         if (lookupType == Enum.LookupType.EXPERIENCES) {
-            experiences.add(new Lookup(0x0, "0 Years"));
+            experiences.add(new Lookup(0, "0 Year"));
+            experiences.add(new Lookup(1, "1 Years"));
+            experiences.add(new Lookup(2, "2 Years"));
         }
         int i = 0;
-//        while (i < datas.length()) {
-//        }
-        try {
-            switch (lookupType.ordinal()) {
-                case 1:
-                    causes.add(new LookupDesc(datas.getJSONObject(i)));
-                    break;
+        while (i < datas.length()) {
+            try {
+                switch (lookupType.ordinal()) {
+                    case 0:
+                        break;
+                    case 1:
+                        causes.add(new LookupDesc((datas != null && datas.length() != 0) ? datas.getJSONObject(i) : null));
+                        break;
 
-                case 2: {
-                    interests.add(new LookupDesc(datas.getJSONObject(i)));
-                    break;
+                    case 2: {
+                        interests.add(new LookupDesc((datas != null && datas.length() != 0) ? datas.getJSONObject(i) : null));
+                        break;
+                    }
+                    case 3: {
+                        durations.add(new Lookup((datas != null && datas.length() != 0) ? datas.getJSONObject(i) : null));
+                        break;
+                    }
+                    case 4: {
+                        programs.add(new LookupDesc((datas != null && datas.length() != 0) ? datas.getJSONObject(i) : null));
+                        break;
+                    }
+                    case 5: {
+                        cityStateFilter.add(new Lookup((datas != null && datas.length() != 0) ? datas.getJSONObject(i) : null, false));
+                        break;
+                    }
+                    case 6: {
+                        requirements.add(new Lookup((datas != null && datas.length() != 0) ? datas.getJSONObject(i) : null));
+                        break;
+                    }
+                    case 7: {
+                        transports.add(new Lookup((datas != null && datas.length() != 0) ? datas.getJSONObject(i) : null));
+                        break;
+                    }
+                    case 8: {
+                        typeOfCars.add(new Lookup(datas.getJSONObject(i)).getName());
+                        break;
+                    }
+                    case 9: {
+                        tShirtSize.add(datas.getString(i));
+                        break;
+                    }
+                    case 10: {
+                        titles.add((datas != null && datas.length() != 0) ? datas.getString(i) : "");
+                        break;
+                    }
+                    case 11: {
+                        languages.add(new Lookup((datas != null && datas.length() != 0) ? datas.getJSONObject(i) : null));
+                        break;
+                    }
+                    case 12: {
+                        proSkills.add(new Lookup((datas != null && datas.length() != 0) ? datas.getJSONObject(i) : null));
+                        break;
+                    }
+                    case 13: {
+                        experiences.add(new Lookup((datas != null && datas.length() != 0) ? datas.getJSONObject(i) : null));
+                        break;
+                    }
+                    case 14: {
+                        subproSkills.add(new LookupChild((datas != null && datas.length() != 0) ? datas.getJSONObject(i) : null));
+                        break;
+                    }
+                    case 15: {
+                        notificationFrequencies.add(new Lookup((datas != null && datas.length() != 0) ? datas.getJSONObject(i) : null));
+                        break;
+                    }
                 }
-                case 3: {
-                    durations.add(new Lookup(datas.getJSONObject(i)));
-                    break;
-                }
-                case 4: {
-                    programs.add(new LookupDesc(datas.getJSONObject(i)));
-                    break;
-                }
-                case 5: {
-                    cityStateFilter.add(new Lookup(datas.getJSONObject(i), false));
-                    break;
-                }
-                case 6: {
-                    requirements.add(new Lookup(datas.getJSONObject(i)));
-                    break;
-                }
-                case 7: {
-                    transports.add(new Lookup(datas.getJSONObject(i)));
-                    break;
-                }
-                case 8: {
-                    typeOfCars.add(new Lookup(datas.getJSONObject(i)).getName());
-                    break;
-                }
-                case 9: {
-                    tShirtSize.add(datas.getString(i));
-                    break;
-                }
-                case 10: {
-                    titles.add(datas.getString(i));
-                    break;
-                }
-                case 11: {
-                    languages.add(new Lookup(datas.getJSONObject(i)));
-                    break;
-                }
-                case 12: {
-                    proSkills.add(new Lookup(datas.getJSONObject(i)));
-                    break;
-                }
-                case 13: {
-                    experiences.add(new Lookup(datas.getJSONObject(i)));
-                    break;
-                }
-                case 14: {
-                    subproSkills.add(new LookupChild(datas.getJSONObject(i)));
-                    break;
-                }
-                case 15: {
-                    notificationFrequencies.add(new Lookup(datas.getJSONObject(i)));
-                    break;
-                }
+                i = i + 1;
+            } catch (JSONException e) {
+                e.printStackTrace();
             }
-            i = i + 1;
-        } catch (JSONException e) {
-            e.printStackTrace();
         }
     }
 }

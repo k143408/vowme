@@ -11,34 +11,49 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class VolunteerHomeProfileModel extends PostApiModel {
-    public VolunteerAvailableModel avaibilities;
+    public VolunteerAvailableModel avaibilities = new VolunteerAvailableModel();
     public VolunteerBaseModel bases;
-    public List<Lookup> causes;
-    public List<Lookup> durations;
-    public List<Lookup> interests;
-    public List<Lookup> languages;
-    public VolunteerLocalityModel locality;
-    public List<Lookup> programs;
-    public List<Lookup> requirements;
-    public VolunteerAboutModel skillHobbies;
-    public List<VolunteerSkillsModel> skills;
-    public List<LookupChild> subClassifications;
-    public VolunteerWorkModel work;
+    public List<Lookup> causes = new ArrayList<>();
+    public List<Lookup> durations = new ArrayList<>();
+    public List<Lookup> interests = new ArrayList<>();
+    public List<Lookup> languages = new ArrayList<>();
+    public VolunteerLocalityModel locality = new VolunteerLocalityModel();
+    public List<Lookup> programs = new ArrayList<>();
+    public List<Lookup> requirements = new ArrayList<>();
+    public VolunteerAboutModel skillHobbies = new VolunteerAboutModel();
+    public List<VolunteerSkillsModel> skills = new ArrayList<>();
+    public List<LookupChild> subClassifications = new ArrayList<>();
+    public VolunteerWorkModel work = new VolunteerWorkModel();
+
+    public VolunteerHomeProfileModel() {
+
+    }
 
     public VolunteerHomeProfileModel(JSONObject object) {
         try {
-            this.bases = new VolunteerBaseModel(object.getJSONObject("bases"));
+            this.bases = new VolunteerBaseModel(object);
+            if (object.has("avaibilities"))
             this.avaibilities = new VolunteerAvailableModel(object.getJSONObject("avaibilities"));
+            if (object.has("locality"))
             this.locality = new VolunteerLocalityModel(object.getJSONObject("locality"));
+            if (object.has("skillHobbies"))
             this.skillHobbies = new VolunteerAboutModel(object.getJSONObject("skillHobbies"));
+            if (object.has("work"))
             this.work = new VolunteerWorkModel(object.getJSONObject("work"));
+            if (object.has("durations"))
             this.durations = extractLookupData(object.getJSONArray("durations"));
+            if (object.has("causes"))
             this.causes = extractLookupData(object.getJSONArray("causes"));
+            if (object.has("interests"))
             this.interests = extractLookupData(object.getJSONArray("interests"));
+            if (object.has("requirements"))
             this.requirements = extractLookupData(object.getJSONArray("requirements"));
+            if (object.has("languages"))
             this.languages = extractLookupData(object.getJSONArray("languages"));
+            if (object.has("programs"))
             this.programs = extractLookupData(object.getJSONArray("programs"));
             this.subClassifications = new ArrayList();
+            if (object.has("skills"))
             this.skills = extractVolunteerSkillsModelData(object.getJSONArray("skills"));
         } catch (JSONException e) {
             e.printStackTrace();

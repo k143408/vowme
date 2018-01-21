@@ -20,6 +20,7 @@ import android.widget.TextView;
 
 import com.vowme.app.models.Enum.LookupType;
 import com.vowme.app.models.lookUp.Lookup;
+import com.vowme.app.models.lookUp.LookupDesc;
 import com.vowme.app.utilities.adapters.DefaultDataRecyclerViewAdapter;
 import com.vowme.app.utilities.adapters.DefaultDataRecyclerViewAdapter.OnCheckBoxListener;
 import com.vowme.app.utilities.adapters.LocationAutoCompleteArrayAdapter;
@@ -29,7 +30,11 @@ import com.vowme.app.utilities.helpers.DefaultDataHelper;
 import com.vowme.vol.app.R;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public abstract class FilteringActivity extends FormValidationActivity {
     protected List<Integer> idAvaibilitiesSelected;
@@ -111,7 +116,7 @@ public abstract class FilteringActivity extends FormValidationActivity {
         this.mOnEventListener = new C08751();
         this.titleCommitments = (TextView) findViewById(R.id.title_commitments);
         this.searchText = (CustomMultiAutoCompleteTextView) findViewById(R.id.search_edit_frame_location);
-        this.searchText.setUpSearchlocationText(this, getString(R.string.apiViktorURL), getResources().getString(R.string.apiViktorClientSecret), getResources().getString(R.string.apiViktorGetClientSecret), getString(R.string.apiVolunteerURL), getApliAccessToken(), new ArrayList(), IsLoggedinSearh());
+        this.searchText.setUpSearchlocationText(this, getString(R.string.apiVolunteerURL1), getResources().getString(R.string.apiViktorClientSecret), getResources().getString(R.string.apiViktorGetClientSecret), getString(R.string.apiVolunteerURL1), getApliAccessToken(), new ArrayList(), IsLoggedinSearh());
         this.checked = new ArrayList();
         this.items = new ArrayList();
         this.adapter = new DefaultDataRecyclerViewAdapter(this.items, this.mOnEventListener, this.checked);
@@ -133,7 +138,7 @@ public abstract class FilteringActivity extends FormValidationActivity {
     private void displayingLocations() {
         AppCompatMultiAutoCompleteTextView locationsTxt = (AppCompatMultiAutoCompleteTextView) findViewById(R.id.search_edit_frame_location);
         if (this.isLocationTextVisible) {
-            locationsTxt.setVisibility(View.VISIBLE);
+            locationsTxt.setVisibility(View.GONE);
         } else {
             locationsTxt.setVisibility(View.GONE);
         }
@@ -236,19 +241,24 @@ public abstract class FilteringActivity extends FormValidationActivity {
     public void showData(View view) {
         this.title = (String) view.getTag();
         DefaultDataHelper defaultDataHelper;
+        Set<LookupDesc> setItem = new HashSet<>();
         switch (LookupType.valueOf(this.title.toUpperCase())) {
             case CAUSES:
                 this.tmpIdSelected = new ArrayList(this.idCausesSelected);
                 this.tmpNameSelected = new ArrayList(this.nameCauseSelected);
                 defaultDataHelper = this.defaultDataHelper;
-                this.items = DefaultDataHelper.getCauses();
+                setItem.clear();
+                setItem.addAll(DefaultDataHelper.getCauses());
+                this.items = new ArrayList<>(setItem);
                 this.checked = this.idCausesSelected;
                 break;
             case INTERESTS:
                 this.tmpIdSelected = new ArrayList(this.idInterestsSelected);
                 this.tmpNameSelected = new ArrayList(this.nameInterestsSelected);
                 defaultDataHelper = this.defaultDataHelper;
-                this.items = DefaultDataHelper.getInterests();
+                setItem.clear();
+                setItem.addAll(DefaultDataHelper.getInterests());
+                this.items = new ArrayList<>(setItem);
                 this.checked = this.idInterestsSelected;
                 break;
             case DURATIONS:
@@ -290,8 +300,9 @@ public abstract class FilteringActivity extends FormValidationActivity {
         this.adapter.updateItems(this.items);
         this.adapter.updateIdsChecked(this.checked);
         this.adapter.notifyDataSetChanged();
-        View recyclerView = (RecyclerView) getLayoutInflater().inflate(R.layout.list_static_default_data, null, false);
+        RecyclerView recyclerView = (RecyclerView) getLayoutInflater().inflate(R.layout.list_static_default_data, null, false);
 
+        recyclerView.setAdapter(this.adapter);
         this.dialog.setView(recyclerView);
         this.dialog.setTitle(this.title);
         this.dialog.show();

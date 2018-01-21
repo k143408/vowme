@@ -119,7 +119,7 @@ public class SearchFragment extends BaseFragment {
 
         public void onTextChanged(CharSequence s, int start, int before, int count) {
             if (s.length() > 0) {
-                SearchFragment.this.searchClear.setVisibility(0);
+                SearchFragment.this.searchClear.setVisibility(View.VISIBLE);
                 SearchFragment.this.searchClear.setImageResource(R.drawable.ic_clear_24dp);
                 SearchFragment.this.isClearIconVisible = true;
                 return;

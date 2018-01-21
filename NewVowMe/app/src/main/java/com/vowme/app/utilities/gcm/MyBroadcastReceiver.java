@@ -20,7 +20,7 @@ public class MyBroadcastReceiver extends BroadcastReceiver {
 
     private class AddToShortList extends ApiRestFullRequest {
         public AddToShortList(JSONObject params, Context context) {
-            super(HttpRequestType.POST, context.getString(R.string.apiVolunteerURL), "api/opportunity/shortlist", params, MyBroadcastReceiver.this.getUserAccessToken(context));
+            super(HttpRequestType.POST, context.getString(R.string.apiVolunteerURL1), "api/opportunity/shortlist", params, MyBroadcastReceiver.this.getUserAccessToken(context));
         }
     }
 

@@ -73,7 +73,7 @@ public class ShortListFragment extends OpportunityListFragment {
     }
 
     protected JSONArray getJSONArrayOpportunities(String result) throws JSONException {
-        return new JSONObject(result).getJSONArray("items");
+        return new JSONObject(result).getJSONArray("content");
     }
 
     protected void extraOnPostExecuteBodyAction(JSONArray opportunities) {
@@ -82,7 +82,7 @@ public class ShortListFragment extends OpportunityListFragment {
 
     private class GetVolunteerShortlistOpportunities extends ApiRestFullRequest {
         public GetVolunteerShortlistOpportunities(HashMap<String, String> params) {
-            super(HttpRequestType.GET, ShortListFragment.this.getString(R.string.apiVolunteerURL), "api/opportunity/shortlist", (HashMap) params, ShortListFragment.this.getBaseActivity().getUserAccessToken());
+            super(HttpRequestType.GET, ShortListFragment.this.getString(R.string.apiVolunteerURL1), "api/opportunity/shortlist/"+ShortListFragment.this.getBaseActivity().getUserAccessToken()+"?page="+params.get("pageIndex"), (HashMap) params, ShortListFragment.this.getBaseActivity().getUserAccessToken());
         }
 
         protected void onProgressUpdate(Void... values) {
@@ -104,7 +104,8 @@ public class ShortListFragment extends OpportunityListFragment {
 
     private class GetVolunteerShortlistOpportunity extends ApiWCFRequest {
         public GetVolunteerShortlistOpportunity(String oppId) {
-            super(HttpRequestType.GET, ShortListFragment.this.getString(R.string.apiViktorURL), "Opportunities/" + ShortListFragment.this.getResources().getString(R.string.apiViktorClientSecret) + "/" + ShortListFragment.this.getResources().getString(R.string.apiViktorGetClientSecret) + "/" + oppId);
+            super(HttpRequestType.GET, ShortListFragment.this.getString(R.string.apiVolunteerURL1), "api/opportunity/shortlist/"+ShortListFragment.this
+            .getBaseActivity().getUserAccessToken());
         }
 
         protected void onProgressUpdate(Void... values) {

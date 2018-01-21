@@ -79,19 +79,19 @@
                     android:textColor="@drawable/selector_text_button"
                     android:textSize="@dimen/basic_text" />
 
-                <TextView
+                <!--<TextView
                     android:id="@+id/forgot_password"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center|right"
                     android:clickable="true"
-                    android:onClick="goToForgotPassword"
                     android:paddingBottom="16.0dip"
                     android:paddingTop="16.0dip"
                     android:singleLine="true"
                     android:text="forgot password?"
                     android:textColor="@color/sec_icon_light"
                     android:textSize="@dimen/subtitle" />
+                    -->
             </FrameLayout>
         </LinearLayout>
     </android.support.v7.widget.CardView>
@@ -132,7 +132,7 @@
                 android:clickable="true"
                 android:onClick="facebookLogin" />
 
-            <ImageView
+          <!--  <ImageView
                 android:id="@+id/ic_google"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -164,6 +164,7 @@
                 android:clickable="true"
                 android:onClick="twitterLogin"
                 android:src="@drawable/circle_twitter" />
+            -->
         </LinearLayout>
     </android.support.v7.widget.CardView>
 </RelativeLayout>

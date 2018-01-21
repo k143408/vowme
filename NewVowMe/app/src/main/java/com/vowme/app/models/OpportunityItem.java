@@ -35,55 +35,41 @@ public class OpportunityItem extends PostApiModel {
 
     public OpportunityItem(JSONObject object, boolean isAutenticatedSearch) {
         try {
-            if (isAutenticatedSearch) {
-                id = object.getInt("id");
-                name = object.getString("name");
-                description = object.getString("description");
-                serviceFocus = object.getString("serviceFocus");
-                duration = object.getString("duration");
-                disabledAccess = object.getBoolean("disabledAccess");
-                suburb = object.getString("suburb");
-                state = object.getString("state");
-                stateCode = object.getString("stateCode");
-                organisationId = object.getInt("organisationId");
-                organisationName = object.getString("organisationName");
-                shortDescription = object.getString("description");
-                orgServiceFocus = object.getString("orgServiceFocus");
-                isExpired = object.getBoolean("isExpired");
-                isShortlisted = object.getBoolean("isShortlisted");
-                date = object.getString("date");
-                SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd\'T\'HH:mm:ss");
-                dateObject = dateFormat.parse(date);
-                return;
-            }
-            id = object.getInt("Id");
-            name = object.getString("Name");
-            description = object.getString("Description");
-            serviceFocus = object.getString("ServiceFocus");
-            duration = object.getString("Duration");
-            disabledAccess = object.getBoolean("DisabledAccess");
-            suburb = object.getString("Suburb");
-            state = object.getString("State");
-            stateCode = object.getString("StateCode");
-            organisationId = object.getInt("OrganisationId");
-            organisationName = object.getString("OrganisationName");
-            shortDescription = object.getString("ShortDescription");
-            orgServiceFocus = object.getString("OrganisationType");
+            id = object.getInt("id");
+            name = object.getString("name");
+            description = object.getString("description");
+            serviceFocus = object.getJSONArray("causeSkills").toString();
+            duration = setDuration(object.getInt("registrationdate") - object.getInt("registrationdeadline"));
+            int visibile = object.getInt("visibilitystatus");
+            disabledAccess = visibile == 1 ? true : false;
+            suburb = object.getString("address");
+            state = object.getString("city");
+            stateCode = object.getString("zipcode");
+            organisationId = object.getInt("id");
+            organisationName = object.getJSONObject("user").getJSONObject("userInfo").getString("organizationName");
+            shortDescription = object.getString("info");
+            orgServiceFocus = object.getJSONArray("causetypes").toString();
             isExpired = false;
-            isShortlisted = false;
-            date = object.getString("CreateDate");
+            isShortlisted = object.getJSONArray("shortlists").length() == 0 ? false:true ;
+            date = object.getString("createdAt");
             SimpleDateFormat dateFormat = new SimpleDateFormat("EE dd MMM yy", Locale.ENGLISH);
-            if ("New".equals(date)) {
+            if (date == null || "null".equals(date) || "0".equals(date)) {
                 dateObject = new Date();
                 return;
             }
-            dateObject = dateFormat.parse(date);
+            dateObject = new Date(new Long(date));
             return;
         } catch (JSONException e) {
             e.printStackTrace();
             return;
-        } catch (ParseException e) {
-            e.printStackTrace();
+        }
+    }
+
+    private String setDuration(int i) {
+        if (i > 100) {
+            return "Long Term";
+        } else {
+            return "Short Term";
         }
     }
 

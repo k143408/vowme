@@ -128,7 +128,7 @@
 
     <style name="LightTitle" parent="@android:style/TextAppearance">
         <item name="android:textSize">@dimen/title</item>
-        <item name="android:textColor">@color/text_dark</item>
+        <item name="android:textColor">@color/slight_grey_bg</item>
         <item name="android:paddingBottom">4.0dip</item>
         <item name="android:layout_width">fill_parent</item>
         <item name="android:layout_height">wrap_content</item>

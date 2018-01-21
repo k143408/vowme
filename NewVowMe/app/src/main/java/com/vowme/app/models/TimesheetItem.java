@@ -12,12 +12,20 @@ public class TimesheetItem extends ViraHoursModel {
     public String name;
 
     public TimesheetItem() {
-
     }
 
-    public TimesheetItem(JSONObject object, String name) {
+    public TimesheetItem(String name,Integer causeId) {
+        super();
+        this.name = name;
+        this.positionId = causeId;
+        this.dateAsString = new SimpleDateFormat("dd/MM/yyyy").format(this.date);
+    }
+
+    public TimesheetItem(JSONObject object, String name, Integer causeId) {
         super(object);
         this.name = name;
+        this.positionId = causeId;
+        if (this.date != null)
         this.dateAsString = new SimpleDateFormat("dd/MM/yyyy").format(this.date);
     }
 

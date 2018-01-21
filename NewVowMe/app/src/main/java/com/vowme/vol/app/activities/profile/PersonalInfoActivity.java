@@ -73,9 +73,9 @@ public class PersonalInfoActivity extends ProfileFormActivity {
         this.postcode = (TextView) findViewById(R.id.postcode_txt);
         this.contactName = (TextView) findViewById(R.id.name_txt);
         this.contactPhone = (TextView) findViewById(R.id.phone_contact_txt);
-        TextInputLayout suburbtLayout = (TextInputLayout) findViewById(R.id.suburb_include);
-        this.suburb = (CustomSpinnerTextView) suburbtLayout.findViewById(R.id.spinner_txt);
-        suburbtLayout.setHint("Suburb*");
+        //TextInputLayout suburbtLayout = (TextInputLayout) findViewById(R.id.suburb_include);
+        //this.suburb = (CustomSpinnerTextView) suburbtLayout.findViewById(R.id.spinner_txt);
+        //suburbtLayout.setHint("Suburb*");
         dateOfbirth = (TextView) findViewById(R.id.birth_txt);
         dateOfbirth.setInputType(0);
         dateOfbirth.setOnClickListener(new C08222());
@@ -83,21 +83,6 @@ public class PersonalInfoActivity extends ProfileFormActivity {
         this.driver = (TextView) findViewById(R.id.driver_txt);
         this.dietary = (TextView) findViewById(R.id.dietary_txt);
         this.medical = (TextView) findViewById(R.id.medical_txt);
-        TextInputLayout transportLayout = (TextInputLayout) findViewById(R.id.transport_include);
-        this.transport = (CustomSpinnerTextView) transportLayout.findViewById(R.id.spinner_txt);
-        transportLayout.setHint("Transport");
-        TextInputLayout typeCarLayout = (TextInputLayout) findViewById(R.id.type_car_include);
-        this.typeCar = (CustomSpinnerTextView) typeCarLayout.findViewById(R.id.spinner_txt);
-        typeCarLayout.setHint("Type of Car");
-        TextInputLayout tShirtLayout = (TextInputLayout) findViewById(R.id.tshirt_size_include);
-        this.tShirt = (CustomSpinnerTextView) tShirtLayout.findViewById(R.id.spinner_txt);
-        tShirtLayout.setHint("T-shirt Size");
-        TextInputLayout beforeLayout = (TextInputLayout) findViewById(R.id.before_include);
-        this.before = (CustomSpinnerTextView) beforeLayout.findViewById(R.id.spinner_txt);
-        beforeLayout.setHint("Volunteered Before");
-        TextInputLayout attendedLayout = (TextInputLayout) findViewById(R.id.attended_include);
-        this.attended = (CustomSpinnerTextView) attendedLayout.findViewById(R.id.spinner_txt);
-        attendedLayout.setHint("Attended Info Session");
         this.transport.setUpSpinnerTextView(17367043, DefaultDataHelper.getTransports());
         this.typeCar.setUpSpinnerTextView(17367043, DefaultDataHelper.getTypeOfCars());
         this.tShirt.setUpSpinnerTextView(17367043, DefaultDataHelper.gettShirtSize());
@@ -117,10 +102,11 @@ public class PersonalInfoActivity extends ProfileFormActivity {
             floatingPostcodeText.getEditText().addTextChangedListener(getFloatingTextRegexValidator(floatingPostcodeText, getResources().getString(R.string.postcode_regex), "Please enter a postcode.", "The postcode must be a valid number."));
             floatingPostcodeText.getEditText().addTextChangedListener(new C08244());
         }
-        TextInputLayout floatingSuburbText = (TextInputLayout) findViewById(R.id.suburb_include);
+      /*  TextInputLayout floatingSuburbText = (TextInputLayout) findViewById(R.id.suburb_include);
         if (!(floatingSuburbText == null || floatingSuburbText.getEditText() == null)) {
             floatingSuburbText.getEditText().addTextChangedListener(getFloatingTextLengthValidator(floatingSuburbText, 1, "Please select your suburb."));
         }
+      */
         TextInputLayout floatingContactText = (TextInputLayout) findViewById(R.id.input_layout_name);
         if (!(floatingContactText == null || floatingContactText.getEditText() == null)) {
             floatingContactText.getEditText().addTextChangedListener(getFloatingTextLengthValidator(floatingContactText, 0, 100, null, "Your emergency contact name can have length up to 100 characters."));
@@ -178,11 +164,12 @@ public class PersonalInfoActivity extends ProfileFormActivity {
                     e.printStackTrace();
                 }
             }
-            DatePickerDialog dialog = new DatePickerDialog(getActivity(), this, c.get(1), c.get(2), c.get(5));
+            int year = c.get(Calendar.YEAR);
+            int month = c.get(Calendar.MONTH);
+            int day = c.get(Calendar.DAY_OF_MONTH);
+            DatePickerDialog dialog = new DatePickerDialog(getActivity(), this, year, month, day);
             c.setTime(new Date());
-            int year = c.get(1);
-            int month = c.get(2);
-            int day = c.get(5);
+
             c.set(year - 18, month - 1, day, 0, 0);
             dialog.getDatePicker().setMaxDate(c.getTimeInMillis());
             c.set(year - 120, month - 1, day, 0, 0);

@@ -145,6 +145,7 @@ CREATE TABLE `user` (
   `is_active` bit(1)  NULL,
   `created_at` int(11)  NULL,
   `updated_at` int(11)  NULL,
+  `provider` VARCHAR(45) NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `id_UNIQUE` (`id`)
   );

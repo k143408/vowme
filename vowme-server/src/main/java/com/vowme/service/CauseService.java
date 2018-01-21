@@ -6,6 +6,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
 import com.vowme.model.Cause;
+import com.vowme.model.User;
 import com.vowme.util.helper.CauseShortDetail;
 import com.vowme.util.helper.KeyValue;
 
@@ -73,8 +74,22 @@ public interface CauseService {
 	Cause addCauseWithTeam(Cause cause);
 	
 	Cause saveCause(Cause cause);
-
 	
 	List<Cause> getAllCause();
 
+	Page<Cause> getShortListCause(Long userId, Pageable pageable);
+
+	Page<Cause> getAccpectedCause(Long userId, Pageable pageable);
+
+	Page<Cause> getRecommendedCause(Long userId, Pageable pageable);
+
+	User getEOI(Long userId, Long causeId);
+
+	Boolean addShortListCause(Long userId, Long causeId);
+
+	Boolean deleteShortListCause(Long userId, Long causeId);
+
+	Page<Cause> getExpressedinterestCause(Long userId, Pageable pageable);
+
+	Page<Cause> getAllCause(Pageable pageable);
 }

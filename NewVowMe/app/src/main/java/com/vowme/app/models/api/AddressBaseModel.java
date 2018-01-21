@@ -14,13 +14,13 @@ public class AddressBaseModel extends PostApiModel {
 
     public AddressBaseModel(JSONObject object) {
         try {
-            this.id = object.getInt("id");
-            this.suburbId = object.getInt("suburbId");
-            this.street = object.getString("street") == "null" ? "" : object.getString("street");
-            this.suburbName = object.getString("suburbName") == "null" ? "" : object.getString("suburbName");
-            this.stateName = object.getString("stateName");
-            this.postcode = Integer.valueOf(object.getInt("postcode"));
-            this.stateId = object.getInt("stateId");
+            this.id = 0;//object.getInt("id");
+            this.suburbId = 0;//object.getInt("suburbId");
+            this.street = object.getString("address") == "null" ? "" : object.getString("address");
+            this.suburbName = "";//object.getString("suburbName") == "null" ? "" : object.getString("suburbName");
+            this.stateName = object.getString("city");
+            this.postcode = Integer.valueOf(object.getInt("zipcode"));
+            this.stateId = 0;//object.getInt("stateId");
         } catch (JSONException e) {
             e.printStackTrace();
         }

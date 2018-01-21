@@ -9,11 +9,15 @@ import java.util.List;
 
 public class VolunteerWorkModel extends PostApiModel {
     public String compagny;
-    public List<OpportunityExperience> experiences;
+    public List<OpportunityExperience> experiences = new ArrayList<>();
     public int id;
     public String jobTitle;
     public String linkedin;
     public String workExperience;
+
+    public VolunteerWorkModel() {
+
+    }
 
     public VolunteerWorkModel(JSONObject object) {
         try {

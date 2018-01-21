@@ -77,13 +77,13 @@ public class BaseActivity extends AppCompatActivity {
 
     public class AddToShortList extends ApiRestFullRequest {
         public AddToShortList(JSONObject params) {
-            super(HttpRequestType.POST, BaseActivity.this.getString(R.string.apiVolunteerURL), "api/opportunity/shortlist", params, BaseActivity.this.getUserAccessToken());
+            super(HttpRequestType.POST, BaseActivity.this.getString(R.string.apiVolunteerURL1), "api/opportunity/shortlist/"+BaseActivity.this.getUserAccessToken(), params, BaseActivity.this.getUserAccessToken());
         }
     }
 
     public class DeleteFromShortlist extends ApiRestFullRequest {
         public DeleteFromShortlist(int oppId) {
-            super(HttpRequestType.DELETE, BaseActivity.this.getString(R.string.apiVolunteerURL), "api/opportunity/shortlist/" + Integer.toString(oppId), BaseActivity.this.getUserAccessToken());
+            super(HttpRequestType.DELETE, BaseActivity.this.getString(R.string.apiVolunteerURL1), "api/opportunity/shortlist/" + Integer.toString(oppId)+"/"+BaseActivity.this.getUserAccessToken(), BaseActivity.this.getUserAccessToken());
         }
     }
 
@@ -106,7 +106,7 @@ public class BaseActivity extends AppCompatActivity {
 
     private class GetCityState extends ApiWCFRequest {
         public GetCityState() {
-            super(HttpRequestType.GET, BaseActivity.this.getString(R.string.apiViktorURL), "Locations/" + BaseActivity.this.getString(R.string.apiViktorClientSecret) + "/" + BaseActivity.this.getString(R.string.apiViktorGetClientSecret));
+            super(HttpRequestType.GET, BaseActivity.this.getString(R.string.apiVolunteerURL1), "api/lookup/location");
         }
     }
 
@@ -114,7 +114,7 @@ public class BaseActivity extends AppCompatActivity {
         private LookupType lookupType;
 
         public GetLookup(LookupType lookupType) {
-            super(HttpRequestType.GET, BaseActivity.this.getString(R.string.apiVolunteerURL), "api/lookup/" + lookupType.getValue(), BaseActivity.this.getApliAccessToken());
+            super(HttpRequestType.GET, BaseActivity.this.getString(R.string.apiVolunteerURL1), "api/lookup/" + lookupType.getValue(), BaseActivity.this.getApliAccessToken());
             this.lookupType = lookupType;
         }
 
@@ -594,7 +594,6 @@ public class BaseActivity extends AppCompatActivity {
             intent.setClass(getApplicationContext(), MainActivity.class);
             startActivity(intent);
         }
-        putUserHaveDoneWizard(false);
         finish();
     }
 

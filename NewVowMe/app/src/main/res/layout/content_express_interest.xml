@@ -139,8 +139,8 @@
                             android:layout_width="fill_parent"
                             android:layout_height="wrap_content"
                             android:layout_centerHorizontal="true"
-                            android:hint="Postcode*"
-                            android:inputType="number"
+                            android:hint="CNIC*"
+                            android:inputType="text"
                             android:textColor="@color/text_light"
                             android:textColorHint="@color/dis_hint_light"
                             android:textSize="@dimen/basic_text" />
@@ -176,17 +176,18 @@
                 android:layout_height="wrap_content"
                 android:paddingBottom="8.0dip">
 
-                <govol.utilities.customWidgets.CustomMultilineActionTextEdit
+                <EditText
                     android:id="@+id/skills_txt"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:layout_centerHorizontal="true"
-                    android:hint="Skills and qualifications"
+                    android:hint="Description"
                     android:imeOptions="actionDone"
                     android:minLines="3"
                     android:textColor="@color/text_light"
                     android:textColorHint="@color/dis_hint_light"
                     android:textSize="@dimen/basic_text" />
+
             </android.support.design.widget.TextInputLayout>
 
             <TextView

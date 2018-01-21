@@ -1,7 +1,9 @@
 package com.vowme.model;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.Column;
@@ -144,6 +146,29 @@ public class Cause extends BaseModel implements Serializable {
 	@Column
 	private Long zipcode;
 	
+	@Column
+	private Double latitude;
+	
+	@Column
+	private Double longitude;
+	
+
+	public Double getLatitude() {
+		return latitude;
+	}
+
+	public void setLatitude(Double latitude) {
+		this.latitude = latitude;
+	}
+
+	public Double getLongitude() {
+		return longitude;
+	}
+
+	public void setLongitude(Double longitude) {
+		this.longitude = longitude;
+	}
+
 	/** The participates. */
 	// bi-directional many-to-one association to Participate
 	@OneToMany(mappedBy = "cause")
@@ -179,6 +204,40 @@ public class Cause extends BaseModel implements Serializable {
 	/** The cause skills. */
 	@OneToMany(mappedBy="cause")
 	private Set<CauseSkill> causeSkills;
+
+	@OneToMany(mappedBy="cause")
+	private List<Shortlist> shortlists;
+
+	@OneToMany(mappedBy="cause")
+	private List<Recommended> recommended;
+	
+	@OneToMany(mappedBy="cause")
+	private List<Timesheet> timesheets;
+	
+	
+	public List<Timesheet> getTimesheets() {
+		return timesheets;
+	}
+
+	public void setTimesheets(List<Timesheet> timesheets) {
+		this.timesheets = timesheets;
+	}
+
+	public List<Recommended> getRecommended() {
+		return recommended;
+	}
+
+	public void setRecommended(List<Recommended> recommended) {
+		this.recommended = recommended;
+	}
+
+	public List<Shortlist> getShortlists() {
+		return shortlists;
+	}
+
+	public void setShortlists(List<Shortlist> shortlists) {
+		this.shortlists = shortlists;
+	}
 
 	/**
 	 * Gets the cause skills.
@@ -859,7 +918,7 @@ public class Cause extends BaseModel implements Serializable {
 	 * @return the latlong
 	 */
 	public String getLatlong() {
-		return latlong;
+		return String.format("%s,%s", getLatitude(),getLongitude());
 	}
 
 	/**

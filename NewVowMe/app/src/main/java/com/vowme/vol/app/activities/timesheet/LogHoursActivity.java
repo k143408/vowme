@@ -92,13 +92,13 @@ public class LogHoursActivity extends SaveMenuFormValidationActivity {
         }
         dateOfLog = (TextView) findViewById(R.id.date_txt);
         dateOfLog.setInputType(0);
-        dateOfLog.setOnClickListener(new C08681());
-        dateOfLog.setOnFocusChangeListener(new C08692());
+        dateOfLog.setOnClickListener(new DatePickerListener());
+        dateOfLog.setOnFocusChangeListener(new DatePickerOnFocusChange());
         dateOfLog.setText(model.dateAsString);
         timeOfLog = (TextView) findViewById(R.id.time_txt);
         timeOfLog.setInputType(0);
-        timeOfLog.setOnClickListener(new C08703());
-        timeOfLog.setOnFocusChangeListener(new C08714());
+        timeOfLog.setOnClickListener(new TimePickerFragmentOnClickListener());
+        timeOfLog.setOnFocusChangeListener(new TimePickerFragmentOnFocusChange());
         timeOfLog.setText(getDuration());
     }
 
@@ -114,7 +114,7 @@ public class LogHoursActivity extends SaveMenuFormValidationActivity {
             String opportunityName = this.opportunity.getText().toString();
             model.positionId = ArrayListHelper.getIdFromName(opportunityName, this.opportunitiesToLog);
         }
-        new putVolunteerFewThings(new ViraHoursModel(model).toJsonObject().toString()).execute(new Void[0]);
+        new putVolunteerFewThings(model.toJsonObject()).execute(new Void[0]);
     }
 
     protected int getLayoutResID() {
@@ -165,8 +165,8 @@ public class LogHoursActivity extends SaveMenuFormValidationActivity {
         }
     }
 
-    class C08681 implements OnClickListener {
-        C08681() {
+    class DatePickerListener implements OnClickListener {
+        DatePickerListener() {
         }
 
         public void onClick(View v) {
@@ -174,8 +174,8 @@ public class LogHoursActivity extends SaveMenuFormValidationActivity {
         }
     }
 
-    class C08692 implements OnFocusChangeListener {
-        C08692() {
+    class DatePickerOnFocusChange implements OnFocusChangeListener {
+        DatePickerOnFocusChange() {
         }
 
         public void onFocusChange(View v, boolean hasFocus) {
@@ -185,8 +185,8 @@ public class LogHoursActivity extends SaveMenuFormValidationActivity {
         }
     }
 
-    class C08703 implements OnClickListener {
-        C08703() {
+    class TimePickerFragmentOnClickListener implements OnClickListener {
+        TimePickerFragmentOnClickListener() {
         }
 
         public void onClick(View v) {
@@ -194,8 +194,8 @@ public class LogHoursActivity extends SaveMenuFormValidationActivity {
         }
     }
 
-    class C08714 implements OnFocusChangeListener {
-        C08714() {
+    class TimePickerFragmentOnFocusChange implements OnFocusChangeListener {
+        TimePickerFragmentOnFocusChange() {
         }
 
         public void onFocusChange(View v, boolean hasFocus) {
@@ -206,8 +206,8 @@ public class LogHoursActivity extends SaveMenuFormValidationActivity {
     }
 
     public class putVolunteerFewThings extends ApiRestFullRequest {
-        public putVolunteerFewThings(String param) {
-            super(HttpRequestType.POST, LogHoursActivity.this.getString(R.string.apiVolunteerURL), "api/opportunity/" + Integer.toString(LogHoursActivity.model.positionId) + "/ViraHours", param, LogHoursActivity.this.getUserAccessToken());
+        public putVolunteerFewThings(JSONObject param) {
+            super(HttpRequestType.POST, LogHoursActivity.this.getString(R.string.apiVolunteerURL1), "api/opportunity/log/" + LogHoursActivity.this.getUserAccessToken() + "/" + Integer.toString(LogHoursActivity.model.positionId), param, LogHoursActivity.this.getUserAccessToken());
         }
 
         protected void onPostExecuteBody(String result) {

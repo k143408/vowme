@@ -38,7 +38,7 @@ public class OrganisationActivity extends BaseActivity {
 
     private class GetViktorOrganisation extends ApiWCFRequest {
         public GetViktorOrganisation() {
-            super(HttpRequestType.GET, OrganisationActivity.this.getString(R.string.apiViktorURL), "Organisation/" + OrganisationActivity.this.getResources().getString(R.string.apiViktorClientSecret) + "/" + OrganisationActivity.this.getResources().getString(R.string.apiViktorGetClientSecret) + "/" + OrganisationActivity.this.id);
+            super(HttpRequestType.GET, OrganisationActivity.this.getString(R.string.apiVolunteerURL1), "api/organisation/" + OrganisationActivity.this.id);
         }
 
         protected void onPostExecuteBody(String result) {
@@ -52,7 +52,7 @@ public class OrganisationActivity extends BaseActivity {
 
     private class GetVolunteerOrganisation extends ApiRestFullRequest {
         public GetVolunteerOrganisation() {
-            super(HttpRequestType.GET, OrganisationActivity.this.getString(R.string.apiVolunteerURL), "api/organisation/" + OrganisationActivity.this.id, OrganisationActivity.this.getUserAccessToken());
+            super(HttpRequestType.GET, OrganisationActivity.this.getString(R.string.apiVolunteerURL1), "api/organisation/" + OrganisationActivity.this.id, OrganisationActivity.this.getUserAccessToken());
         }
 
         protected void onPostExecuteBody(String result) {
@@ -113,11 +113,11 @@ public class OrganisationActivity extends BaseActivity {
         }
         this.orgaName.setText(this.organisation.getName());
         this.orgaWebsite.setText(this.organisation.getWebsite());
-        this.orgaLocation.setText(this.organisation.getSuburb() + ", " + this.organisation.getStateCode());
+        this.orgaLocation.setText(this.organisation.getSuburb());
         this.orgaCause.setText(this.organisation.getServiceFocus());
         this.orgaDesc.setText(this.organisation.getDescription());
         this.orgaStreet.setText(this.organisation.getStreet());
         this.orgaSubPostcode.setText(this.organisation.getSuburb() + " " + this.organisation.getPostcode());
-        this.orgaSate.setText(this.organisation.getState() + " - Australia");
+     //   this.orgaSate.setText(this.organisation.getState() + " - Australia");
     }
 }

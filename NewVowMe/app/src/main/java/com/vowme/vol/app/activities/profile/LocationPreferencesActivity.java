@@ -33,7 +33,7 @@ public class LocationPreferencesActivity extends ProfileFormActivity {
         this.tmpWidenLocation = this.volModel.locality.surroundingAreas;
         extractLocations(this.volModel.locality.location);
         CustomTokenizer token = new CustomTokenizer();
-        this.searchText.setUpSearchlocationText(this, getString(R.string.apiViktorURL), getResources().getString(R.string.apiViktorClientSecret), getResources().getString(R.string.apiViktorGetClientSecret), getString(R.string.apiVolunteerURL), getApliAccessToken(), this.nameLocation, true);
+        this.searchText.setUpSearchlocationText(this, getString(R.string.apiVolunteerURL1), getResources().getString(R.string.apiViktorClientSecret), getResources().getString(R.string.apiViktorGetClientSecret), getString(R.string.apiVolunteerURL1), getApliAccessToken(), this.nameLocation, true);
         for (int i = 0; i < this.nameLocation.size(); i++) {
             this.searchText.getText().append(token.terminateToken((CharSequence) this.nameLocation.get(i)));
             this.searchText.addToItems((String) this.nameLocation.get(i));
