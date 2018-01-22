@@ -68,6 +68,7 @@ public class OpportunitiesFragment extends BaseFragment {
             LinearLayout tabExpressOfInterest = (LinearLayout) LayoutInflater.from(getBaseActivity()).inflate(R.layout.custom_tab_express_of_interest, null);
             ((TextView) tabExpressOfInterest.findViewById(R.id.tab_eoi)).setTypeface(font);
             this.tabLayoutOpp.getTabAt(2).setCustomView(tabExpressOfInterest);
+
         }
     }
 

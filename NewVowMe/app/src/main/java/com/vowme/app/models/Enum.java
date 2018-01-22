@@ -143,7 +143,8 @@ public class Enum {
         EXPRESSED(3),
         SEARCHRESULT(4),
         LASTROW(5),
-        TIMESHEET(6);
+        TIMESHEET(6),
+        FEEDBACK(7);
 
         private int value;
 

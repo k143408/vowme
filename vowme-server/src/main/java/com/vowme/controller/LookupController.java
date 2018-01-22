@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.vowme.dto.LocationDTO;
 import com.vowme.model.Lookup;
+import com.vowme.model.Skill;
+import com.vowme.repository.SkillRepository;
 import com.vowme.service.LookupService;
 import com.vowme.util.AppConstants;
 
@@ -20,6 +22,9 @@ public class LookupController extends BaseController {
 	@Autowired
 	private LookupService lookupService;
 
+	@Autowired
+	private SkillRepository skillRepository;
+	
 	@GetMapping("location")
 	public List<LocationDTO> get(@RequestParam(required = false, name = "name") String location) {
 		return location == null ? lookupService.getLocations() : lookupService.getLocation(location);
@@ -38,6 +43,11 @@ public class LookupController extends BaseController {
 	@GetMapping("interests")
 	public List<Lookup> getInterests() {
 		return lookupService.getLookup(AppConstants.INTEREST);
+	}
+	
+	@GetMapping("skills")
+	public List<Skill> getskills() {
+		return skillRepository.findAll();
 	}
 
 	@GetMapping("programs/explanation")

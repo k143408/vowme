@@ -21,48 +21,16 @@ declare var $: any;
 export class DashboardComponent extends BaseComponent implements OnInit {
   constructor(private volunteerService: VolunteerService, private chartService: ChartService, protected causeService: CauseService, protected userSerivce: UserService) { super(causeService, userSerivce) }
   
-  onCauseChange(value){
-    this.onLoadChart();
+  onCauseChange(causeId){
+    this.onLoadChart(causeId);
   }
 
-  onLoadChart() {
-    this.chartService.getChartStatus(this.userID).subscribe(map => {
-      var dataSales = {
-        labels: ['9:00AM', '12:00AM', '3:00PM', '6:00PM', '9:00PM', '12:00PM', '3:00AM', '6:00AM'],
-        series: [
-          map[0],
-          map[1],
-          map[2]
-        ]
-      };
-
-      var optionsSales = {
-        low: 20,
-        high: 1000,
-        showArea: true,
-        height: "245px",
-        axisX: {
-          showGrid: true,
-        },
-        lineSmooth: Chartist.Interpolation.simple({
-          divisor: 3
-        }),
-        showLine: true,
-        showPoint: true,
-      };
-
-      var responsiveSales = [
-        ['screen and (max-width: 640px)', {
-          axisX: {
-            labelInterpolationFnc: function (value) {
-              return value[0];
-            }
-          }
-        }]
-      ];
-
-      Chartist.Line('#chartHours', dataSales, optionsSales, responsiveSales);
-
+  onLoadChart(causeId) {
+    this.chartService.getChartStatus(causeId).subscribe(map=>{
+      Chartist.Pie('#chartPreferences', {
+        labels: [map[0]+'%', map[2]+'%', map[1]+'%'],
+        series: [map[0], map[2], map[1]]
+      });
     });
   }
 
@@ -76,7 +44,7 @@ export class DashboardComponent extends BaseComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.onLoadChart();
+    this.onLoadChart(0);
     this.getVolunteers();
     var data = {
       labels: ['Jan', 'Feb', 'Mar', 'Apr', 'Mai', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
@@ -126,10 +94,7 @@ export class DashboardComponent extends BaseComponent implements OnInit {
 
     Chartist.Pie('#chartPreferences', dataPreferences, optionsPreferences);
 
-    Chartist.Pie('#chartPreferences', {
-      labels: ['62%', '32%', '6%'],
-      series: [62, 32, 6]
-    });
+    
 
     this.getCauses();
   }

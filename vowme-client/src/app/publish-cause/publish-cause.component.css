@@ -1,0 +1,9 @@
+.swal2-overflow {
+    overflow-x: visible;
+    overflow-y: visible;
+  }
+.fix-div {
+    height: 100px;
+    bottom: 0;
+    width: 100%;
+}

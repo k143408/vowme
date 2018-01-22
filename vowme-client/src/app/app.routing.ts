@@ -14,6 +14,7 @@ import { IconsComponent } from './icons/icons.component';
 import { MapsComponent } from './maps/maps.component';
 import { NotificationsComponent } from './notifications/notifications.component';
 import { LoginComponent } from 'app/login/login.component';
+import { PublishCauseComponent } from 'app/publish-cause/publish-cause.component';
 
 
 export const AppRoutes: Routes = [
@@ -77,6 +78,10 @@ export const AppRoutes: Routes = [
     {
         path: 'notifications',
         component: NotificationsComponent
+    },
+    {
+        path: 'create-cause',
+        component: PublishCauseComponent
     }
 
 ]

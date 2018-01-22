@@ -18,6 +18,6 @@ public interface ChartService {
 	 * @param pageable the pageable
 	 * @return the report
 	 */
-	Map<Integer, List<Integer>> getReport(Long causeId, Pageable pageable);
+	Map<Integer, Long> getReport(Long causeId, Pageable pageable);
 
 }

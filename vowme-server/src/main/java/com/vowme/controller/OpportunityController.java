@@ -57,9 +57,10 @@ public class OpportunityController extends BaseController {
 		Page<Cause> recommendedCause = causeService.getRecommendedCause(userId, pageable);
 		return recommendedCause.getTotalElements() == 0 ? causeService.getAllCause(pageable) : recommendedCause;
 	}
-	
+
 	@GetMapping("expressedinterest/{id}")
-	public Page<Cause> expressedinterest(@PathVariable("id") Long userId, @PageableDefault(size = 4) Pageable pageable) {
+	public Page<Cause> expressedinterest(@PathVariable("id") Long userId,
+			@PageableDefault(size = 4) Pageable pageable) {
 		return causeService.getExpressedinterestCause(userId, pageable);
 	}
 
@@ -83,11 +84,18 @@ public class OpportunityController extends BaseController {
 			return new PostExpressionOfInterestResult("APPLICATION_EXISTS");
 		}
 	}
-	
+
 	@PostMapping("log/{userId}/{causeId}")
 	public Boolean log(@RequestBody DateParam dateParam, @PathVariable("userId") Long userId,
 			@PathVariable("causeId") Long causeId) {
-		return userService.logHours(dateParam,userId,causeId);	
+		return userService.logHours(dateParam, userId, causeId);
+	}
+
+	@PostMapping("feedback/{userId}/{causeId}")
+	public PostExpressionOfInterestResult feedback(@RequestBody EOI eoi, @PathVariable("userId") Long userId,
+			@PathVariable("causeId") Long causeId) {
+
+		return userService.postFeedback(eoi,userId,causeId);
 	}
 
 }

@@ -1,6 +1,10 @@
 import { Skill } from './skill';
 
-export interface Skills {
+export class Skills {
     id: number;
     skill: Skill;
+
+    constructor(look:Skill){
+        this.skill = look;
+    }
 }

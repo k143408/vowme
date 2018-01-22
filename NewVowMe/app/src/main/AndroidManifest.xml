@@ -156,6 +156,9 @@
             android:name=".activities.expressOfInterest.ExpressInterestActivity"
             android:label="" />
         <activity
+            android:name=".activities.feedback.FeedbackActivity"
+            android:label="" />
+        <activity
             android:name=".activities.opportunity.OpportunityMapsActivity"
             android:label="@string/title_activity_opportunity_maps" />
         <activity

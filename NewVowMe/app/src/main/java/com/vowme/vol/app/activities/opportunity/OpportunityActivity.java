@@ -31,6 +31,7 @@ import com.vowme.app.utilities.helpers.TypefacesHelper;
 import com.vowme.app.utilities.spannables.CustomClickableSpan;
 import com.vowme.vol.app.R;
 import com.vowme.vol.app.activities.expressOfInterest.ExpressInterestActivity;
+import com.vowme.vol.app.activities.feedback.FeedbackActivity;
 import com.vowme.vol.app.activities.organisation.OrganisationActivity;
 
 import org.json.JSONException;
@@ -124,7 +125,7 @@ public class OpportunityActivity extends BaseActivity implements OnMapReadyCallb
     }
 
     private void initDataOpportunity(JSONObject result, boolean isAutenticatedSearch) {
-        this.opportunity = new OpportunityDetails(result, isAutenticatedSearch);
+        this.opportunity = new OpportunityDetails(result, isAutenticatedSearch,OpportunityActivity.this.getUserAccessToken());
         initItemMenuShortlist(this.shortListMenuItem, this.opportunity.isShortlisted());
         initMap();
         this.oppId.setText("ID " + this.id);
@@ -135,8 +136,10 @@ public class OpportunityActivity extends BaseActivity implements OnMapReadyCallb
         this.oppDuration.setText(this.opportunity.getDuration());
         this.oppDesc.setText(this.opportunity.getDescription());
         this.oppTime.setText(this.opportunity.getTimeRequired());
+/*
         this.oppTraining.setText(this.opportunity.getTraining());
         this.oppReimbursement.setText(this.opportunity.getReimbursement());
+*/
         this.oppOrgaDes.setText(this.opportunity.getOrganisationDescription());
         this.oppInterests.setAdapter(new ArrayAdapter<String>(this, 0, this.opportunity.getInterests()) {
             public View getView(int position, View convertView, ViewGroup parent) {
@@ -162,6 +165,17 @@ public class OpportunityActivity extends BaseActivity implements OnMapReadyCallb
         intent.putExtra("android.intent.extra.TEXT", Integer.toString(this.opportunity.getOrganisationId()));
         startActivity(intent);
     }
+
+    public void goToFeedback(View view) {
+        Intent intent = new Intent(this, FeedbackActivity.class);
+        intent.putExtra(getResources().getString(R.string.EXTRA_OPP_ID), Integer.toString(this.opportunity.getId()));
+        intent.putExtra(getResources().getString(R.string.EXTRA_OPP_TITLE), this.opportunity.getName());
+        intent.putExtra(getResources().getString(R.string.EXTRA_ORGA_NAME), this.opportunity.getOrganisationName());
+        intent.putExtra(getResources().getString(R.string.EXTRA_ORGA_CAUSE), this.opportunity.getOrgServiceFocus());
+        startActivityForResult(intent, ActivityCode.EXPRESSEDINTEREST.getValue());
+    }
+
+
 
     public void goToExpressInterest(View view) {
         Intent intent = new Intent(this, ExpressInterestActivity.class);
@@ -200,8 +214,8 @@ public class OpportunityActivity extends BaseActivity implements OnMapReadyCallb
         this.oppDesc = (TextView) findViewById(R.id.opp_desc);
         this.oppTime = (TextView) findViewById(R.id.opp_time);
         this.oppInterests = (ListView) findViewById(R.id.list_interest);
-        this.oppTraining = (TextView) findViewById(R.id.opp_training);
-        this.oppReimbursement = (TextView) findViewById(R.id.opp_reimbursement);
+       // this.oppTraining = (TextView) findViewById(R.id.opp_training);
+        //this.oppReimbursement = (TextView) findViewById(R.id.opp_reimbursement);
         this.oppOrgaDes = (TextView) findViewById(R.id.opp_orga_desc);
         this.expressedInterest = (Button) findViewById(R.id.expressed_btn);
         this.expressInterest = (Button) findViewById(R.id.express_btn);

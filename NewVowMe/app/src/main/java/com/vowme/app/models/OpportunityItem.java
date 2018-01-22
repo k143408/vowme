@@ -38,17 +38,31 @@ public class OpportunityItem extends PostApiModel {
             id = object.getInt("id");
             name = object.getString("name");
             description = object.getString("description");
-            serviceFocus = object.getJSONArray("causeSkills").toString();
+            StringBuilder sb = new StringBuilder();
+            for (int i=0; i<object.getJSONArray("causeSkills").length();i++){
+              JSONObject causeSkill = (JSONObject) object.getJSONArray("causeSkills").get(i);
+                JSONObject skill = (JSONObject)  causeSkill.get("skill");
+                sb.append(skill.get("name")).append(",");
+            }
+            sb.deleteCharAt(sb.lastIndexOf(","));
+            serviceFocus = sb.toString();
             duration = setDuration(object.getInt("registrationdate") - object.getInt("registrationdeadline"));
             int visibile = object.getInt("visibilitystatus");
             disabledAccess = visibile == 1 ? true : false;
             suburb = object.getString("address");
             state = object.getString("city");
-            stateCode = object.getString("zipcode");
+            stateCode = "";//object.getString("zipcode");
             organisationId = object.getInt("id");
             organisationName = object.getJSONObject("user").getJSONObject("userInfo").getString("organizationName");
             shortDescription = object.getString("info");
-            orgServiceFocus = object.getJSONArray("causetypes").toString();
+            StringBuilder sbtype = new StringBuilder();
+            for (int i=0; i<object.getJSONArray("causetypes").length();i++){
+                JSONObject causeSkill = (JSONObject) object.getJSONArray("causetypes").get(i);
+                sbtype.append(causeSkill.get("type")).append(",");
+            }
+            if (sbtype.length() > 0)
+            sbtype.deleteCharAt(sbtype.lastIndexOf(","));
+            orgServiceFocus = sbtype.toString();
             isExpired = false;
             isShortlisted = object.getJSONArray("shortlists").length() == 0 ? false:true ;
             date = object.getString("createdAt");

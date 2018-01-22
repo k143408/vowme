@@ -23,7 +23,7 @@ public interface FeedbackRepository extends JpaRepository<Feedback, Long> {
 	 * @param pageable the pageable
 	 * @return the feedback
 	 */
-	@Query("SELECT new com.vowme.util.helper.FeedbackCustom(f.id,f.feedback, f.cause.name ,f.commenter.firstname, f.commenter.lastname) FROM Feedback f JOIN f.receiver r WHERE r.id =?1")
+	@Query("SELECT new com.vowme.util.helper.FeedbackCustom(f.id,f.feedback, f.cause.name ,f.commenter.firstname, f.commenter.lastname) FROM Feedback f JOIN f.receiver r JOIN f.commenter c WHERE r.id =?1 OR c.id = ?1")
 	Page<FeedbackCustom> getFeedback(Long userId, Pageable pageable);
 
 }

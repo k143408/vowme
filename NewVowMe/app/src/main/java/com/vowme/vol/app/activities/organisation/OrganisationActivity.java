@@ -113,11 +113,10 @@ public class OrganisationActivity extends BaseActivity {
         }
         this.orgaName.setText(this.organisation.getName());
         this.orgaWebsite.setText(this.organisation.getWebsite());
-        this.orgaLocation.setText(this.organisation.getSuburb());
+        this.orgaLocation.setText(this.organisation.getSuburb() == null ? "" : this.organisation.getSuburb());
         this.orgaCause.setText(this.organisation.getServiceFocus());
         this.orgaDesc.setText(this.organisation.getDescription());
         this.orgaStreet.setText(this.organisation.getStreet());
         this.orgaSubPostcode.setText(this.organisation.getSuburb() + " " + this.organisation.getPostcode());
-     //   this.orgaSate.setText(this.organisation.getState() + " - Australia");
     }
 }

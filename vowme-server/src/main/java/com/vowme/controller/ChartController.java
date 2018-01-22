@@ -34,10 +34,10 @@ public class ChartController extends BaseController {
 	 * @return the status
 	 */
 	@GetMapping("status/{causeId}")
-	public Callable<Map<Integer, List<Integer>>> getStatus(@PathVariable Long causeId,@PageableDefault(size = 1)Pageable pageable) {
-		return new Callable<Map<Integer, List<Integer>>>() {
+	public Callable<Map<Integer, Long>> getStatus(@PathVariable Long causeId,@PageableDefault(size = 1)Pageable pageable) {
+		return new Callable<Map<Integer, Long>>() {
 			@Override
-			public Map<Integer, List<Integer>> call() throws Exception {
+			public Map<Integer, Long> call() throws Exception {
 				return chartService.getReport(causeId,pageable);
 			}
 		};

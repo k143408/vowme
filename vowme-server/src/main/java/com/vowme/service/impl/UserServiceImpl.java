@@ -14,6 +14,7 @@ import com.vowme.dto.DateParam;
 import com.vowme.dto.EOI;
 import com.vowme.dto.EoiDTO;
 import com.vowme.dto.LoginDTO;
+import com.vowme.dto.PostExpressionOfInterestResult;
 import com.vowme.dto.UserDTO;
 import com.vowme.dto.VolunteerDTO;
 import com.vowme.model.Approval;
@@ -24,6 +25,7 @@ import com.vowme.model.Timesheet;
 import com.vowme.model.User;
 import com.vowme.repository.ApprovalRepository;
 import com.vowme.repository.BoardcastRepository;
+import com.vowme.repository.FeedbackRepository;
 import com.vowme.repository.ParticipateRepository;
 import com.vowme.repository.TimesheetRespository;
 import com.vowme.repository.UserRepository;
@@ -59,7 +61,7 @@ public class UserServiceImpl implements UserService {
 
 	@Autowired
 	private ParticipateRepository participateRepository;
-	
+
 	@Autowired
 	private TimesheetRespository timesheetRespository;
 
@@ -81,7 +83,7 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public User save(UserDTO userDto) {
 		User user = userRepository.findOne(userDto.getUserId());
-		
+
 		user = user == null ? new User() : user;
 
 		user.getUserInfo().setAboutMe(userDto.getAboutMe());
@@ -94,9 +96,9 @@ public class UserServiceImpl implements UserService {
 		user.setLastname(userDto.getLastName());
 		user.setUpdatedAt(DateUtils.getCurrentTime());
 		user.getUserInfo().setUpdatedAt(DateUtils.getCurrentTime());
-		
+
 		userRepository.save(user);
-		
+
 		return user;
 	}
 
@@ -152,6 +154,11 @@ public class UserServiceImpl implements UserService {
 	}
 
 	private String getRejectionContent(User user, Cause cause, String comments) {
+		return String.format("%s has reject you from join '%s'. <br/> Rejection Reason is given below : <br/> %s",
+				user.getFullName(), cause.getName(), comments);
+	}
+
+	private String getEOIContent(User user, Cause cause, String comments) {
 		return String.format("%s has reject you from join '%s'. <br/> Rejection Reason is given below : <br/> %s",
 				user.getFullName(), cause.getName(), comments);
 	}
@@ -229,20 +236,48 @@ public class UserServiceImpl implements UserService {
 		User findById = userRepository.findById(userId);
 		findById.setCnic(eoi.getPostcode());
 		Cause causesById = causeService.getCausesById(causeId);
-		return approvalRepository.saveAndFlush(new Approval(eoi,causesById,findById));
+		Approval saveAndFlush = approvalRepository.saveAndFlush(new Approval(eoi, causesById, findById));
+		try {
+			notificationService
+					.notify(causesById,
+							causesById.getUser().getEmail(), String.format("%s has shared express of interest for %s",
+									findById.getFullName(), causesById.getName()),
+							getEOIContent(findById, causesById))
+					.call();
+			PostExpressionOfInterestResult call = notificationService.process(saveAndFlush).call();
+			if (call.isFlag()){
+				approvalForCause(causesById.getUser().getId(), userId, causeId, "");
+			}else{
+				approvalForCause(causesById.getUser().getId(), userId, causeId, call.getMessage());
+			}
+		} catch (Exception e) {
+		}
+		return saveAndFlush;
+	}
+
+	private String getEOIContent(User user, Cause cause) {
+		return String.format("%s has share express of interest to you for '%s'.", user.getFullName(), cause.getName());
 	}
 
 	@Override
 	public boolean isEOIExists(Long userId, Long causeId) {
 		return approvalRepository.getUserWithCause(userId, causeId) != null ? true : false;
 	}
-	
+
 	@Override
-	public Boolean logHours(DateParam dateParam, Long userId, Long causeId){
+	public Boolean logHours(DateParam dateParam, Long userId, Long causeId) {
 		User findById = userRepository.findById(userId);
 		Cause causesById = causeService.getCausesById(causeId);
 		Timesheet saveAndFlush = timesheetRespository.saveAndFlush(new Timesheet(dateParam, findById, causesById));
-		return saveAndFlush.getId() != null ? true : false; 
-		
+		return saveAndFlush.getId() != null ? true : false;
+
+	}
+	
+	@Override
+	public PostExpressionOfInterestResult postFeedback(EOI eoi, Long userId, Long causeId){
+		User findById = userRepository.findById(userId);
+		Cause causesById = causeService.getCausesById(causeId);
+		feedbackService.saveUserFeedback(findById,causesById,eoi.getEoi().getQualification());
+		return new PostExpressionOfInterestResult("created");
 	}
 }

@@ -1,4 +1,5 @@
-import { Component, OnInit, Input, OnChanges, SimpleChanges } from '@angular/core';
+import { Component, OnInit, Input, OnChanges, SimpleChanges, EventEmitter, Output } from '@angular/core';
+
 
 declare var google: any;
 
@@ -12,7 +13,11 @@ export class MapsComponent implements OnInit, OnChanges {
     positions: any[] = [];
 
     @Input() private latLong: string = '';
-    constructor() { if (!this.latLong) this.latLong = 'Pakistan' }
+
+    @Output()
+    change: EventEmitter<string> = new EventEmitter<string>();
+
+    constructor() { if (!this.latLong) this.latLong = '67.005615,24.946218' }
 
     ngOnChanges(changes: SimpleChanges): void {
         if (changes['latLong']) {
@@ -33,6 +38,7 @@ export class MapsComponent implements OnInit, OnChanges {
     onMapClick(event) {
         this.positions.push(event.latLng);
         event.target.panTo(event.latLng);
+        this.change.emit(event.latLng.toString().replace("(","").replace(")",""));
     }
     ngOnInit() {
         console.log(this.latLong);

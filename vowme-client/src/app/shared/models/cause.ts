@@ -47,6 +47,8 @@ export class Cause {
   teams: Team[];
   feedbacks: Feedback[];
   causeSkills: Skills[];
+  longitude: string;
+  latitude: string;
 
   setName(name) {
     this.name = name;

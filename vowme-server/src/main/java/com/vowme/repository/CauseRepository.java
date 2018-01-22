@@ -46,7 +46,7 @@ public interface CauseRepository extends JpaRepository<Cause, Long>, JpaSpecific
 	 * @param userId the user id
 	 * @return the cause count
 	 */
-	@Query("SELECT count(distinct c) FROM Cause c LEFT JOIN c.participates p LEFT JOIN c.backouts b WHERE p.id =?1")
+	@Query("SELECT count(distinct c) FROM Cause c LEFT JOIN c.participates p LEFT JOIN c.backouts b JOIN p.user u WHERE u.id =?1")
 	Long getCauseCount(Long userId);
 
 	/**
@@ -64,7 +64,7 @@ public interface CauseRepository extends JpaRepository<Cause, Long>, JpaSpecific
 	 * @param userId the user id
 	 * @return the participates cause count
 	 */
-	@Query("SELECT count(distinct c) FROM Cause c JOIN c.participates p WHERE p.id =?1")
+	@Query("SELECT count(distinct c) FROM Participate p JOIN p.cause c JOIN p.user u WHERE u.id =?1")
 	Long getParticipatesCauseCount(Long userId);
 
 	/**
@@ -74,7 +74,7 @@ public interface CauseRepository extends JpaRepository<Cause, Long>, JpaSpecific
 	 * @param pageable the pageable
 	 * @return the cause names
 	 */
-	@Query("SELECT new com.vowme.util.helper.KeyValue(c.id,c.name) FROM Cause c JOIN c.participates p WHERE p.id =?1")
+	@Query("SELECT new com.vowme.util.helper.KeyValue(c.id,c.name) FROM Cause c JOIN c.participates p JOIN p.user u WHERE u.id =?1")
 	Page<KeyValue> getCauseNames(Long userId, Pageable pageable);
 	
 	

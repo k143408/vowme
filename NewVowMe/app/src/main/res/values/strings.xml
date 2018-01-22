@@ -1,18 +1,18 @@
 <resources>
     <string name="app_name">VowMe</string>
-    <string name="apiVolunteerURL">https://api.volunteer.org.au/</string>
+    <string name="apiVolunteerURL"></string>
 
     <string name="apiViktorClientSecret">11027</string>
     <string name="apiViktorGetClientSecret">b6949421-b70a-4f42-af3d-a920dbcde6f3</string>
     <string name="apiViktorPostClientSecret">d5759ea7-7219-4fbc-86da-e3bcbce7fcbb</string>
-    <string name="apiViktorURL">https://api.volunteer.com.au/service.svc/</string>
+    <string name="apiViktorURL"></string>
 
     <string name="character_counter_pattern">%1$d / %2$d</string>
     <string name="client_id">volunteerProfileAndroid</string>
     <string name="client_secret">volsecret</string>
 
     <string name="app_opportunity_url">https://play.google.com/store?hl=en</string>
-    <string name="forgot_password_url">http://volunteer.org.au/Account/ForgotPassword</string>
+    <string name="forgot_password_url"></string>
     <string name="get_started_text">The greatest gift you can give someone is your time</string>
 
     <string name="email_regex">.+@.+\\.[a-z]+</string>
@@ -24,9 +24,10 @@
     <string name="profile_fragment_text">Build your volunteer profile, express interest and shortlist more opportunities. Simply create an account and you\'re good to go (it only takes a few minutes).</string>
     <string name="search_fragment_text">CTA\'s for discovering causes / interests / types or feature opportunities (potential paid promoted opportunities).</string>
     <string name="sign_in_text">Sign in.</string>
-    <string name="support_email">support@govolunteer.com.au</string>
+    <string name="support_email"></string>
     <string name="tab_bookmark">Bookmarks</string>
     <string name="tab_eoi">Expressed Interest</string>
+    <string name="tab_feedback">Feedback</string>
     <string name="tab_opportunities">Opportunities</string>
     <string name="tab_profile">Profile</string>
     <string name="tab_recent">Recent</string>
@@ -44,6 +45,7 @@
     <string name="title_activity_commitment_types">Commitment types</string>
     <string name="title_activity_experience">Experience</string>
     <string name="title_activity_express_interest">Express Interest</string>
+    <string name="title_activity_feedback">Feedback</string>
     <string name="title_activity_expressed_interest"></string>
     <string name="title_activity_help">Help</string>
     <string name="title_activity_interests">Interests</string>
@@ -118,8 +120,8 @@
     <string name="RADIUS_OPP_NEAR_ME">1</string>
     <string name="WEB_VIEW_TITLE">WEB_VIEW_TITLE</string>
     <string name="WEB_VIEW_URL">WEB_VIEW_URL</string>
-    <string name="link_help">http://govolunteer.com.au/About-Volunteering/</string>
-    <string name="link_privacy_statment">http://govolunteer.com.au/Legal/Privacy-Policy</string>
-    <string name="link_terms_use">http://govolunteer.com.au/Legal/Terms-of-Use</string>
+    <string name="link_help"></string>
+    <string name="link_privacy_statment"></string>
+    <string name="link_terms_use"></string>
     <string name="apiVolunteerURL1">http://10.0.2.2:9000/</string>
 </resources>

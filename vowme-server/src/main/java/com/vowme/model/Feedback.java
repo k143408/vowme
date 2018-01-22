@@ -65,6 +65,18 @@ public class Feedback extends BaseModel implements Serializable {
 	 */
 	public Feedback() {
 	}
+	
+
+	
+	public Feedback(String feedback, Cause cause, User receiver, User commenter) {
+		super();
+		this.feedback = feedback;
+		this.cause = cause;
+		this.receiver = receiver;
+		this.commenter = commenter;
+	}
+
+
 
 	/**
 	 * Gets the id.

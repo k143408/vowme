@@ -28,16 +28,16 @@ export class PendingListComponent extends BaseComponent {
         title: 'ID',
         type: 'number'
       },
+      causeName: {
+        title: 'Cause Name',
+        type:'string'
+      },
       firstname: {
         title: 'First Name',
         type: 'string'
       },
       lastname: {
         title: 'Last Name',
-        type: 'string'
-      },
-      username: {
-        title: 'Username',
         type: 'string'
       },
       email: {
@@ -48,9 +48,9 @@ export class PendingListComponent extends BaseComponent {
         title: 'CNIC',
         type: 'number'
       },
-      causeName: {
-        title: 'Cause Name',
-        type:'string'
+      username: {
+        title: 'Express of Interest',
+        type: 'string'
       }
     }
   };

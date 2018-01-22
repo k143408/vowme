@@ -3,6 +3,8 @@ package com.vowme.service;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
+import com.vowme.model.Cause;
+import com.vowme.model.User;
 import com.vowme.util.helper.FeedbackCustom;
 
 
@@ -19,5 +21,7 @@ public interface FeedbackService {
 	 * @return the user feedback
 	 */
 	Page<FeedbackCustom> getUserFeedback(Long userId, Pageable pageable);
+
+	void saveUserFeedback(User findById, Cause causesById, String qualification);
 
 }

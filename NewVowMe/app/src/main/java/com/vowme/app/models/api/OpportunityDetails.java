@@ -24,10 +24,38 @@ public class OpportunityDetails extends OpportunityItem {
         interests = new ArrayList();
     }
 
+    public OpportunityDetails(JSONObject object, boolean isAutenticatedSearch, String userId) {
+        super(object, isAutenticatedSearch);
+        try {
+            this.timeRequired = new StringBuilder().append((object.getLong("registrationdeadline") - object.getLong("registrationdate")) / (60 * 60 * 24)).append(" ").append("days").toString();
+            this.training = "";//object.getString("Training") == "null" ? "" : object.getString("Training");
+            addInterest(object.getJSONArray("causeSkills"));
+            this.reimbursement = "";//object.getString("Reimbursement") == "null" ? "" : object.getString("Reimbursement");
+            this.latitude = Double.valueOf(object.getDouble("latitude"));
+            this.longitude = Double.valueOf(object.getDouble("longitude"));
+            this.organisationDescription = object.getString("description");
+            this.displayOnMap = true;
+            JSONArray participates = object.getJSONArray("participates");
+            if (participates.length() != 0) {
+                for (int i = 0; i < participates.length(); i++) {
+                    JSONObject value = (JSONObject) participates.get(i);
+                    JSONObject user = (JSONObject) value.get("user");
+                    if (userId.equals(user.get("id").toString())){
+                        this.hasExpressedInterest = true;
+                    }
+                }
+            }
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+            return;
+        }
+    }
+
     public OpportunityDetails(JSONObject object, boolean isAutenticatedSearch) {
         super(object, isAutenticatedSearch);
         try {
-            this.timeRequired = "";//object.getString("TimeRequired") == "null" ? "" : object.getString("TimeRequired");
+            this.timeRequired = new StringBuilder().append((object.getLong("registrationdeadline") - object.getLong("registrationdate")) / (60 * 60 * 24)).append(" ").append("days").toString();
             this.training = "";//object.getString("Training") == "null" ? "" : object.getString("Training");
             addInterest(object.getJSONArray("causeSkills"));
             this.reimbursement = "";//object.getString("Reimbursement") == "null" ? "" : object.getString("Reimbursement");
@@ -36,6 +64,7 @@ public class OpportunityDetails extends OpportunityItem {
             this.organisationDescription = object.getString("description");
             this.displayOnMap = true;
             this.hasExpressedInterest = false;
+
         } catch (JSONException e) {
             e.printStackTrace();
             return;
@@ -43,14 +72,12 @@ public class OpportunityDetails extends OpportunityItem {
     }
 
     private void addInterest(JSONArray list) {
-        int i = 0;
-        while (i < list.length()) {
+        for (int i = 0; i < list.length(); i++) {
             try {
-                this.interests.add(list.getString(i));
-                i++;
-            } catch (JSONException e) {
-                e.printStackTrace();
-                return;
+                JSONObject causeSkill = (JSONObject) list.get(i);
+                JSONObject skill = (JSONObject) causeSkill.get("skill");
+                this.interests.add(skill.get("name").toString());
+            } catch (Exception ex) {
             }
         }
     }

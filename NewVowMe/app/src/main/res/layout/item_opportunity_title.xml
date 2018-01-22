@@ -7,7 +7,7 @@
     <TextView
         android:id="@+id/opp_title"
         style="@style/OpportunityTitle"
-        android:text="Lorem ipsum dolor sit amet consectetur adi..." />
+        android:text="" />
 
     <TextView
         android:id="@+id/opp_for"

@@ -32,6 +32,7 @@ import { CauselistComponent } from './table/causelist/causelist.component';
 import { PendingListComponent } from './table/pending-list/pending-list.component';
 import { VolunteerPendingComponent } from './volunteer-pending/volunteer-pending.component';
 import { LoginComponent } from './login/login.component';
+import { PublishCauseComponent } from './publish-cause/publish-cause.component';
 
 @NgModule({
   declarations: [
@@ -50,7 +51,8 @@ import { LoginComponent } from './login/login.component';
     CauselistComponent,
     PendingListComponent,
     VolunteerPendingComponent,
-    LoginComponent],
+    LoginComponent,
+    PublishCauseComponent],
   imports: [
     BrowserModule,
     RouterModule.forRoot(AppRoutes),

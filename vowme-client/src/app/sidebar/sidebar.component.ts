@@ -11,11 +11,11 @@ export interface RouteInfo {
 
 export const ROUTES: RouteInfo[] = [
     { path: 'dashboard', title: 'Dashboard', icon: 'ti-panel', class: '' },
+    { path: 'create-cause', title: 'Publish Cause', icon: 'ti-world', class: '' },
     { path: 'user', title: 'User Profile', icon: 'ti-user', class: '' },
     { path: 'volunteer-list', title: 'Volunteers', icon: 'ti-view-list-alt', class: '' },
     { path: 'cause-list', title: 'Causes', icon: 'ti-package', class: '' },
-    { path: 'pending-list', title: 'Pending Volunteers', icon: 'ti-arrow-circle-left', class: '' },
-    { path: 'broadcast-list', title: 'Broadcasts', icon: 'ti-control-stop', class: '' }
+    { path: 'pending-list', title: 'Pending Volunteers', icon: 'ti-arrow-circle-left', class: '' }
 ];
 
 @Component({

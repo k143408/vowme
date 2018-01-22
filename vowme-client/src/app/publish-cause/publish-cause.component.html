@@ -1,0 +1,149 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-lg-4 col-md-5">
+      <div class="card card-user">
+        <div class="content">
+          <div>
+            <p class="description text-center"></p>
+            <div>
+              <maps-cmp [latLong]="" (change)="addlatLng($event)"></maps-cmp>
+            </div>
+          </div>
+        </div>
+        <div class="text-center">
+          <div class="row">
+            <div class="col-md-3 col-md-offset-1">
+              <!-- <h5>{{currentCause.participates.length}}<br /><small>Participates</small></h5> -->
+            </div>
+            <div class="col-md-4">
+              <!-- <h5>{{currentCause.backouts.length}}<br /><small>Backouts</small></h5> -->
+            </div>
+            <div class="col-md-3">
+              <!-- <h5>{{currentCause.boardcasts.length}}+<br /><small>Boardcasts</small></h5> -->
+            </div>
+          </div>
+        </div>
+        <div class="text-center">
+          <div class="row">
+            <div class="col-md-3 col-md-offset-3">
+              <!-- <h5><button class="btn btn-info" (click) ="approval()"> Make Look Alike Cause.</button></h5> -->
+              <!-- <h5><button class="btn sm-info" *ngIf="currentUser.id == currentCause.user.id" (click) ="addTeamMember()"> Invite Team Members.</button></h5> -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-8 col-md-7">
+      <form [formGroup]="causeForm"(ngSubmit)="onSubmit()">
+        <div class="card">
+          <div class="header">
+            <h4 class="title">
+              Details
+            </h4>
+          </div>
+          <div class="content">
+            <div class="row">
+              <div class="col-md-12">
+                <div class="form-group">
+                  <label>Title</label>
+                  <input type="text" class="form-control border-input" formControlName="name" >
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12">
+                <div class="form-group">
+                  <label>Address</label>
+                  <input type="text" class="form-control border-input" formControlName="address" >
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-3">
+                <div class="form-group">
+                  <label>City</label>
+                  <input type="text" class="form-control border-input" formControlName="city" >
+                </div>
+              </div>
+              <div class="col-md-3">
+                <div class="form-group">
+                  <label for="exampleInputEmail1">Email</label>
+                  <input type="text" class="form-control border-input" formControlName="email" >
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="form-group">
+                  <label>Registration Date</label>
+                  <input type="text" class="form-control border-input" formControlName="registrationdate" >
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-3">
+                <div class="form-group">
+                  <label>Max Attendees</label>
+                  <input type="text" class="form-control border-input" formControlName="maxattendees" >
+                </div>
+              </div>
+              <div class="col-md-3">
+                <div class="form-group">
+                  <label>Phone</label>
+                  <input type="text" class="form-control border-input" formControlName="phone" >
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label>Registration End Date</label>
+                  <input type="text" class="form-control border-input" formControlName="registrationdeadline" >
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label>Website</label>
+                  <input type="text" class="form-control border-input" formControlName="wwwaddress" >
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12">
+                <div class="form-group">
+                  <label>Info</label>
+                  <div class="clearfix"></div>
+                  <input type="text" class="form-control border-input" formControlName="info" >
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label>Required Skills</label>
+                  <div class="clearfix"></div>
+                  <div  *ngFor="let data of lookupList">
+                    <input type="checkbox" (change)="onChange(data, $event.target.checked)"> {{data.name}}
+                    <br>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                  <div class="form-group">
+                    <label>Required Interest</label>
+                    <div class="clearfix"></div>
+                    <div  *ngFor="let data of lookupInterest">
+                      <input type="checkbox" (change)="onChangeInterest(data, $event.target.checked)"> {{data.name}}
+                      <br>
+                    </div>
+                  </div>
+                </div>
+            </div>
+
+            <div class="text-center">
+               <button type="submit" class="btn btn-info btn-fill btn-wd">Create!</button>
+            </div>
+            <div class="clearfix"></div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>

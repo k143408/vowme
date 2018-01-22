@@ -60,7 +60,7 @@ public interface UserRepository extends JpaRepository<User, Long> {
 	
 	User findById(Long id);
 
-	@Query("SELECT distinct new com.vowme.util.helper.MutliModel(u.id,u.firstname,u.lastname,u.username,u.email,u.cnic,c.name,c.id) FROM User u JOIN u.approvals a JOIN a.cause c JOIN c.user cu WHERE cu.id = ?1 and cu.id != u.id and a.isApproved NOT in (0,1)")
+	@Query("SELECT distinct new com.vowme.util.helper.MutliModel(u.id,u.firstname,u.lastname,a.description,u.email,u.cnic,c.name,c.id) FROM User u JOIN u.approvals a JOIN a.cause c JOIN c.user cu WHERE cu.id = ?1 and cu.id != u.id and a.isApproved NOT in (0,1)")
 	Page<MutliModel> getPendingVolunteersByUserId(Long userId, Pageable pageable);
 
 	@Query("SELECT distinct u FROM User u JOIN u.userInfo ui where ui.isOrganizer = 1")

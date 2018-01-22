@@ -11,13 +11,19 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.vowme.model.Cause;
+import com.vowme.model.CauseSkill;
+import com.vowme.model.Causetype;
 import com.vowme.model.Shortlist;
+import com.vowme.model.Skill;
 import com.vowme.model.Team;
 import com.vowme.model.User;
 import com.vowme.repository.ApprovalRepository;
 import com.vowme.repository.CauseRepository;
+import com.vowme.repository.CauseSkillRepository;
+import com.vowme.repository.CauseTypeRepository;
 import com.vowme.repository.RecommendedRepository;
 import com.vowme.repository.ShortListRepository;
+import com.vowme.repository.SkillRepository;
 import com.vowme.repository.TeamRepository;
 import com.vowme.repository.UserRepository;
 import com.vowme.service.CauseService;
@@ -44,7 +50,16 @@ public class CauseServiceImpl implements CauseService {
 
 	@Autowired
 	private TeamRepository teamRepository;
-
+	
+	@Autowired
+	private SkillRepository skillRepository;
+	
+	@Autowired
+	private CauseSkillRepository causeSkillRepository ;
+	
+	@Autowired
+	private CauseTypeRepository causeTypeRepository;  
+	
 	@Override
 	public Page<Cause> getCauses(Long userId, Pageable pageable) {
 		return causeRepository.getCauseByUserId(userId, pageable);
@@ -80,15 +95,28 @@ public class CauseServiceImpl implements CauseService {
 		return causeRepository.getCauseShortDescriptionByUserId(userId, pageable);
 	}
 
-	@Transactional
 	@Override
 	public Cause addCauseWithTeam(Cause cause) {
 		Set<Team> teams = cause.getTeams();
+		Set<CauseSkill> causeSkills = cause.getCauseSkills();
+		Set<Causetype> causetypes = cause.getCausetypes();
 		cause.setTeams(new HashSet<>());
-		causeRepository.save(cause);
-		if (teams.size() != 0) {
+		final Cause causeSave = causeRepository.save(cause);
+		if (teams != null && teams.size() != 0) {
 			cause.addTeams(teams);
 			teamRepository.save(teams);
+		}
+		if (causeSkills != null && causeSkills.size() != 0){
+			causeSkills.forEach(cs -> {
+				cs.setCause(causeSave);
+				causeSkillRepository.saveAndFlush(cs);
+			});
+		}
+		if (causetypes != null && causetypes.size() != 0){
+			causetypes.forEach(ct -> {
+				ct.setCause(causeSave);
+				causeTypeRepository.save(ct);
+			});
 		}
 		return cause;
 	}
